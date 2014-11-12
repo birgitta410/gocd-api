@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Projects>
+    <Project name="A-PIPELINE :: build" activity="Sleeping" lastBuildStatus="Success" lastBuildLabel="1200" lastBuildTime="2014-07-24T09:14:02" webUrl="http://the-go-host:8153/go/pipelines/A-PIPELINE/1200/build/1" />
+    <Project name="A-PIPELINE :: build :: both" activity="Sleeping" lastBuildStatus="Success" lastBuildLabel="1200" lastBuildTime="2014-07-24T09:14:02" webUrl="http://the-go-host:8153/go/tab/build/detail/A-PIPELINE/1200/build/1/both" />
+    <Project name="A-PIPELINE :: integration-test" activity="Building" lastBuildStatus="Success" lastBuildLabel="1199" lastBuildTime="2014-07-24T08:58:32" webUrl="http://the-go-host:8153/go/pipelines/A-PIPELINE/1200/integration-test/1" />
+    <Project name="A-PIPELINE :: integration-test :: backend-integration" activity="Building" lastBuildStatus="Success" lastBuildLabel="1199" lastBuildTime="2014-07-24T08:58:32" webUrl="http://the-go-host:8153/go/tab/build/detail/A-PIPELINE/1200/integration-test/1/backend-integration" />
+    <Project name="A-PIPELINE :: deploy-dev" activity="Sleeping" lastBuildStatus="Success" lastBuildLabel="1199" lastBuildTime="2014-07-24T08:59:21" webUrl="http://the-go-host:8153/go/pipelines/A-PIPELINE/1199/deploy-dev/1" />
+    <Project name="A-PIPELINE :: deploy-dev :: backend" activity="Sleeping" lastBuildStatus="Success" lastBuildLabel="1199" lastBuildTime="2014-07-24T08:59:05" webUrl="http://the-go-host:8153/go/tab/build/detail/A-PIPELINE/1199/deploy-dev/1/backend" />
+    <Project name="A-PIPELINE :: deploy-dev :: client" activity="Sleeping" lastBuildStatus="Success" lastBuildLabel="1199" lastBuildTime="2014-07-24T08:59:21" webUrl="http://the-go-host:8153/go/tab/build/detail/A-PIPELINE/1199/deploy-dev/1/client" />
+    <Project name="A-PIPELINE :: smoke-test-dev" activity="Sleeping" lastBuildStatus="Success" lastBuildLabel="1199" lastBuildTime="2014-07-24T09:00:09" webUrl="http://the-go-host:8153/go/pipelines/A-PIPELINE/1199/smoke-test-dev/1" />
+    <Project name="A-PIPELINE :: smoke-test-dev :: backend" activity="Sleeping" lastBuildStatus="Success" lastBuildLabel="1199" lastBuildTime="2014-07-24T09:00:09" webUrl="http://the-go-host:8153/go/tab/build/detail/A-PIPELINE/1199/smoke-test-dev/1/backend" />
+    <Project name="A-PIPELINE :: functional-test" activity="Sleeping" lastBuildStatus="Failure" lastBuildLabel="1199" lastBuildTime="2014-07-24T09:04:06" webUrl="http://the-go-host:8153/go/pipelines/A-PIPELINE/1199/functional-test/1">
+        <messages>
+            <message text="Maria Mustermann &lt;mamustermann@internet.se&gt;" kind="Breakers" />
+        </messages>
+    </Project>
+    <Project name="A-PIPELINE :: functional-test :: both" activity="Sleeping" lastBuildStatus="Failure" lastBuildLabel="1199" lastBuildTime="2014-07-24T09:04:06" webUrl="http://the-go-host:8153/go/tab/build/detail/A-PIPELINE/1199/functional-test/1/both">
+        <messages>
+            <message text="Maria Mustermann &lt;mamustermann@internet.se&gt;" kind="Breakers" />
+        </messages>
+    </Project>
+    <Project name="A-PIPELINE :: deploy-showcase" activity="Sleeping" lastBuildStatus="Success" lastBuildLabel="1190" lastBuildTime="2014-07-24T06:59:51" webUrl="http://the-go-host:8153/go/pipelines/A-PIPELINE/1190/deploy-showcase/1" />
+    <Project name="A-PIPELINE :: deploy-showcase :: backend" activity="Sleeping" lastBuildStatus="Success" lastBuildLabel="1190" lastBuildTime="2014-07-24T06:59:32" webUrl="http://the-go-host:8153/go/tab/build/detail/A-PIPELINE/1190/deploy-showcase/1/backend" />
+    <Project name="A-PIPELINE :: deploy-showcase :: client" activity="Sleeping" lastBuildStatus="Success" lastBuildLabel="1235" lastBuildTime="2014-07-24T06:59:51" webUrl="http://the-go-host:8153/go/tab/build/detail/A-PIPELINE/1235/deploy-showcase/1/client" />
+</Projects>
+

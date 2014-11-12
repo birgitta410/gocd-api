@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Get redirected here via http://the-go-host:8153/go/pipelines/A-PIPELINE/1805/deploy-dev/1.xml -->
+<stage name="functional-test" counter="1">
+  <link rel="self" href="http://the-go-host:8153/go/api/stages/9334.xml"/>
+  <id><![CDATA[urn:x-go.studios.thoughtworks.com:stage-id:QEN:1805:deploy-dev:1]]></id>
+  <pipeline name="A-PIPELINE" counter="1805" label="1805" href="http://the-go-host:8153/go/api/pipelines/A-PIPELINE/1904.xml"/>
+  <updated>2014-10-31T13:43:04Z</updated>
+  <result>Passed</result>
+  <state>Completed</state>
+  <approvedBy><![CDATA[changes]]></approvedBy>
+  <jobs>
+    <job href="http://the-go-host:8153/go/api/jobs/12597.xml"/>
+    <job href="http://the-go-host:8153/go/api/jobs/12598.xml"/>
+  </jobs>
+</stage>

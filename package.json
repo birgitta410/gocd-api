@@ -1,0 +1,19 @@
+{
+  "name": "gocd-api",
+  "version": "0.0.1",
+  "dependencies": {
+    "express": "3.x",
+    "lodash": "~2.4.1",
+    "moment": "~2.6.0",
+    "node-yaml-config": "0.0.2",
+    "ws": "~0.4.31",
+    "xml2json": "~0.4.0",
+    "request": "~2.39.0",
+    "requirejs": "~2.1.14",
+    "cheerio": "~0.17.0",
+    "q": "~1.0.1"
+  },
+  "devDependencies": {
+    "jasmine-node": "~1.14.5"
+  }
+}
