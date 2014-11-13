@@ -12,7 +12,7 @@ function ymlHerokuConfigModule() {
   ];
 
   var create = function (configKey) {
-
+    
     var config;
     var id = configKey;
 

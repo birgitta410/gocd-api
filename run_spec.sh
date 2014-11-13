@@ -1,1 +1,2 @@
-node node_modules/jasmine-node/bin/jasmine-node --runWithRequireJs --requireJsSetup ./spec/requirejs-setup.js --captureExceptions ./spec
+#!/bin/sh
+node node_modules/jasmine-node/bin/jasmine-node --captureExceptions ./spec

@@ -1,14 +1,18 @@
-var context = createContext({});
+var moment = require('moment');
+var Q = require('q');
+var gocdRequestor = require('../server/sources/gocd/gocdRequestor');
+var pipelineRunCreator = require('../server/sources/gocd/pipelineRun');
 
-context(['moment', 'server/sources/gocd/pipelineRun', 'server/sources/gocd/gocdRequestor', 'q'], function (moment, pipelineRunCreator, gocdRequestor, Q) {
+describe('pipelineRun', function () {
 
   beforeEach(function() {
+
     gocdRequestor.getJobRunDetails = gocdRequestor.getSampleJobRunDetails;
   });
 
   describe('historyEntryCreator', function () {
     it('should create initials of person with special characters in name', function (done) {
-      var pipelineRun = pipelineRunCreator.createNew({author: {
+      var pipelineRun = pipelineRunCreator.pipelineRun.createNew({author: {
         name: 'Special Cäracter'
       }});
       Q.all(pipelineRun.promiseInitialise()).then(function () {
@@ -18,7 +22,7 @@ context(['moment', 'server/sources/gocd/pipelineRun', 'server/sources/gocd/gocdR
 
     });
     it('should create initials of person with three names', function (done) {
-      var pipelineRun = pipelineRunCreator.createNew({author: {
+      var pipelineRun = pipelineRunCreator.pipelineRun.createNew({author: {
         name: 'Has Three Names'
       }});
       Q.all(pipelineRun.promiseInitialise()).then(function () {
@@ -28,7 +32,7 @@ context(['moment', 'server/sources/gocd/pipelineRun', 'server/sources/gocd/gocdR
 
     });
     it('should create initials of person with two names', function (done) {
-      var pipelineRun = pipelineRunCreator.createNew({author: {
+      var pipelineRun = pipelineRunCreator.pipelineRun.createNew({author: {
         name: 'Max Mustermann'
       }});
       Q.all(pipelineRun.promiseInitialise()).then(function () {
@@ -38,7 +42,7 @@ context(['moment', 'server/sources/gocd/pipelineRun', 'server/sources/gocd/gocdR
     });
 
     it('should add jobDetails', function (done) {
-      var pipelineRun = pipelineRunCreator.createNew({
+      var pipelineRun = pipelineRunCreator.pipelineRun.createNew({
         author: { name: 'bla' },
         stageName: 'functional-test'
       });
@@ -79,7 +83,7 @@ context(['moment', 'server/sources/gocd/pipelineRun', 'server/sources/gocd/gocdR
         }
       };
 
-      var pipelineRun = pipelineRunCreator.createNew(firstStage);
+      var pipelineRun = pipelineRunCreator.pipelineRun.createNew(firstStage);
       pipelineRun.promiseInitialise();
 
       expect(pipelineRun.wasSuccessful()).toBe(true);

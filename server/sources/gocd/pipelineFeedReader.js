@@ -62,7 +62,10 @@ function pipelineFeedReaderModule() {
             defer.resolve(filteredResults);
           }
 
-        }, defer.reject);
+        }).fail(function(e) {
+          console.log('failed pipelineRunInits', e);
+          defer.reject();
+        });
 
       } else {
         defer.resolve({});
