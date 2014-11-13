@@ -10,11 +10,9 @@
     "gocd"
   ],
   "dependencies": {
-    "express": "3.x",
     "lodash": "~2.4.1",
     "moment": "~2.6.0",
     "node-yaml-config": "0.0.2",
-    "ws": "~0.4.31",
     "xml2json": "~0.4.0",
     "request": "~2.39.0",
     "cheerio": "~0.17.0",
