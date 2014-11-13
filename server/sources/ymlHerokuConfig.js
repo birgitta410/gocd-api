@@ -1,5 +1,11 @@
 
-define(['xml2json', 'module', 'path', 'node-yaml-config', 'lodash'], function (xml2json, module, path, yaml_config, _) {
+var xml2json = require('xml2json');
+var module = require('module');
+var path = require('path');
+var yaml_config = require('node-yaml-config');
+var _ = require('lodash');
+
+function ymlHerokuConfigModule() {
 
   var HEROKU_VARS_SUPPORT = [
     'user', 'password', 'url', 'pipeline', 'jobs', 'key', 'secret', 'account'
@@ -75,5 +81,6 @@ define(['xml2json', 'module', 'path', 'node-yaml-config', 'lodash'], function (x
   return {
     create: create
   };
-});
+};
 
+exports.create = ymlHerokuConfigModule().create;

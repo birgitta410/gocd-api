@@ -1,5 +1,6 @@
+var _ = require('lodash');
 
-define(['lodash'], function (_) {
+function atomEntryParserModule() {
 
   var GO_PIPELINES_ENDPOINT = '/go/pipelines/';
   var GO_PIPELINES_DETAILS_ENDPOINT = '/go/tab/build/detail/';
@@ -96,4 +97,8 @@ define(['lodash'], function (_) {
     parseParametersFromJobRunUrl: parseParametersFromJobRunUrl
   };
 
-});
+};
+var atomEntryParser = atomEntryParserModule();
+
+exports.withData = atomEntryParser.withData;
+exports.parseParametersFromJobRunUrl = atomEntryParser.parseParametersFromJobRunUrl;

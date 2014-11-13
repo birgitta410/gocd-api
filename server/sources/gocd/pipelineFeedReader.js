@@ -1,6 +1,10 @@
+var Q = require('q');
+var _ = require('lodash');
+var pipelineRunCreator = require('./pipelineRun');
+var gocdRequestor = require('./gocdRequestor');
+var atomEntryParser = require('./atomEntryParser');
 
-define(['q', 'lodash', 'server/sources/gocd/pipelineRun', 'server/sources/gocd/gocdRequestor', 'server/sources/gocd/atomEntryParser'],
-  function (Q, _, pipelineRunCreator, gocdRequestor, atomEntryParser) {
+function pipelineFeedReaderModule() {
 
   var pipelineRuns = { };
 
@@ -31,7 +35,7 @@ define(['q', 'lodash', 'server/sources/gocd/pipelineRun', 'server/sources/gocd/g
         var pipelineRunInitPromises = _.map(result.feed.entry, function (entry) {
 
             if(! pipelineRuns[entry.buildNumber]) {
-              var pipelineRun = pipelineRunCreator.createNew(entry);
+              var pipelineRun = pipelineRunCreator.pipelineRun.createNew(entry);
               pipelineRuns[entry.buildNumber] = pipelineRun;
               return pipelineRun.promiseInitialise();
 
@@ -64,7 +68,9 @@ define(['q', 'lodash', 'server/sources/gocd/pipelineRun', 'server/sources/gocd/g
         defer.resolve({});
       }
 
-    }, defer.reject);
+    }).fail(function(e) {
+      console.log('failed requestStages', e);
+    });
 
     return defer.promise;
 
@@ -79,4 +85,8 @@ define(['q', 'lodash', 'server/sources/gocd/pipelineRun', 'server/sources/gocd/g
     clear: clear
   };
 
-});
+};
+
+var pipelineFeedReader = pipelineFeedReaderModule();
+module.exports.readPipelineRuns = pipelineFeedReader.readPipelineRuns;
+module.exports.clear = pipelineFeedReader.clear;

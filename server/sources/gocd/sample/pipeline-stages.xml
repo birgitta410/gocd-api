@@ -5,10 +5,10 @@
         <name>Go</name>
     </author>
     <updated>2014-07-18T16:08:39+00:00</updated>
-    <link rel="self" href="server/sources/gocd/sample/pipeline-stages.xml"/>
+    <link rel="self" href="pipeline-stages.xml"/>
 
 
-    <link rel="next" href="server/sources/gocd/sample/pipeline-stages-page2.xml"/>
+    <link rel="next" href="pipeline-stages-page2.xml"/>
 
     <entry>
         <title><![CDATA[A-PIPELINE(1200) stage build(2) Passed]]></title>

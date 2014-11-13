@@ -1,6 +1,11 @@
 
-define(['q', 'lodash', 'moment', 'cheerio', 'server/sources/gocd/gocdRequestor'],
-  function (Q, _, moment, cheerio, gocdRequestor) {
+var Q = require('q');
+var _ = require('lodash');
+var moment = require('moment');
+var cheerio = require('cheerio');
+var gocdRequestor = require('./gocdRequestor');
+
+function pipelineRun() {
 
   var PipelineRunCreator = {};
 
@@ -252,4 +257,6 @@ define(['q', 'lodash', 'moment', 'cheerio', 'server/sources/gocd/gocdRequestor']
 
   return PipelineRunCreator;
 
-});
+};
+
+exports.pipelineRun = pipelineRun();

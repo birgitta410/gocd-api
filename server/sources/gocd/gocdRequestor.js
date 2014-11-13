@@ -1,12 +1,20 @@
 
-define(['q', 'lodash', 'xml2json', 'request', 'fs', 'server/sources/ymlHerokuConfig'], function (Q, _, xml2json, request, fs, configReader) {
+var Q = require('q');
+var _ = require('lodash');
+var xml2json = require('xml2json');
+var request = require('request');
+var fs = require('fs');
+var path = require('path');
+var configReader = require('../ymlHerokuConfig');
+
+function gocdRequestorModule() {
 
   var config = configReader.create('gocd');
 
   var PIPELINE_API_BASE = '/go/api/pipelines/' + config.get().pipeline;
   var PIPELINE_FEED_ENDPOINT = PIPELINE_API_BASE + '/stages.xml';
 
-  var SAMPLES_PATH = 'server/sources/gocd/sample/';
+  var SAMPLES_PATH = path.resolve(__dirname, 'sample') + '/';
 
   var pipelineFeedEtag;
 
@@ -59,7 +67,8 @@ define(['q', 'lodash', 'xml2json', 'request', 'fs', 'server/sources/ymlHerokuCon
   };
 
   function getSample(next) {
-    var source = next ? next : SAMPLES_PATH + 'pipeline-stages.xml';
+
+    var source = next ? SAMPLES_PATH + next : SAMPLES_PATH + 'pipeline-stages.xml';
     return resolveAndPromiseSampleFile(source, true);
   }
 
@@ -176,5 +185,14 @@ define(['q', 'lodash', 'xml2json', 'request', 'fs', 'server/sources/ymlHerokuCon
     getMaterialHtml: getMaterialHtml,
     getSampleMaterialHtml: getSampleMaterialHtml
   }
-});
+};
 
+var gocdRequestor = gocdRequestorModule();
+exports.get = gocdRequestor.get;
+exports.getSample = gocdRequestor.getSample;
+exports.getPipelineRunDetails = gocdRequestor.getPipelineRunDetails;
+exports.getSamplePipelineRunDetails = gocdRequestor.getSamplePipelineRunDetails;
+exports.getJobRunDetails = gocdRequestor.getJobRunDetails;
+exports.getSampleJobRunDetails = gocdRequestor.getSampleJobRunDetails;
+exports.getMaterialHtml = gocdRequestor.getMaterialHtml;
+exports.getSampleMaterialHtml = gocdRequestor.getSampleMaterialHtml;

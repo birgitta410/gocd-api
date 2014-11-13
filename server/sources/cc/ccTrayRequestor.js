@@ -1,5 +1,11 @@
+var Q = require('q');
+var request = require('request');
+var xml2json = require('xml2json');
+var fs = require('fs');
+var path = require('path');
+var configReader = require('../ymlHerokuConfig');
 
-define(['q', 'request', 'xml2json', 'fs', 'server/sources/ymlHerokuConfig'], function (Q, request, xml2json, fs, configReader) {
+function ccTrayRequestorModule() {
 
   var config = configReader.create('cc');
   var url = config.get().url; // ccTray file URL from config file
@@ -27,7 +33,7 @@ define(['q', 'request', 'xml2json', 'fs', 'server/sources/ymlHerokuConfig'], fun
   function getSample() {
     var defer = Q.defer();
 
-    var xml = fs.readFileSync('server/sources/cc/sample/cctray.xml');
+    var xml = fs.readFileSync(path.resolve(__dirname + '/sample/', 'cctray.xml'));
     var json = xml2json.toJson(xml, {
       object: true, sanitize: false
     });
@@ -41,5 +47,8 @@ define(['q', 'request', 'xml2json', 'fs', 'server/sources/ymlHerokuConfig'], fun
     get: get,
     getSample: getSample
   }
-});
+};
 
+var ccTrayRequestor = ccTrayRequestorModule();
+exports.get = ccTrayRequestor.get;
+exports.getSample = ccTrayRequestor.getSample;

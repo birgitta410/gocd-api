@@ -1,6 +1,11 @@
+var Q = require('q');
+var _ = require('lodash');
+var ccTrayRequestor = require('./ccTrayRequestor');
+var goCdAtomEntryParser = require('../gocd/atomEntryParser');
+var configReader = require('../ymlHerokuConfig');
 
-define(['q', 'lodash', 'server/sources/cc/ccTrayRequestor', 'server/sources/gocd/atomEntryParser', 'server/sources/ymlHerokuConfig'],
-  function (Q, _, ccTrayRequestor, goCdAtomEntryParser, configReader) {
+
+function ccTrayReaderModule() {
 
   var configValues = configReader.create('cc').get();
 
@@ -88,7 +93,10 @@ define(['q', 'lodash', 'server/sources/cc/ccTrayRequestor', 'server/sources/gocd
 
       return activity;
 
-    });
+    })
+      .fail(function(e) {
+        console.log('failed requestActivity', e);
+      });
 
 
   };
@@ -96,4 +104,7 @@ define(['q', 'lodash', 'server/sources/cc/ccTrayRequestor', 'server/sources/gocd
   return {
     readActivity: readActivity
   };
-});
+};
+
+var ccTrayReader = ccTrayReaderModule();
+exports.readActivity = ccTrayReader.readActivity;
