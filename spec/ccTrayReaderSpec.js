@@ -3,7 +3,7 @@ var mockery = require('mockery');
 
 describe('ccTrayReader', function () {
 
-  var configuration = {};
+  var options = {};
 
   var theCcTrayReader;
   var ccTrayRequestor;
@@ -14,16 +14,13 @@ describe('ccTrayReader', function () {
       warnOnUnregistered: false
     });
 
-    var config = {
-      create : function() {
-        return {
-          get: function() {
-            return configuration;
-          }
-        };
+    var globalOptions = {
+      get: function() {
+        return options;
       }
     };
-    mockery.registerMock('../ymlHerokuConfig', config);
+
+    mockery.registerMock('../options', globalOptions);
 
     theCcTrayReader = require('../server/sources/cc/ccTrayReader');
     ccTrayRequestor = require('../server/sources/cc/ccTrayRequestor');
@@ -35,7 +32,7 @@ describe('ccTrayReader', function () {
   describe('init()', function () {
 
     beforeEach(function() {
-      configuration.jobs = undefined;
+      options.jobs = undefined;
     });
 
     it('should log an example to the console, for documentation purposes', function (done) {
@@ -56,7 +53,7 @@ describe('ccTrayReader', function () {
 
     it('should only read the jobs that are configured', function (done) {
       // 6 = number of jobs
-      configuration.jobs = [ 'A-PIPELINE :: build' ];
+      options.jobs = [ 'A-PIPELINE :: build' ];
       theCcTrayReader.readActivity().then(function (result) {
         expect(result.jobs.length).toBe(1);
         done();
@@ -65,7 +62,7 @@ describe('ccTrayReader', function () {
 
     it('should support configuration of stage name and then choose all the jobs under that stage', function (done) {
       // 6 = number of jobs
-      configuration.jobs = {
+      options.jobs = {
         '0': 'A-PIPELINE :: deploy-dev'
       };
       theCcTrayReader.readActivity().then(function (result) {

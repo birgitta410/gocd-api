@@ -2,12 +2,12 @@ var Q = require('q');
 var _ = require('lodash');
 var ccTrayRequestor = require('./ccTrayRequestor');
 var goCdAtomEntryParser = require('../gocd/atomEntryParser');
-var configReader = require('../ymlHerokuConfig');
+var globalOptions = require('../options');
 
 
 function ccTrayReaderModule() {
 
-  var configValues = configReader.create('cc').get();
+  var options = globalOptions.get();
 
   var requestActivity = function () {
     return ccTrayRequestor.get(function(json) {
@@ -55,8 +55,8 @@ function ccTrayReaderModule() {
         }
 
         function includeJob() {
-          if(configValues.jobs !== undefined) {
-            var configured = _.any(_.values(configValues.jobs), function(jobName) {
+          if(options.jobs !== undefined) {
+            var configured = _.any(_.values(options.jobs), function(jobName) {
               return project.name.indexOf(jobName) === 0;
             });
             return configured && isAJob;

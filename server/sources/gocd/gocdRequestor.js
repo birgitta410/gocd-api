@@ -5,18 +5,21 @@ var xml2json = require('xml2json');
 var request = require('request');
 var fs = require('fs');
 var path = require('path');
-var configReader = require('../ymlHerokuConfig');
+var globalOptions = require('../options');
 
 function gocdRequestorModule() {
-
-  var config = configReader.create('gocd');
-
-  var PIPELINE_API_BASE = '/go/api/pipelines/' + config.get().pipeline;
-  var PIPELINE_FEED_ENDPOINT = PIPELINE_API_BASE + '/stages.xml';
 
   var SAMPLES_PATH = path.resolve(__dirname, 'sample') + '/';
 
   var pipelineFeedEtag;
+
+  function pipelineUrls() {
+    var base = '/go/api/pipelines/' + globalOptions.get().pipeline;
+    return {
+      base: base,
+      feedEndpoint: base + '/stages.xml'
+    };
+  }
 
   function resolveAndPromiseSampleFile(path, convertToJson) {
     var defer = Q.defer();
@@ -40,17 +43,17 @@ function gocdRequestorModule() {
   }
 
   var get = function(next) {
-    if (config.get().sampleIt()) {
+    if (globalOptions.sampleIt()) {
       return getSample(next);
     } else {
       var defer = Q.defer();
 
-      var url = next ? config.addCredentialsToUrl(next) : config.get().url;
+      var url = next ? globalOptions.addCredentialsToUrl(next) : globalOptions.get().url;
 
-      var loggableUrl = next ? next : config.get().loggableUrl;
-      console.log('Requesting', loggableUrl + PIPELINE_FEED_ENDPOINT);
+      var loggableUrl = next ? next : globalOptions.get().loggableUrl;
+      console.log('Requesting', loggableUrl + pipelineUrls().feedEndpoint);
 
-      request({ method: 'GET', url: url + PIPELINE_FEED_ENDPOINT}, //, headers: {'If-None-Match': pipelineFeedEtag } },
+      request({ method: 'GET', url: url + pipelineUrls().feedEndpoint}, //, headers: {'If-None-Match': pipelineFeedEtag } },
         function (error, response, body) {
           pipelineFeedEtag = response.headers.etag;
 
@@ -73,14 +76,14 @@ function gocdRequestorModule() {
   }
 
   var getPipelineRunDetails = function(buildNumber) {
-    if (config.get().sampleIt()) {
+    if (globalOptions.sampleIt()) {
       return getSamplePipelineRunDetails(buildNumber);
     } else {
       var defer = Q.defer();
 
-      var url = config.get().url + PIPELINE_API_BASE + '/' + buildNumber + '.xml';
+      var url = globalOptions.get().url + pipelineUrls().base + '/' + buildNumber + '.xml';
 
-      var loggableUrl = config.get().loggableUrl + PIPELINE_API_BASE + '/' + buildNumber + '.xml';
+      var loggableUrl = globalOptions.get().loggableUrl + pipelineUrls().base + '/' + buildNumber + '.xml';
       console.log('Requesting', loggableUrl);
 
       request(url, function (error, response, body) {
@@ -99,7 +102,7 @@ function gocdRequestorModule() {
   }
 
   function getStageRunDetails(stageUrl) {
-    if (config.get().sampleIt()) {
+    if (globalOptions.sampleIt()) {
       return getSampleStageRunDetails();
     } else {
       var defer = Q.defer();
@@ -128,7 +131,7 @@ function gocdRequestorModule() {
   }
 
   function getJobRunDetails(stageUrls) {
-    if (config.get().sampleIt()) {
+    if (globalOptions.sampleIt()) {
       return getSampleJobRunDetails();
     } else {
       return Q.all([]);
@@ -156,12 +159,12 @@ function gocdRequestorModule() {
 
   var getMaterialHtml = function(jobId) {
 
-    if (config.get().sampleIt()) {
+    if (globalOptions.sampleIt()) {
       return getSampleMaterialHtml(jobId);
     } else {
       var defer = Q.defer();
 
-      var url = config.addCredentialsToUrl(jobId + '/materials');
+      var url = globalOptions.addCredentialsToUrl(jobId + '/materials');
       console.log('Requesting', jobId + '/materials');
       request(url, function(error, response, body) {
         defer.resolve(body);

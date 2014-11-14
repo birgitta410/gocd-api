@@ -3,27 +3,33 @@ var request = require('request');
 var xml2json = require('xml2json');
 var fs = require('fs');
 var path = require('path');
-var configReader = require('../ymlHerokuConfig');
+var globalOptions = require('../options');
 
 function ccTrayRequestorModule() {
 
-  var config = configReader.create('cc');
-  var url = config.get().url; // ccTray file URL from config file
+  function ccTrayUrl() {
+    return globalOptions.get().url + '/go/cctray.xml';
+  }
 
   var get = function() {
 
-    console.log('Requesting', config.get().loggableUrl);
+    console.log('Requesting', globalOptions.get().url + '/go/cctray.xml');
 
-    if (config.get().sampleIt()) {
+    if (globalOptions.sampleIt()) {
       return getSample();
     } else {
       var defer = Q.defer();
 
-      request(url, function (error, response, body) {
-        var json = xml2json.toJson(body, {
-          object: true, sanitize: false
-        });
-        defer.resolve(json);
+      request(ccTrayUrl(), function (error, response, body) {
+        if(error) {
+          console.log('failed to get cctray.xml', ccTrayUrl(), globalOptions.get(), error);
+          defer.reject();
+        } else {
+          var json = xml2json.toJson(body, {
+            object: true, sanitize: false
+          });
+          defer.resolve(json);
+        }
       });
 
       return defer.promise;
