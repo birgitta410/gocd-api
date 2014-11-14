@@ -1,13 +1,28 @@
 var moment = require('moment');
 var Q = require('q');
-var gocdRequestor = require('../lib/gocd/gocdRequestor');
-var pipelineRunCreator = require('../lib/gocd/pipelineRun');
+var mockery = require('mockery');
+var gocdSampleRequestor = require('../lib/gocd/gocdSampleRequestor');
 
 describe('pipelineRun', function () {
 
+  var pipelineRunCreator;
+
   beforeEach(function() {
 
-    gocdRequestor.getJobRunDetails = gocdRequestor.getSampleJobRunDetails;
+    mockery.enable({
+      warnOnUnregistered: false,
+      warnOnReplace: false
+    });
+
+    var globalOptions = {
+      getGocdRequestor: function() {
+        return gocdSampleRequestor;
+      }
+    };
+
+    mockery.registerMock('../options', globalOptions);
+    pipelineRunCreator = require('../lib/gocd/pipelineRun');
+
   });
 
   describe('historyEntryCreator', function () {

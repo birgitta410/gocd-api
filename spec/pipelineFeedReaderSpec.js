@@ -3,19 +3,32 @@ var _ = require('lodash');
 var moment = require('moment');
 var fs = require('fs');
 var path = require('path');
+var mockery = require('mockery');
 
 describe('pipelineFeedReader', function () {
 
-  var gocdRequestor = require('../lib/gocd/gocdRequestor');
-  var thePipelineFeedReader = require('../lib/gocd/pipelineFeedReader');
+  var gocdSampleRequestor = require('../lib/gocd/gocdSampleRequestor');
+  var thePipelineFeedReader;
 
   var NUM_ENTRIES_IN_FIXTURE = 12;
 
   beforeEach(function() {
-    gocdRequestor.get = gocdRequestor.getSample;
-    gocdRequestor.getPipelineRunDetails = gocdRequestor.getSamplePipelineRunDetails;
-    gocdRequestor.getJobRunDetails = gocdRequestor.getSampleJobRunDetails;
-    gocdRequestor.getMaterialHtml = gocdRequestor.getSampleMaterialHtml;
+
+    mockery.enable({
+      warnOnUnregistered: false,
+      warnOnReplace: false
+    });
+
+    var globalOptions = {
+      getGocdRequestor: function() {
+        return gocdSampleRequestor;
+      }
+    };
+
+    mockery.registerMock('../options', globalOptions);
+
+    thePipelineFeedReader = require('../lib/gocd/pipelineFeedReader');
+
   });
 
 
@@ -72,11 +85,11 @@ describe('pipelineFeedReader', function () {
     });
 
     it('should pass no url to the requestor in initial call', function(done) {
-      spyOn(gocdRequestor, 'get').andCallThrough();
+      spyOn(gocdSampleRequestor, 'get').andCallThrough();
       thePipelineFeedReader.readPipelineRuns().then(function () {
         done();
       });
-      expect(gocdRequestor.get.mostRecentCall.args[0]).toBeUndefined();
+      expect(gocdSampleRequestor.get.mostRecentCall.args[0]).toBeUndefined();
     });
 
     //it('should be able to handle a non existing file passed as a next url to the requestor', function(done) {
@@ -167,13 +180,13 @@ describe('pipelineFeedReader', function () {
     });
 
     it('should not request material info again if already set in previous call', function(done) {
-      spyOn(gocdRequestor, 'getMaterialHtml').andCallThrough();
+      spyOn(gocdSampleRequestor, 'getMaterialHtml').andCallThrough();
       thePipelineFeedReader.readPipelineRuns().then(function (results) {
         expect(results['1199'].materials).toBeDefined();
-        expect(gocdRequestor.getMaterialHtml.callCount).toBe(NUM_ENTRIES_IN_FIXTURE);
+        expect(gocdSampleRequestor.getMaterialHtml.callCount).toBe(NUM_ENTRIES_IN_FIXTURE);
         thePipelineFeedReader.readPipelineRuns().then(function (results) {
           expect(results['1199'].materials).toBeDefined();
-          expect(gocdRequestor.getMaterialHtml.callCount).toBe(NUM_ENTRIES_IN_FIXTURE);
+          expect(gocdSampleRequestor.getMaterialHtml.callCount).toBe(NUM_ENTRIES_IN_FIXTURE);
 
           done();
         });
