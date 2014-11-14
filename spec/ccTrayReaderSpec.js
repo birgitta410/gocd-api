@@ -2,13 +2,13 @@
 var mockery = require('mockery');
 var fs = require('fs');
 var path = require('path');
+var ccTraySampleRequestor = require('../lib/cc/ccTraySampleRequestor');
 
 describe('ccTrayReader', function () {
 
   var options = {};
 
   var theCcTrayReader;
-  var ccTrayRequestor;
 
   beforeEach(function() {
 
@@ -20,14 +20,15 @@ describe('ccTrayReader', function () {
     var globalOptions = {
       get: function() {
         return options;
+      },
+      getCcTrayRequestor: function() {
+        return ccTraySampleRequestor;
       }
     };
 
     mockery.registerMock('../options', globalOptions);
 
     theCcTrayReader = require('../lib/cc/ccTrayReader');
-    ccTrayRequestor = require('../lib/cc/ccTrayRequestor');
-    ccTrayRequestor.get = ccTrayRequestor.getSample;
 
   });
 
