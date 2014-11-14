@@ -1,10 +1,10 @@
 
 var _ = require('lodash');
 var moment = require('moment');
+var fs = require('fs');
+var path = require('path');
 
-//context(['lodash', 'moment', , ],
 describe('pipelineFeedReader', function () {
-  //function(_, moment, thePipelineFeedReader, gocdRequestor) {
 
   var gocdRequestor = require('../server/sources/gocd/gocdRequestor');
   var thePipelineFeedReader = require('../server/sources/gocd/pipelineFeedReader');
@@ -25,7 +25,7 @@ describe('pipelineFeedReader', function () {
 
   describe('readHistory()', function () {
 
-    it('should log an example to the console, for documentation purposes', function (done) {
+    it('should write a sample to a file, for documentation purposes', function (done) {
 
       thePipelineFeedReader.readPipelineRuns().then(function (results) {
         var pipelineRunToLog = '1199';
@@ -34,8 +34,10 @@ describe('pipelineFeedReader', function () {
         results[pipelineRunToLog].stages = [ _.find(results[pipelineRunToLog].stages, { stageName: 'functional-test'}) ];
         dataToLog[pipelineRunToLog] = results[pipelineRunToLog];
 
-        console.log('SAMPLE HISTORY PARSED FROM go PIPELINE FEED', JSON.stringify(dataToLog, undefined, 2));
-        done();
+        var base = path.resolve(__dirname, 'samples');
+        fs.writeFile(base + '/history.json', JSON.stringify(dataToLog, undefined, 2), function() {
+          done();
+        });
       });
     });
 

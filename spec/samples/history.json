@@ -1,0 +1,121 @@
+{
+  "1199": {
+    "stages": [
+      {
+        "id": "http://the-go-host:8153/go/pipelines/A-PIPELINE/1199/functional-test/1",
+        "updated": "2014-07-18T16:08:39+00:00",
+        "pipeline": "A-PIPELINE",
+        "buildNumber": "1199",
+        "stageName": "functional-test",
+        "runNumber": "1",
+        "author": {
+          "name": "Max Mustermann",
+          "email": "<mmustermann@internet.se>",
+          "initials": "mmu"
+        },
+        "detailsLink": "http://the-go-host:8153/go/api/stages/6115.xml",
+        "result": "passed",
+        "jobDetails": [
+          {
+            "name": "both",
+            "result": "Passed",
+            "state": "Completed",
+            "properties": [
+              {
+                "name": "cruise_agent",
+                "$t": "ip-172-31-0-91"
+              },
+              {
+                "name": "cruise_job_duration",
+                "$t": 655
+              },
+              {
+                "name": "cruise_job_id",
+                "$t": 12600
+              },
+              {
+                "name": "cruise_job_result",
+                "$t": "Passed"
+              },
+              {
+                "name": "cruise_pipeline_counter",
+                "$t": 1805
+              },
+              {
+                "name": "cruise_pipeline_label",
+                "$t": 1805
+              },
+              {
+                "name": "cruise_stage_counter",
+                "$t": 1
+              },
+              {
+                "name": "cruise_timestamp_01_scheduled",
+                "$t": "2014-10-31T13:43:40Z"
+              },
+              {
+                "name": "cruise_timestamp_02_assigned",
+                "$t": "2014-10-31T13:43:50Z"
+              },
+              {
+                "name": "cruise_timestamp_03_preparing",
+                "$t": "2014-10-31T13:44:00Z"
+              },
+              {
+                "name": "cruise_timestamp_04_building",
+                "$t": "2014-10-31T13:44:05Z"
+              },
+              {
+                "name": "cruise_timestamp_05_completing",
+                "$t": "2014-10-31T13:55:00Z"
+              },
+              {
+                "name": "cruise_timestamp_06_completed",
+                "$t": "2014-10-31T13:55:00Z"
+              },
+              {
+                "name": "tests_failed_count",
+                "$t": 0
+              },
+              {
+                "name": "tests_ignored_count",
+                "$t": 0
+              },
+              {
+                "name": "tests_total_count",
+                "$t": 8
+              },
+              {
+                "name": "tests_total_duration",
+                "$t": 620.699
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "buildNumber": "1199",
+    "time": "2014-07-18T16:08:39+00:00",
+    "result": "passed",
+    "author": {
+      "name": "Max Mustermann",
+      "email": "<mmustermann@internet.se>",
+      "initials": "mmu"
+    },
+    "materials": [
+      {
+        "buildNumber": "1199",
+        "comment": "more awesome things added to the application - this is the latest change",
+        "committer": "Max Mustermann <max@internet.se>",
+        "sha": "074cc70d464ad708c82bc6316f6c21ee35cffdcf"
+      },
+      {
+        "buildNumber": "1199",
+        "comment": "the first change in this list of materials",
+        "committer": "Maria Mustermann <max@internet.se>",
+        "sha": "185cc70d464ad708c82bc6316f6c21ee35cffdcf"
+      }
+    ],
+    "info": "[1199] July 18th 2014, 6:08:39 pm | Success | more awesome things added to the application - this is the latest change | Max Mustermann"
+  }
+}

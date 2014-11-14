@@ -1,5 +1,7 @@
 
 var mockery = require('mockery');
+var fs = require('fs');
+var path = require('path');
 
 describe('ccTrayReader', function () {
 
@@ -35,11 +37,14 @@ describe('ccTrayReader', function () {
       options.jobs = undefined;
     });
 
-    it('should log an example to the console, for documentation purposes', function (done) {
+    it('should write a sample to a file, for documentation purposes', function (done) {
       theCcTrayReader.readActivity().then(function (result) {
         result.jobs = [result.jobs[0]];
-        console.log('SAMPLE ACTIVITY PARSED FROM cctray.xml', JSON.stringify(result, undefined, 2));
-        done();
+        var base = path.resolve(__dirname, 'samples');
+        fs.writeFile(base + '/activity.json', JSON.stringify(result, undefined, 2), function() {
+          done();
+        });
+
       });
     });
 

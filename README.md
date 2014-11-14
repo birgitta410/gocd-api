@@ -27,3 +27,11 @@ goCd.readData().then(function(data) {
 });
 
 ```
+This is what you will get from `readData()`:
+```
+{
+  activity: {}, // which stage is currently building, what is the state of the latest pipeline run
+  history: {}   // historical data about past pipeline runs
+}
+```
+Check `spec/samples` for details about the contents of [activity](spec/samples/activity.json) and [history](spec/samples/history.json).
