@@ -1,7 +1,7 @@
 var moment = require('moment');
 var Q = require('q');
-var gocdRequestor = require('../server/sources/gocd/gocdRequestor');
-var pipelineRunCreator = require('../server/sources/gocd/pipelineRun');
+var gocdRequestor = require('../lib/gocd/gocdRequestor');
+var pipelineRunCreator = require('../lib/gocd/pipelineRun');
 
 describe('pipelineRun', function () {
 

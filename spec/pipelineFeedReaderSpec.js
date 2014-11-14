@@ -6,8 +6,8 @@ var path = require('path');
 
 describe('pipelineFeedReader', function () {
 
-  var gocdRequestor = require('../server/sources/gocd/gocdRequestor');
-  var thePipelineFeedReader = require('../server/sources/gocd/pipelineFeedReader');
+  var gocdRequestor = require('../lib/gocd/gocdRequestor');
+  var thePipelineFeedReader = require('../lib/gocd/pipelineFeedReader');
 
   var NUM_ENTRIES_IN_FIXTURE = 12;
 

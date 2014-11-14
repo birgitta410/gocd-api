@@ -25,8 +25,8 @@ describe('ccTrayReader', function () {
 
     mockery.registerMock('../options', globalOptions);
 
-    theCcTrayReader = require('../server/sources/cc/ccTrayReader');
-    ccTrayRequestor = require('../server/sources/cc/ccTrayRequestor');
+    theCcTrayReader = require('../lib/cc/ccTrayReader');
+    ccTrayRequestor = require('../lib/cc/ccTrayRequestor');
     ccTrayRequestor.get = ccTrayRequestor.getSample;
 
   });

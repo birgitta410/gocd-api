@@ -1,8 +1,8 @@
 var _ = require('lodash');
 var moment = require('moment');
-var globalOptions = require('./server/sources/options');
-var pipelineReader = require('./server/sources/gocd/pipelineFeedReader');
-var ccTrayReader = require('./server/sources/cc/ccTrayReader');
+var globalOptions = require('./lib/options');
+var pipelineReader = require('./lib/gocd/pipelineFeedReader');
+var ccTrayReader = require('./lib/cc/ccTrayReader');
 
 GoCd = {
 
