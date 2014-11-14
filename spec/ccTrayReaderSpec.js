@@ -13,7 +13,8 @@ describe('ccTrayReader', function () {
   beforeEach(function() {
 
     mockery.enable({
-      warnOnUnregistered: false
+      warnOnUnregistered: false,
+      warnOnReplace: false
     });
 
     var globalOptions = {
