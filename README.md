@@ -9,7 +9,7 @@ Will give you access to both current activity (which stage is currently building
 
 In early stages, migrating from https://github.com/artwise/artwise
 
-Use it
+Usage
 ======
 ```
 var goCdApi = require('gocd-api');
@@ -37,3 +37,7 @@ This is what you will get from `readData()`:
 }
 ```
 Check `spec/samples` for details about the contents of [activity](spec/samples/activity.json) and [history](spec/samples/history.json).
+
+How it works
+=======
+The module will keep pipeline history data cached in memory. Your first call to readData will fill that cache, so it will take a bit longer. The cache will contain at least 25 entries, give or take, depending on page sizes that we get from the feed.
