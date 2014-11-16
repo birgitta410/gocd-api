@@ -2,8 +2,8 @@
 var mockery = require('mockery');
 var fs = require('fs');
 var path = require('path');
-var ccTraySampleRequestor = require('../lib/cc/ccTraySampleRequestor');
-var gocdSampleRequestor = require('../lib/gocd/gocdSampleRequestor');
+var ccTraySampleRequestor = require('../../lib/cc/ccTraySampleRequestor');
+var gocdSampleRequestor = require('../../lib/gocd/gocdSampleRequestor');
 
 describe('gocd-api', function () {
 
@@ -27,12 +27,12 @@ describe('gocd-api', function () {
 
     mockery.registerMock('../options', globalOptions);
 
-    gocdApi = require('../index');
+    gocdApi = require('../../index');
 
   });
 
 
-  it('should put it all together', function (done) {
+  it('should put it all together with the sample data', function (done) {
     gocdApi.getInstance().readData().then(function (data) {
       expect(data.activity).toBeDefined();
       expect(data.history).toBeDefined();

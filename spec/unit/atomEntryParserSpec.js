@@ -1,4 +1,4 @@
-var theAtomEntryParser = require('../lib/gocd/atomEntryParser');
+var theAtomEntryParser = require('../../lib/gocd/atomEntryParser');
 
 describe('atomEntryParser', function () {
 

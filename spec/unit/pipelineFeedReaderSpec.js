@@ -7,7 +7,7 @@ var mockery = require('mockery');
 
 describe('pipelineFeedReader', function () {
 
-  var gocdSampleRequestor = require('../lib/gocd/gocdSampleRequestor');
+  var gocdSampleRequestor = require('../../lib/gocd/gocdSampleRequestor');
   var thePipelineFeedReader;
 
   var NUM_ENTRIES_IN_FIXTURE = 12;
@@ -27,7 +27,7 @@ describe('pipelineFeedReader', function () {
 
     mockery.registerMock('../options', globalOptions);
 
-    thePipelineFeedReader = require('../lib/gocd/pipelineFeedReader');
+    thePipelineFeedReader = require('../../lib/gocd/pipelineFeedReader');
 
   });
 

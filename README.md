@@ -9,6 +9,16 @@ Will give you access to both current activity (which stage is currently building
 
 In early stages, migrating from https://github.com/artwise/artwise
 
+Run tests
+======
+```
+# run tests with sample data
+npm test
+
+# run a few smoke tests against a Go CD instance
+GOCD_URL=http://user:password@your-gocd:8153 sh ./run_spec_integration.sh
+```
+
 Usage
 ======
 ```

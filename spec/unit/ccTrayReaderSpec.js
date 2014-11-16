@@ -2,7 +2,7 @@
 var mockery = require('mockery');
 var fs = require('fs');
 var path = require('path');
-var ccTraySampleRequestor = require('../lib/cc/ccTraySampleRequestor');
+var ccTraySampleRequestor = require('../../lib/cc/ccTraySampleRequestor');
 
 describe('ccTrayReader', function () {
 
@@ -28,7 +28,7 @@ describe('ccTrayReader', function () {
 
     mockery.registerMock('../options', globalOptions);
 
-    theCcTrayReader = require('../lib/cc/ccTrayReader');
+    theCcTrayReader = require('../../lib/cc/ccTrayReader');
 
   });
 
