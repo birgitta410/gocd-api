@@ -32,7 +32,8 @@ var goCd = goCdApi.getInstance({
     'yourPipelineName :: build',
     'yourPipelineName :: test',
     'yourPipelineName :: deploy'
-  ]
+  ],
+  debug: true // default: false, will do some verbose logging to console
 });
 goCd.readData().then(function(data) {
   ...
@@ -46,7 +47,7 @@ This is what you will get from `readData()`:
   history: {}   // historical data about past pipeline runs
 }
 ```
-Check `spec/samples` for details about the contents of [activity](spec/samples/activity.json) and [history](spec/samples/history.json).
+Check `spec/samples` for details about the contents of [activity](spec/unit/samples/activity.json) and [history](spec/unit/samples/history.json).
 
 How it works
 =======

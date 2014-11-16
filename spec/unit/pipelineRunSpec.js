@@ -25,7 +25,7 @@ describe('pipelineRun', function () {
 
   });
 
-  describe('historyEntryCreator', function () {
+  describe('createNew()', function () {
     it('should create initials of person with special characters in name', function (done) {
       var pipelineRun = pipelineRunCreator.pipelineRun.createNew({author: {
         name: 'Special Cäracter'
@@ -56,16 +56,17 @@ describe('pipelineRun', function () {
       });
     });
 
-    it('should add jobDetails', function (done) {
+    it('should add job details', function (done) {
       var pipelineRun = pipelineRunCreator.pipelineRun.createNew({
         author: { name: 'bla' },
-        stageName: 'functional-test'
+        stageName: 'functional-test',
+        detailsLink: 'somePlaceholderToTriggerSampleRequestor'
       });
       Q.all(pipelineRun.promiseInitialise()).then(function () {
-        expect(pipelineRun.stages[0].jobDetails.length).toBe(1);
-        expect(pipelineRun.stages[0].jobDetails[0].name).toBe('both');
-        expect(pipelineRun.stages[0].jobDetails[0].state).toBe('Completed');
-        expect(pipelineRun.stages[0].jobDetails[0].properties).toBeDefined();
+        expect(pipelineRun.stages[0].jobs.length).toBe(1);
+        expect(pipelineRun.stages[0].jobs[0].name).toBe('both');
+        expect(pipelineRun.stages[0].jobs[0].state).toBe('Completed');
+        expect(pipelineRun.stages[0].jobs[0].properties).toBeDefined();
         done();
       });
     });

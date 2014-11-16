@@ -19,22 +19,25 @@ describe('pipelineFeedReader', function () {
         return gocdRequestor;
       },
       addCredentialsToUrl : function(url) {
+        if(url === undefined) return '';
         var urlNoHttp = url.indexOf('http') === 0 ? url.substr('http://'.length) : url;
         return 'http://admin:wa8jah@' + urlNoHttp;
       },
       get: function() {
         return {
           url: process.env.GOCD_URL,
-          pipeline: process.env.GOCD_PIPELINE || 'artwise'
+          pipeline: process.env.GOCD_PIPELINE || 'artwise',
+          debug: true
         };
       }
     };
 
     mockery.registerMock('../options', globalOptions);
+    mockery.registerMock('./options', globalOptions);
 
+    require('../../lib/logger');
     gocdRequestor = require('../../lib/gocd/gocdRequestor');
     thePipelineFeedReader = require('../../lib/gocd/pipelineFeedReader');
-    require('../../lib/cc/ccTrayRequestor');
 
   });
 

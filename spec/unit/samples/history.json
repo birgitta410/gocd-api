@@ -15,7 +15,7 @@
         },
         "detailsLink": "http://the-go-host:8153/go/api/stages/6115.xml",
         "result": "passed",
-        "jobDetails": [
+        "jobs": [
           {
             "name": "both",
             "result": "Passed",
