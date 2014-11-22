@@ -39,11 +39,9 @@ describe('pipelineFeedReader', function () {
     gocdRequestor = require('../../lib/gocd/gocdRequestor');
     thePipelineFeedReader = require('../../lib/gocd/pipelineFeedReader');
 
-  });
+    // Set long timeout to allow collecting all data, even with slow responses
+    jasmine.getEnv().defaultTimeoutInterval = 60000;
 
-
-  beforeEach(function() {
-    thePipelineFeedReader.clear();
   });
 
   function getFirstResult(results) {
@@ -55,67 +53,30 @@ describe('pipelineFeedReader', function () {
 
     it('should initialise a set of pipeline runs', function (done) {
       thePipelineFeedReader.readPipelineRuns().then(function (results) {
+
         expect(_.keys(results).length).toBeGreaterThan(0);
+
+        var firstResult = getFirstResult(results);
+
+        expect(firstResult.stages.length).toBeGreaterThan(1);
+
+        expect(firstResult.stages[0].state).toBeDefined();
+
+        expect(firstResult.updated).toBeDefined();
+        expect(_.contains(['Passed', 'Failed'], firstResult.result)).toBe(true);
+        expect(firstResult.author).toBeDefined();
+        expect(firstResult.author.name).toBeDefined();
+
+        expect(firstResult.materials.length).toBeGreaterThan(0);
+        expect(firstResult.materials[0].committer).toBeDefined();
+        expect(firstResult.materials[0].comment).toBeDefined();
+        expect(firstResult.materials[0].sha).toBeDefined();
+        expect(firstResult.info).toBeDefined();
+
         done();
       });
 
     });
-
-    it('should add stages to respective pipeline runs', function (done) {
-      thePipelineFeedReader.readPipelineRuns().then(function (results) {
-        expect(getFirstResult(results).stages.length).toBeGreaterThan(1);
-        expect(getFirstResult(results).stages[0].state).toBeDefined();
-        done();
-      });
-
-    });
-
-    it('should determine last updated of pipeline based on latest stage that finished', function(done) {
-      thePipelineFeedReader.readPipelineRuns().then(function (results) {
-        expect(getFirstResult(results).updated).toBeDefined();
-
-        done();
-      });
-    });
-
-    it('should determine the overall result of the pipeline', function(done) {
-      thePipelineFeedReader.readPipelineRuns().then(function (results) {
-        var aResult = getFirstResult(results).result;
-        expect(_.contains(['passed', 'failed'], aResult)).toBe(true);
-
-        done();
-      });
-    });
-
-    it('should determine the author of a job', function(done) {
-      thePipelineFeedReader.readPipelineRuns().then(function (results) {
-        expect(getFirstResult(results).author).toBeDefined();
-        expect(getFirstResult(results).author.name).toBeDefined();
-
-        done();
-      });
-    });
-
-
-    it('should parse committer and commit message from material HTML', function(done) {
-      thePipelineFeedReader.readPipelineRuns().then(function (results) {
-        expect(getFirstResult(results).materials.length).toBeGreaterThan(0);
-        expect(getFirstResult(results).materials[0].committer).toBeDefined();
-        expect(getFirstResult(results).materials[0].comment).toBeDefined();
-        expect(getFirstResult(results).materials[0].sha).toBeDefined();
-
-        done();
-      });
-    });
-
-    it('should set info text', function(done) {
-      thePipelineFeedReader.readPipelineRuns().then(function (results) {
-        expect(getFirstResult(results).info).toBeDefined();
-
-        done();
-      });
-    });
-
 
   });
 });

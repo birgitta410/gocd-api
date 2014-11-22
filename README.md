@@ -7,8 +7,6 @@ Module to access data from your Go CD server, e.g. to feed it into a build monit
 
 Will give you access to both current activity (which stage is currently building, what is the state of the latest pipeline run) and history data about past pipeline runs.
 
-In early stages, migrating from https://github.com/artwise/artwise
-
 Run tests
 ======
 ```
@@ -16,7 +14,7 @@ Run tests
 npm test
 
 # run a few smoke tests against a Go CD instance
-GOCD_URL=http://user:password@your-gocd:8153 sh ./run_spec_integration.sh
+GOCD_URL=http://user:password@your-gocd:8153 GOCD_PIPELINE=your-pipeline-name sh ./run_spec_integration.sh
 ```
 
 Usage
