@@ -29,7 +29,7 @@ describe('pipelineRun', function () {
     it('should add job details', function (done) {
       var pipelineRun = pipelineRunCreator.pipelineRun.createNew({
         author: { name: 'bla' },
-        stageName: 'functional-test',
+        name: 'functional-test',
         detailsLink: 'somePlaceholderToTriggerSampleRequestor'
       });
       Q.all(pipelineRun.promiseInitialise()).then(function () {
@@ -50,13 +50,15 @@ describe('pipelineRun', function () {
         updated: '2014-07-18T16:08:39+00:00',
         pipeline: 'A-PIPELINE',
         buildNumber: '1199',
-        result: 'passed'
+        counter: '1',
+        result: 'Passed'
       };
       var secondStage = {
         updated: '2014-07-18T17:08:39+00:00',
         pipeline: 'A-PIPELINE',
         buildNumber: '1199',
-        result: 'failed'
+        counter: '1',
+        result: 'Failed'
       };
 
       var pipelineRun = pipelineRunCreator.pipelineRun.createNew(firstStage);
@@ -64,14 +66,14 @@ describe('pipelineRun', function () {
 
       expect(pipelineRun.wasSuccessful()).toBe(true);
       var expectedTime = moment('2014-07-18T16:08:39+00:00');
-      var actualTime = moment(pipelineRun.time);
+      var actualTime = moment(pipelineRun.updated);
       expect(actualTime.hours()).toBe(expectedTime.hours());
 
       pipelineRun.addStage(secondStage);
       expect(pipelineRun.wasSuccessful()).toBe(false);
 
       expectedTime = moment('2014-07-18T17:08:39+00:00');
-      actualTime = moment(pipelineRun.time);
+      actualTime = moment(pipelineRun.updated);
       expect(actualTime.hours()).toBe(expectedTime.hours());
 
     });

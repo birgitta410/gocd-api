@@ -42,13 +42,8 @@ describe('pipelineFeedReader', function () {
 
       thePipelineFeedReader.readPipelineRuns().then(function (results) {
         var pipelineRunToLog = '1199';
-        var dataToLog = {};
-        // only log one stage, the one whose sample data has job details
-        results[pipelineRunToLog].stages = [ _.find(results[pipelineRunToLog].stages, { stageName: 'functional-test'}) ];
-        dataToLog[pipelineRunToLog] = results[pipelineRunToLog];
-
         var base = path.resolve(__dirname, 'samples');
-        fs.writeFile(base + '/history.json', JSON.stringify(dataToLog, undefined, 2), function() {
+        fs.writeFile(base + '/history.json', JSON.stringify(results[pipelineRunToLog], undefined, 2), function() {
           done();
         });
       });
@@ -92,24 +87,9 @@ describe('pipelineFeedReader', function () {
       expect(gocdSampleRequestor.get.mostRecentCall.args[0]).toBeUndefined();
     });
 
-    //it('should be able to handle a non existing file passed as a next url to the requestor', function(done) {
-    //  spyOn(gocdRequestor, 'get').andCallThrough();
-    //  var options = {
-    //    nextUrl: 'nextUrl'
-    //  };
-    //  thePipelineFeedReader.readPipelineRuns(options).then(function () {
-    //    console.log('should not be successful');
-    //    done();
-    //  }, function() {
-    //    done();
-    //    //expect(gocdRequestor.get.mostRecentCall.args[0]).toBe('nextUrl');
-    //  });
-    //
-    //});
-
     it('should add stages to respective pipeline runs', function (done) {
       thePipelineFeedReader.readPipelineRuns().then(function (results) {
-        expect(results['1199'].stages.length).toBe(5);
+        expect(results['1199'].stages.length).toBe(2);
         done();
       });
 
@@ -118,7 +98,7 @@ describe('pipelineFeedReader', function () {
     it('should use the latest run of a stage to determine results', function (done) {
       thePipelineFeedReader.readPipelineRuns().then(function (results) {
         var buildStageRuns = _.where(results['1200'].stages, function(stage) {
-          return stage.stageName === 'build';
+          return stage.stageName === 'build' || stage.name === 'build';
         });
         expect(buildStageRuns.length).toBe(2);
         expect(results['1200'].wasSuccessful()).toBe(true);
@@ -129,7 +109,7 @@ describe('pipelineFeedReader', function () {
     it('should determine the time the last stage finished', function(done) {
       thePipelineFeedReader.readPipelineRuns().then(function (results) {
         var expectedTime = moment('2014-07-18T16:08:39+00:00');
-        var actualTime = moment(results['1199'].time);
+        var actualTime = moment(results['1199'].updated);
         expect(actualTime.hours()).toBe(expectedTime.hours());
         expect(actualTime.minutes()).toBe(expectedTime.minutes());
         expect(actualTime.seconds()).toBe(expectedTime.seconds());
@@ -140,8 +120,12 @@ describe('pipelineFeedReader', function () {
 
     it('should determine the result of the pipeline', function(done) {
       thePipelineFeedReader.readPipelineRuns().then(function (results) {
-        expect(results['1199'].result).toBe('passed');
-        expect(results['1195'].result).toBe('failed');
+        expect(results['1199'].stages.length).toBe(2);
+        expect(results['1199'].result).toBe('Failed');
+        expect(results['1199'].stageFailed).toBe('functional-test');
+        expect(results['1195'].stages.length).toBe(2);
+        expect(results['1195'].result).toBe('Failed');
+        expect(results['1195'].stageFailed).toBe('functional-test');
 
         done();
       });
@@ -149,7 +133,7 @@ describe('pipelineFeedReader', function () {
 
     it('should say a pipeline passed when a job was rerun and passed the second time', function(done) {
       thePipelineFeedReader.readPipelineRuns().then(function (results) {
-        expect(results['1198'].result).toBe('passed');
+        expect(results['1198'].result).toBe('Passed');
 
         done();
       });
@@ -157,10 +141,8 @@ describe('pipelineFeedReader', function () {
 
     it('should determine the author of the latest change that triggered the run', function(done) {
       thePipelineFeedReader.readPipelineRuns().then(function (results) {
-        expect(results['1199'].result).toBe('passed');
         expect(results['1199'].author).toBeDefined();
         expect(results['1199'].author.name).toContain('Jordan');
-        expect(results['1195'].result).toBe('failed');
         expect(results['1195'].author.name).toContain('Jordan');
 
         done();

@@ -64,20 +64,21 @@ describe('pipelineFeedReader', function () {
     it('should add stages to respective pipeline runs', function (done) {
       thePipelineFeedReader.readPipelineRuns().then(function (results) {
         expect(getFirstResult(results).stages.length).toBeGreaterThan(1);
+        expect(getFirstResult(results).stages[0].state).toBeDefined();
         done();
       });
 
     });
 
-    it('should determine the time the last stage finished', function(done) {
+    it('should determine last updated of pipeline based on latest stage that finished', function(done) {
       thePipelineFeedReader.readPipelineRuns().then(function (results) {
-        expect(getFirstResult(results).time).toBeDefined();
+        expect(getFirstResult(results).updated).toBeDefined();
 
         done();
       });
     });
 
-    it('should determine the result of the pipeline', function(done) {
+    it('should determine the overall result of the pipeline', function(done) {
       thePipelineFeedReader.readPipelineRuns().then(function (results) {
         var aResult = getFirstResult(results).result;
         expect(_.contains(['passed', 'failed'], aResult)).toBe(true);
@@ -114,6 +115,7 @@ describe('pipelineFeedReader', function () {
         done();
       });
     });
+
 
   });
 });

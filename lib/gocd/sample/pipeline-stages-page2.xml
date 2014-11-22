@@ -19,7 +19,7 @@
         </author>
 
 
-        <link title="build Stage Detail" href="http://the-go-host:8153/go/api/stages/6090.xml" rel="alternate" type="application/vnd.go+xml"/>
+        <link title="build Stage Detail" href="http://the-go-host:8153/go/api/stages/build.xml" rel="alternate" type="application/vnd.go+xml"/>
         <link title="build Stage Detail" href="http://the-go-host:8153/go/pipelines/A-PIPELINE/1195/build/1" rel="alternate" type="text/html"/>
 
         <link title="A-PIPELINE Pipeline Detail" href="http://the-go-host:8153/go/api/pipelines/A-PIPELINE/1205.xml" rel="http://www.thoughtworks-studios.com/ns/relations/go/pipeline" type="application/vnd.go+xml"/>
@@ -43,7 +43,7 @@
         </author>
 
 
-        <link title="build Stage Detail" href="http://the-go-host:8153/go/api/stages/6089.xml" rel="alternate" type="application/vnd.go+xml"/>
+        <link title="build Stage Detail" href="http://the-go-host:8153/go/api/stages/build.xml" rel="alternate" type="application/vnd.go+xml"/>
         <link title="build Stage Detail" href="http://the-go-host:8153/go/pipelines/A-PIPELINE/1194/build/1" rel="alternate" type="text/html"/>
 
         <link title="A-PIPELINE Pipeline Detail" href="http://the-go-host:8153/go/api/pipelines/A-PIPELINE/1204.xml" rel="http://www.thoughtworks-studios.com/ns/relations/go/pipeline" type="application/vnd.go+xml"/>
@@ -70,7 +70,7 @@
         </author>
 
 
-        <link title="functional-test Stage Detail" href="http://the-go-host:8153/go/api/stages/6088.xml" rel="alternate" type="application/vnd.go+xml"/>
+        <link title="functional-test Stage Detail" href="http://the-go-host:8153/go/api/stages/functional-test.xml" rel="alternate" type="application/vnd.go+xml"/>
         <link title="functional-test Stage Detail" href="http://the-go-host:8153/go/pipelines/A-PIPELINE/1193/functional-test/1" rel="alternate" type="text/html"/>
 
         <link title="A-PIPELINE Pipeline Detail" href="http://the-go-host:8153/go/api/pipelines/A-PIPELINE/1203.xml" rel="http://www.thoughtworks-studios.com/ns/relations/go/pipeline" type="application/vnd.go+xml"/>
@@ -111,60 +111,6 @@
     </entry>
 
     <entry>
-        <title><![CDATA[A-PIPELINE(1193) stage deploy-dev(1) Passed]]></title>
-        <updated>2014-07-18T13:20:24+00:00</updated>
-        <id>http://the-go-host:8153/go/pipelines/A-PIPELINE/1193/deploy-dev/1</id>
-
-
-        <author>
-            <name><![CDATA[Max Mustermann <mmustermann@internet.se>]]></name>
-        </author>
-        <author>
-            <name><![CDATA[Max Mustermann <mmustermann@internet.se>]]></name>
-        </author>
-
-
-        <link title="deploy-dev Stage Detail" href="http://the-go-host:8153/go/api/stages/6086.xml" rel="alternate" type="application/vnd.go+xml"/>
-        <link title="deploy-dev Stage Detail" href="http://the-go-host:8153/go/pipelines/A-PIPELINE/1193/deploy-dev/1" rel="alternate" type="text/html"/>
-
-        <link title="A-PIPELINE Pipeline Detail" href="http://the-go-host:8153/go/api/pipelines/A-PIPELINE/1203.xml" rel="http://www.thoughtworks-studios.com/ns/relations/go/pipeline" type="application/vnd.go+xml"/>
-        <link title="A-PIPELINE Pipeline Detail" href="http://the-go-host:8153/go/pipelines/A-PIPELINE/1193/deploy-dev/1/pipeline" rel="http://www.thoughtworks-studios.com/ns/relations/go/pipeline" type="text/html"/>
-
-
-
-        <category scheme="http://www.thoughtworks-studios.com/ns/categories/go" term="stage" label="Stage" />
-        <category scheme="http://www.thoughtworks-studios.com/ns/categories/go" term="completed" label="Completed" />
-        <category scheme="http://www.thoughtworks-studios.com/ns/categories/go" term="passed" label="Passed" />
-    </entry>
-
-    <entry>
-        <title><![CDATA[A-PIPELINE(1193) stage integration-test(1) Passed]]></title>
-        <updated>2014-07-18T13:19:35+00:00</updated>
-        <id>http://the-go-host:8153/go/pipelines/A-PIPELINE/1193/integration-test/1</id>
-
-
-        <author>
-            <name><![CDATA[Max Mustermann <mmustermann@internet.se>]]></name>
-        </author>
-        <author>
-            <name><![CDATA[Max Mustermann <mmustermann@internet.se>]]></name>
-        </author>
-
-
-        <link title="integration-test Stage Detail" href="http://the-go-host:8153/go/api/stages/6085.xml" rel="alternate" type="application/vnd.go+xml"/>
-        <link title="integration-test Stage Detail" href="http://the-go-host:8153/go/pipelines/A-PIPELINE/1193/integration-test/1" rel="alternate" type="text/html"/>
-
-        <link title="A-PIPELINE Pipeline Detail" href="http://the-go-host:8153/go/api/pipelines/A-PIPELINE/1203.xml" rel="http://www.thoughtworks-studios.com/ns/relations/go/pipeline" type="application/vnd.go+xml"/>
-        <link title="A-PIPELINE Pipeline Detail" href="http://the-go-host:8153/go/pipelines/A-PIPELINE/1193/integration-test/1/pipeline" rel="http://www.thoughtworks-studios.com/ns/relations/go/pipeline" type="text/html"/>
-
-
-
-        <category scheme="http://www.thoughtworks-studios.com/ns/categories/go" term="stage" label="Stage" />
-        <category scheme="http://www.thoughtworks-studios.com/ns/categories/go" term="completed" label="Completed" />
-        <category scheme="http://www.thoughtworks-studios.com/ns/categories/go" term="passed" label="Passed" />
-    </entry>
-
-    <entry>
         <title><![CDATA[A-PIPELINE(1193) stage build(1) Passed]]></title>
         <updated>2014-07-18T13:18:35+00:00</updated>
         <id>http://the-go-host:8153/go/pipelines/A-PIPELINE/1193/build/1</id>
@@ -178,7 +124,7 @@
         </author>
 
 
-        <link title="build Stage Detail" href="http://the-go-host:8153/go/api/stages/6084.xml" rel="alternate" type="application/vnd.go+xml"/>
+        <link title="build Stage Detail" href="http://the-go-host:8153/go/api/stages/build.xml" rel="alternate" type="application/vnd.go+xml"/>
         <link title="build Stage Detail" href="http://the-go-host:8153/go/pipelines/A-PIPELINE/1193/build/1" rel="alternate" type="text/html"/>
 
         <link title="A-PIPELINE Pipeline Detail" href="http://the-go-host:8153/go/api/pipelines/A-PIPELINE/1203.xml" rel="http://www.thoughtworks-studios.com/ns/relations/go/pipeline" type="application/vnd.go+xml"/>
@@ -202,7 +148,7 @@
         </author>
 
 
-        <link title="functional-test Stage Detail" href="http://the-go-host:8153/go/api/stages/6083.xml" rel="alternate" type="application/vnd.go+xml"/>
+        <link title="functional-test Stage Detail" href="http://the-go-host:8153/go/api/stages/functional-test.xml" rel="alternate" type="application/vnd.go+xml"/>
         <link title="functional-test Stage Detail" href="http://the-go-host:8153/go/pipelines/A-PIPELINE/1192/functional-test/1" rel="alternate" type="text/html"/>
 
         <link title="A-PIPELINE Pipeline Detail" href="http://the-go-host:8153/go/api/pipelines/A-PIPELINE/1202.xml" rel="http://www.thoughtworks-studios.com/ns/relations/go/pipeline" type="application/vnd.go+xml"/>
@@ -215,79 +161,7 @@
         <category scheme="http://www.thoughtworks-studios.com/ns/categories/go" term="passed" label="Passed" />
     </entry>
 
-    <entry>
-        <title><![CDATA[A-PIPELINE(1192) stage smoke-test-dev(1) Passed]]></title>
-        <updated>2014-07-18T10:45:35+00:00</updated>
-        <id>http://the-go-host:8153/go/pipelines/A-PIPELINE/1192/smoke-test-dev/1</id>
-
-
-        <author>
-            <name><![CDATA[Max Mustermann <mmustermann@internet.se>]]></name>
-        </author>
-
-
-        <link title="smoke-test-dev Stage Detail" href="http://the-go-host:8153/go/api/stages/6082.xml" rel="alternate" type="application/vnd.go+xml"/>
-        <link title="smoke-test-dev Stage Detail" href="http://the-go-host:8153/go/pipelines/A-PIPELINE/1192/smoke-test-dev/1" rel="alternate" type="text/html"/>
-
-        <link title="A-PIPELINE Pipeline Detail" href="http://the-go-host:8153/go/api/pipelines/A-PIPELINE/1202.xml" rel="http://www.thoughtworks-studios.com/ns/relations/go/pipeline" type="application/vnd.go+xml"/>
-        <link title="A-PIPELINE Pipeline Detail" href="http://the-go-host:8153/go/pipelines/A-PIPELINE/1192/smoke-test-dev/1/pipeline" rel="http://www.thoughtworks-studios.com/ns/relations/go/pipeline" type="text/html"/>
-
-
-
-        <category scheme="http://www.thoughtworks-studios.com/ns/categories/go" term="stage" label="Stage" />
-        <category scheme="http://www.thoughtworks-studios.com/ns/categories/go" term="completed" label="Completed" />
-        <category scheme="http://www.thoughtworks-studios.com/ns/categories/go" term="passed" label="Passed" />
-    </entry>
-
-    <entry>
-        <title><![CDATA[A-PIPELINE(1192) stage deploy-dev(1) Passed]]></title>
-        <updated>2014-07-18T10:44:47+00:00</updated>
-        <id>http://the-go-host:8153/go/pipelines/A-PIPELINE/1192/deploy-dev/1</id>
-
-
-        <author>
-            <name><![CDATA[Max Mustermann <mmustermann@internet.se>]]></name>
-        </author>
-
-
-        <link title="deploy-dev Stage Detail" href="http://the-go-host:8153/go/api/stages/6081.xml" rel="alternate" type="application/vnd.go+xml"/>
-        <link title="deploy-dev Stage Detail" href="http://the-go-host:8153/go/pipelines/A-PIPELINE/1192/deploy-dev/1" rel="alternate" type="text/html"/>
-
-        <link title="A-PIPELINE Pipeline Detail" href="http://the-go-host:8153/go/api/pipelines/A-PIPELINE/1202.xml" rel="http://www.thoughtworks-studios.com/ns/relations/go/pipeline" type="application/vnd.go+xml"/>
-        <link title="A-PIPELINE Pipeline Detail" href="http://the-go-host:8153/go/pipelines/A-PIPELINE/1192/deploy-dev/1/pipeline" rel="http://www.thoughtworks-studios.com/ns/relations/go/pipeline" type="text/html"/>
-
-
-
-        <category scheme="http://www.thoughtworks-studios.com/ns/categories/go" term="stage" label="Stage" />
-        <category scheme="http://www.thoughtworks-studios.com/ns/categories/go" term="completed" label="Completed" />
-        <category scheme="http://www.thoughtworks-studios.com/ns/categories/go" term="passed" label="Passed" />
-    </entry>
-
-    <entry>
-        <title><![CDATA[A-PIPELINE(1192) stage integration-test(1) Passed]]></title>
-        <updated>2014-07-18T10:43:59+00:00</updated>
-        <id>http://the-go-host:8153/go/pipelines/A-PIPELINE/1192/integration-test/1</id>
-
-
-        <author>
-            <name><![CDATA[Max Mustermann <mmustermann@internet.se>]]></name>
-        </author>
-
-
-        <link title="integration-test Stage Detail" href="http://the-go-host:8153/go/api/stages/6080.xml" rel="alternate" type="application/vnd.go+xml"/>
-        <link title="integration-test Stage Detail" href="http://the-go-host:8153/go/pipelines/A-PIPELINE/1192/integration-test/1" rel="alternate" type="text/html"/>
-
-        <link title="A-PIPELINE Pipeline Detail" href="http://the-go-host:8153/go/api/pipelines/A-PIPELINE/1202.xml" rel="http://www.thoughtworks-studios.com/ns/relations/go/pipeline" type="application/vnd.go+xml"/>
-        <link title="A-PIPELINE Pipeline Detail" href="http://the-go-host:8153/go/pipelines/A-PIPELINE/1192/integration-test/1/pipeline" rel="http://www.thoughtworks-studios.com/ns/relations/go/pipeline" type="text/html"/>
-
-
-
-        <category scheme="http://www.thoughtworks-studios.com/ns/categories/go" term="stage" label="Stage" />
-        <category scheme="http://www.thoughtworks-studios.com/ns/categories/go" term="completed" label="Completed" />
-        <category scheme="http://www.thoughtworks-studios.com/ns/categories/go" term="passed" label="Passed" />
-    </entry>
-
-    <entry>
+   <entry>
         <title><![CDATA[A-PIPELINE(1192) stage build(1) Passed]]></title>
         <updated>2014-07-18T10:43:03+00:00</updated>
         <id>http://the-go-host:8153/go/pipelines/A-PIPELINE/1192/build/1</id>
@@ -298,7 +172,7 @@
         </author>
 
 
-        <link title="build Stage Detail" href="http://the-go-host:8153/go/api/stages/6079.xml" rel="alternate" type="application/vnd.go+xml"/>
+        <link title="build Stage Detail" href="http://the-go-host:8153/go/api/stages/build.xml" rel="alternate" type="application/vnd.go+xml"/>
         <link title="build Stage Detail" href="http://the-go-host:8153/go/pipelines/A-PIPELINE/1192/build/1" rel="alternate" type="text/html"/>
 
         <link title="A-PIPELINE Pipeline Detail" href="http://the-go-host:8153/go/api/pipelines/A-PIPELINE/1202.xml" rel="http://www.thoughtworks-studios.com/ns/relations/go/pipeline" type="application/vnd.go+xml"/>
@@ -322,83 +196,11 @@
         </author>
 
 
-        <link title="functional-test Stage Detail" href="http://the-go-host:8153/go/api/stages/6078.xml" rel="alternate" type="application/vnd.go+xml"/>
+        <link title="functional-test Stage Detail" href="http://the-go-host:8153/go/api/stages/functional-test.xml" rel="alternate" type="application/vnd.go+xml"/>
         <link title="functional-test Stage Detail" href="http://the-go-host:8153/go/pipelines/A-PIPELINE/1191/functional-test/1" rel="alternate" type="text/html"/>
 
         <link title="A-PIPELINE Pipeline Detail" href="http://the-go-host:8153/go/api/pipelines/A-PIPELINE/1201.xml" rel="http://www.thoughtworks-studios.com/ns/relations/go/pipeline" type="application/vnd.go+xml"/>
         <link title="A-PIPELINE Pipeline Detail" href="http://the-go-host:8153/go/pipelines/A-PIPELINE/1191/functional-test/1/pipeline" rel="http://www.thoughtworks-studios.com/ns/relations/go/pipeline" type="text/html"/>
-
-
-
-        <category scheme="http://www.thoughtworks-studios.com/ns/categories/go" term="stage" label="Stage" />
-        <category scheme="http://www.thoughtworks-studios.com/ns/categories/go" term="completed" label="Completed" />
-        <category scheme="http://www.thoughtworks-studios.com/ns/categories/go" term="passed" label="Passed" />
-    </entry>
-
-    <entry>
-        <title><![CDATA[A-PIPELINE(1191) stage smoke-test-dev(1) Passed]]></title>
-        <updated>2014-07-18T09:56:10+00:00</updated>
-        <id>http://the-go-host:8153/go/pipelines/A-PIPELINE/1191/smoke-test-dev/1</id>
-
-
-        <author>
-            <name><![CDATA[Max Mustermann <mmustermann@internet.se>]]></name>
-        </author>
-
-
-        <link title="smoke-test-dev Stage Detail" href="http://the-go-host:8153/go/api/stages/6077.xml" rel="alternate" type="application/vnd.go+xml"/>
-        <link title="smoke-test-dev Stage Detail" href="http://the-go-host:8153/go/pipelines/A-PIPELINE/1191/smoke-test-dev/1" rel="alternate" type="text/html"/>
-
-        <link title="A-PIPELINE Pipeline Detail" href="http://the-go-host:8153/go/api/pipelines/A-PIPELINE/1201.xml" rel="http://www.thoughtworks-studios.com/ns/relations/go/pipeline" type="application/vnd.go+xml"/>
-        <link title="A-PIPELINE Pipeline Detail" href="http://the-go-host:8153/go/pipelines/A-PIPELINE/1191/smoke-test-dev/1/pipeline" rel="http://www.thoughtworks-studios.com/ns/relations/go/pipeline" type="text/html"/>
-
-
-
-        <category scheme="http://www.thoughtworks-studios.com/ns/categories/go" term="stage" label="Stage" />
-        <category scheme="http://www.thoughtworks-studios.com/ns/categories/go" term="completed" label="Completed" />
-        <category scheme="http://www.thoughtworks-studios.com/ns/categories/go" term="passed" label="Passed" />
-    </entry>
-
-    <entry>
-        <title><![CDATA[A-PIPELINE(1191) stage deploy-dev(1) Passed]]></title>
-        <updated>2014-07-18T09:55:21+00:00</updated>
-        <id>http://the-go-host:8153/go/pipelines/A-PIPELINE/1191/deploy-dev/1</id>
-
-
-        <author>
-            <name><![CDATA[Max Mustermann <mmustermann@internet.se>]]></name>
-        </author>
-
-
-        <link title="deploy-dev Stage Detail" href="http://the-go-host:8153/go/api/stages/6076.xml" rel="alternate" type="application/vnd.go+xml"/>
-        <link title="deploy-dev Stage Detail" href="http://the-go-host:8153/go/pipelines/A-PIPELINE/1191/deploy-dev/1" rel="alternate" type="text/html"/>
-
-        <link title="A-PIPELINE Pipeline Detail" href="http://the-go-host:8153/go/api/pipelines/A-PIPELINE/1201.xml" rel="http://www.thoughtworks-studios.com/ns/relations/go/pipeline" type="application/vnd.go+xml"/>
-        <link title="A-PIPELINE Pipeline Detail" href="http://the-go-host:8153/go/pipelines/A-PIPELINE/1191/deploy-dev/1/pipeline" rel="http://www.thoughtworks-studios.com/ns/relations/go/pipeline" type="text/html"/>
-
-
-
-        <category scheme="http://www.thoughtworks-studios.com/ns/categories/go" term="stage" label="Stage" />
-        <category scheme="http://www.thoughtworks-studios.com/ns/categories/go" term="completed" label="Completed" />
-        <category scheme="http://www.thoughtworks-studios.com/ns/categories/go" term="passed" label="Passed" />
-    </entry>
-
-    <entry>
-        <title><![CDATA[A-PIPELINE(1191) stage integration-test(1) Passed]]></title>
-        <updated>2014-07-18T09:54:34+00:00</updated>
-        <id>http://the-go-host:8153/go/pipelines/A-PIPELINE/1191/integration-test/1</id>
-
-
-        <author>
-            <name><![CDATA[Max Mustermann <mmustermann@internet.se>]]></name>
-        </author>
-
-
-        <link title="integration-test Stage Detail" href="http://the-go-host:8153/go/api/stages/6075.xml" rel="alternate" type="application/vnd.go+xml"/>
-        <link title="integration-test Stage Detail" href="http://the-go-host:8153/go/pipelines/A-PIPELINE/1191/integration-test/1" rel="alternate" type="text/html"/>
-
-        <link title="A-PIPELINE Pipeline Detail" href="http://the-go-host:8153/go/api/pipelines/A-PIPELINE/1201.xml" rel="http://www.thoughtworks-studios.com/ns/relations/go/pipeline" type="application/vnd.go+xml"/>
-        <link title="A-PIPELINE Pipeline Detail" href="http://the-go-host:8153/go/pipelines/A-PIPELINE/1191/integration-test/1/pipeline" rel="http://www.thoughtworks-studios.com/ns/relations/go/pipeline" type="text/html"/>
 
 
 
@@ -418,7 +220,7 @@
         </author>
 
 
-        <link title="build Stage Detail" href="http://the-go-host:8153/go/api/stages/6074.xml" rel="alternate" type="application/vnd.go+xml"/>
+        <link title="build Stage Detail" href="http://the-go-host:8153/go/api/stages/build.xml" rel="alternate" type="application/vnd.go+xml"/>
         <link title="build Stage Detail" href="http://the-go-host:8153/go/pipelines/A-PIPELINE/1191/build/1" rel="alternate" type="text/html"/>
 
         <link title="A-PIPELINE Pipeline Detail" href="http://the-go-host:8153/go/api/pipelines/A-PIPELINE/1201.xml" rel="http://www.thoughtworks-studios.com/ns/relations/go/pipeline" type="application/vnd.go+xml"/>
@@ -442,83 +244,11 @@
         </author>
 
 
-        <link title="functional-test Stage Detail" href="http://the-go-host:8153/go/api/stages/6073.xml" rel="alternate" type="application/vnd.go+xml"/>
+        <link title="functional-test Stage Detail" href="http://the-go-host:8153/go/api/stages/functional-test.xml" rel="alternate" type="application/vnd.go+xml"/>
         <link title="functional-test Stage Detail" href="http://the-go-host:8153/go/pipelines/A-PIPELINE/1190/functional-test/1" rel="alternate" type="text/html"/>
 
         <link title="A-PIPELINE Pipeline Detail" href="http://the-go-host:8153/go/api/pipelines/A-PIPELINE/1200.xml" rel="http://www.thoughtworks-studios.com/ns/relations/go/pipeline" type="application/vnd.go+xml"/>
         <link title="A-PIPELINE Pipeline Detail" href="http://the-go-host:8153/go/pipelines/A-PIPELINE/1190/functional-test/1/pipeline" rel="http://www.thoughtworks-studios.com/ns/relations/go/pipeline" type="text/html"/>
-
-
-
-        <category scheme="http://www.thoughtworks-studios.com/ns/categories/go" term="stage" label="Stage" />
-        <category scheme="http://www.thoughtworks-studios.com/ns/categories/go" term="completed" label="Completed" />
-        <category scheme="http://www.thoughtworks-studios.com/ns/categories/go" term="passed" label="Passed" />
-    </entry>
-
-    <entry>
-        <title><![CDATA[A-PIPELINE(1190) stage smoke-test-dev(1) Passed]]></title>
-        <updated>2014-07-18T09:12:55+00:00</updated>
-        <id>http://the-go-host:8153/go/pipelines/A-PIPELINE/1190/smoke-test-dev/1</id>
-
-
-        <author>
-            <name><![CDATA[Max Mustermann <mmustermann@internet.se>]]></name>
-        </author>
-
-
-        <link title="smoke-test-dev Stage Detail" href="http://the-go-host:8153/go/api/stages/6072.xml" rel="alternate" type="application/vnd.go+xml"/>
-        <link title="smoke-test-dev Stage Detail" href="http://the-go-host:8153/go/pipelines/A-PIPELINE/1190/smoke-test-dev/1" rel="alternate" type="text/html"/>
-
-        <link title="A-PIPELINE Pipeline Detail" href="http://the-go-host:8153/go/api/pipelines/A-PIPELINE/1200.xml" rel="http://www.thoughtworks-studios.com/ns/relations/go/pipeline" type="application/vnd.go+xml"/>
-        <link title="A-PIPELINE Pipeline Detail" href="http://the-go-host:8153/go/pipelines/A-PIPELINE/1190/smoke-test-dev/1/pipeline" rel="http://www.thoughtworks-studios.com/ns/relations/go/pipeline" type="text/html"/>
-
-
-
-        <category scheme="http://www.thoughtworks-studios.com/ns/categories/go" term="stage" label="Stage" />
-        <category scheme="http://www.thoughtworks-studios.com/ns/categories/go" term="completed" label="Completed" />
-        <category scheme="http://www.thoughtworks-studios.com/ns/categories/go" term="passed" label="Passed" />
-    </entry>
-
-    <entry>
-        <title><![CDATA[A-PIPELINE(1190) stage deploy-dev(1) Passed]]></title>
-        <updated>2014-07-18T09:12:06+00:00</updated>
-        <id>http://the-go-host:8153/go/pipelines/A-PIPELINE/1190/deploy-dev/1</id>
-
-
-        <author>
-            <name><![CDATA[Max Mustermann <mmustermann@internet.se>]]></name>
-        </author>
-
-
-        <link title="deploy-dev Stage Detail" href="http://the-go-host:8153/go/api/stages/6071.xml" rel="alternate" type="application/vnd.go+xml"/>
-        <link title="deploy-dev Stage Detail" href="http://the-go-host:8153/go/pipelines/A-PIPELINE/1190/deploy-dev/1" rel="alternate" type="text/html"/>
-
-        <link title="A-PIPELINE Pipeline Detail" href="http://the-go-host:8153/go/api/pipelines/A-PIPELINE/1200.xml" rel="http://www.thoughtworks-studios.com/ns/relations/go/pipeline" type="application/vnd.go+xml"/>
-        <link title="A-PIPELINE Pipeline Detail" href="http://the-go-host:8153/go/pipelines/A-PIPELINE/1190/deploy-dev/1/pipeline" rel="http://www.thoughtworks-studios.com/ns/relations/go/pipeline" type="text/html"/>
-
-
-
-        <category scheme="http://www.thoughtworks-studios.com/ns/categories/go" term="stage" label="Stage" />
-        <category scheme="http://www.thoughtworks-studios.com/ns/categories/go" term="completed" label="Completed" />
-        <category scheme="http://www.thoughtworks-studios.com/ns/categories/go" term="passed" label="Passed" />
-    </entry>
-
-    <entry>
-        <title><![CDATA[A-PIPELINE(1190) stage integration-test(1) Passed]]></title>
-        <updated>2014-07-18T09:11:19+00:00</updated>
-        <id>http://the-go-host:8153/go/pipelines/A-PIPELINE/1190/integration-test/1</id>
-
-
-        <author>
-            <name><![CDATA[Max Mustermann <mmustermann@internet.se>]]></name>
-        </author>
-
-
-        <link title="integration-test Stage Detail" href="http://the-go-host:8153/go/api/stages/6070.xml" rel="alternate" type="application/vnd.go+xml"/>
-        <link title="integration-test Stage Detail" href="http://the-go-host:8153/go/pipelines/A-PIPELINE/1190/integration-test/1" rel="alternate" type="text/html"/>
-
-        <link title="A-PIPELINE Pipeline Detail" href="http://the-go-host:8153/go/api/pipelines/A-PIPELINE/1200.xml" rel="http://www.thoughtworks-studios.com/ns/relations/go/pipeline" type="application/vnd.go+xml"/>
-        <link title="A-PIPELINE Pipeline Detail" href="http://the-go-host:8153/go/pipelines/A-PIPELINE/1190/integration-test/1/pipeline" rel="http://www.thoughtworks-studios.com/ns/relations/go/pipeline" type="text/html"/>
 
 
 
@@ -538,7 +268,7 @@
         </author>
 
 
-        <link title="build Stage Detail" href="http://the-go-host:8153/go/api/stages/6069.xml" rel="alternate" type="application/vnd.go+xml"/>
+        <link title="build Stage Detail" href="http://the-go-host:8153/go/api/stages/build.xml" rel="alternate" type="application/vnd.go+xml"/>
         <link title="build Stage Detail" href="http://the-go-host:8153/go/pipelines/A-PIPELINE/1190/build/1" rel="alternate" type="text/html"/>
 
         <link title="A-PIPELINE Pipeline Detail" href="http://the-go-host:8153/go/api/pipelines/A-PIPELINE/1200.xml" rel="http://www.thoughtworks-studios.com/ns/relations/go/pipeline" type="application/vnd.go+xml"/>
@@ -562,59 +292,11 @@
         </author>
 
 
-        <link title="functional-test Stage Detail" href="http://the-go-host:8153/go/api/stages/6068.xml" rel="alternate" type="application/vnd.go+xml"/>
+        <link title="functional-test Stage Detail" href="http://the-go-host:8153/go/api/stages/functional-test.xml" rel="alternate" type="application/vnd.go+xml"/>
         <link title="functional-test Stage Detail" href="http://the-go-host:8153/go/pipelines/A-PIPELINE/1189/functional-test/1" rel="alternate" type="text/html"/>
 
         <link title="A-PIPELINE Pipeline Detail" href="http://the-go-host:8153/go/api/pipelines/A-PIPELINE/1199.xml" rel="http://www.thoughtworks-studios.com/ns/relations/go/pipeline" type="application/vnd.go+xml"/>
         <link title="A-PIPELINE Pipeline Detail" href="http://the-go-host:8153/go/pipelines/A-PIPELINE/1189/functional-test/1/pipeline" rel="http://www.thoughtworks-studios.com/ns/relations/go/pipeline" type="text/html"/>
-
-
-
-        <category scheme="http://www.thoughtworks-studios.com/ns/categories/go" term="stage" label="Stage" />
-        <category scheme="http://www.thoughtworks-studios.com/ns/categories/go" term="completed" label="Completed" />
-        <category scheme="http://www.thoughtworks-studios.com/ns/categories/go" term="passed" label="Passed" />
-    </entry>
-
-    <entry>
-        <title><![CDATA[A-PIPELINE(1189) stage smoke-test-dev(1) Passed]]></title>
-        <updated>2014-07-18T08:38:41+00:00</updated>
-        <id>http://the-go-host:8153/go/pipelines/A-PIPELINE/1189/smoke-test-dev/1</id>
-
-
-        <author>
-            <name><![CDATA[Max Mustermann <mmustermann@internet.se>]]></name>
-        </author>
-
-
-        <link title="smoke-test-dev Stage Detail" href="http://the-go-host:8153/go/api/stages/6067.xml" rel="alternate" type="application/vnd.go+xml"/>
-        <link title="smoke-test-dev Stage Detail" href="http://the-go-host:8153/go/pipelines/A-PIPELINE/1189/smoke-test-dev/1" rel="alternate" type="text/html"/>
-
-        <link title="A-PIPELINE Pipeline Detail" href="http://the-go-host:8153/go/api/pipelines/A-PIPELINE/1199.xml" rel="http://www.thoughtworks-studios.com/ns/relations/go/pipeline" type="application/vnd.go+xml"/>
-        <link title="A-PIPELINE Pipeline Detail" href="http://the-go-host:8153/go/pipelines/A-PIPELINE/1189/smoke-test-dev/1/pipeline" rel="http://www.thoughtworks-studios.com/ns/relations/go/pipeline" type="text/html"/>
-
-
-
-        <category scheme="http://www.thoughtworks-studios.com/ns/categories/go" term="stage" label="Stage" />
-        <category scheme="http://www.thoughtworks-studios.com/ns/categories/go" term="completed" label="Completed" />
-        <category scheme="http://www.thoughtworks-studios.com/ns/categories/go" term="passed" label="Passed" />
-    </entry>
-
-    <entry>
-        <title><![CDATA[A-PIPELINE(1189) stage deploy-dev(1) Passed]]></title>
-        <updated>2014-07-18T08:37:52+00:00</updated>
-        <id>http://the-go-host:8153/go/pipelines/A-PIPELINE/1189/deploy-dev/1</id>
-
-
-        <author>
-            <name><![CDATA[Max Mustermann <mmustermann@internet.se>]]></name>
-        </author>
-
-
-        <link title="deploy-dev Stage Detail" href="http://the-go-host:8153/go/api/stages/6066.xml" rel="alternate" type="application/vnd.go+xml"/>
-        <link title="deploy-dev Stage Detail" href="http://the-go-host:8153/go/pipelines/A-PIPELINE/1189/deploy-dev/1" rel="alternate" type="text/html"/>
-
-        <link title="A-PIPELINE Pipeline Detail" href="http://the-go-host:8153/go/api/pipelines/A-PIPELINE/1199.xml" rel="http://www.thoughtworks-studios.com/ns/relations/go/pipeline" type="application/vnd.go+xml"/>
-        <link title="A-PIPELINE Pipeline Detail" href="http://the-go-host:8153/go/pipelines/A-PIPELINE/1189/deploy-dev/1/pipeline" rel="http://www.thoughtworks-studios.com/ns/relations/go/pipeline" type="text/html"/>
 
 
 
