@@ -155,26 +155,26 @@ describe('pipelineFeedReader', function () {
       });
     });
 
-    it('should determine the author of a job', function(done) {
+    it('should determine the author of the latest change that triggered the run', function(done) {
       thePipelineFeedReader.readPipelineRuns().then(function (results) {
         expect(results['1199'].result).toBe('passed');
         expect(results['1199'].author).toBeDefined();
-        expect(results['1199'].author.name).toContain('Max Mustermann');
+        expect(results['1199'].author.name).toContain('Jordan');
         expect(results['1195'].result).toBe('failed');
-        expect(results['1195'].author.name).toContain('Max Mustermann');
+        expect(results['1195'].author.name).toContain('Jordan');
 
         done();
       });
     });
 
-    it('should parse committer and commit message from material HTML', function(done) {
+    it('should parse committer and commit message from material HTML, sorted by latest change first', function(done) {
       thePipelineFeedReader.readPipelineRuns().then(function (results) {
         expect(results['1199'].materials.length).toBe(3);
-        expect(results['1199'].materials[0].committer).toContain('Max Mustermann');
-        expect(results['1199'].materials[0].time).toBe('2014-09-05T15:07:32+00:00');
+        expect(results['1199'].materials[0].committer).toContain('Neil Jordan');
+        expect(results['1199'].materials[0].time).toBe('2014-11-18T16:58:37+00:00');
         expect(results['1199'].materials[0].comment).toContain('latest change');
-        expect(results['1199'].materials[0].sha).toBe('074cc70d464ad708c82bc6316f6c21ee35cffdcf');
-        expect(results['1199'].materials[1].sha).toBe('185cc70d464ad708c82bc6316f6c21ee35cffdcf');
+        expect(results['1199'].materials[0].sha).toBe('9dfead6ceaf953b7767d877789f36d19324b29d0');
+        expect(results['1199'].materials[1].sha).toBe('074cc70d464ad708c82bc6316f6c21ee35cffdcf');
 
         done();
       });
@@ -197,7 +197,7 @@ describe('pipelineFeedReader', function () {
 
     it('should put author and commit message of the latest change into info text, if present', function(done) {
       thePipelineFeedReader.readPipelineRuns().then(function (results) {
-        expect(results['1199'].info).toContain('Mustermann');
+        expect(results['1199'].info).toContain('Jordan');
         expect(results['1199'].info).toContain('latest change');
 
         done();
@@ -206,7 +206,7 @@ describe('pipelineFeedReader', function () {
 
     it('should create initials of person that authored changes for a failed job', function(done) {
       thePipelineFeedReader.readPipelineRuns().then(function (results) {
-        expect(results['1199'].author.initials).toContain('mmu');
+        expect(results['1199'].author.initials).toContain('njo');
 
         done();
       });

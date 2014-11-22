@@ -26,36 +26,6 @@ describe('pipelineRun', function () {
   });
 
   describe('createNew()', function () {
-    it('should create initials of person with special characters in name', function (done) {
-      var pipelineRun = pipelineRunCreator.pipelineRun.createNew({author: {
-        name: 'Special Cäracter'
-      }});
-      Q.all(pipelineRun.promiseInitialise()).then(function () {
-        expect(pipelineRun.stages[0].author.initials).toBe('scx');
-        done();
-      });
-
-    });
-    it('should create initials of person with three names', function (done) {
-      var pipelineRun = pipelineRunCreator.pipelineRun.createNew({author: {
-        name: 'Has Three Names'
-      }});
-      Q.all(pipelineRun.promiseInitialise()).then(function () {
-        expect(pipelineRun.stages[0].author.initials).toBe('htn');
-        done();
-      });
-
-    });
-    it('should create initials of person with two names', function (done) {
-      var pipelineRun = pipelineRunCreator.pipelineRun.createNew({author: {
-        name: 'Max Mustermann'
-      }});
-      Q.all(pipelineRun.promiseInitialise()).then(function () {
-        expect(pipelineRun.stages[0].author.initials).toBe('mmu');
-        done();
-      });
-    });
-
     it('should add job details', function (done) {
       var pipelineRun = pipelineRunCreator.pipelineRun.createNew({
         author: { name: 'bla' },
@@ -80,23 +50,13 @@ describe('pipelineRun', function () {
         updated: '2014-07-18T16:08:39+00:00',
         pipeline: 'A-PIPELINE',
         buildNumber: '1199',
-        result: 'passed',
-        author: {
-          name: 'Max Mustermann',
-          email: '<mmustermann@internet.se>',
-          initials: 'mmu'
-        }
+        result: 'passed'
       };
       var secondStage = {
         updated: '2014-07-18T17:08:39+00:00',
         pipeline: 'A-PIPELINE',
         buildNumber: '1199',
-        result: 'failed',
-        author: {
-          name: 'Max Mustermann',
-          email: '<mmustermann@internet.se>',
-          initials: 'mmu'
-        }
+        result: 'failed'
       };
 
       var pipelineRun = pipelineRunCreator.pipelineRun.createNew(firstStage);

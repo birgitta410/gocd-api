@@ -8,11 +8,6 @@
         "buildNumber": "1199",
         "stageName": "functional-test",
         "runNumber": "1",
-        "author": {
-          "name": "Max Mustermann",
-          "email": "<mmustermann@internet.se>",
-          "initials": "mmu"
-        },
         "detailsLink": "http://the-go-host:8153/go/api/stages/6115.xml",
         "result": "passed",
         "jobs": [
@@ -97,34 +92,33 @@
     "buildNumber": "1199",
     "time": "2014-07-18T16:08:39+00:00",
     "result": "passed",
-    "author": {
-      "name": "Max Mustermann",
-      "email": "<mmustermann@internet.se>",
-      "initials": "mmu"
-    },
     "materials": [
       {
         "buildNumber": "1199",
-        "comment": "more awesome things added to the application - this is the latest change",
-        "committer": "Max Mustermann <max@internet.se> on 2014-09-05T15:07:32+00:00",
+        "comment": "Readme - this is the latest change",
+        "committer": "Neil Jordan",
+        "sha": "9dfead6ceaf953b7767d877789f36d19324b29d0",
+        "time": "2014-11-18T16:58:37+00:00"
+      },
+      {
+        "buildNumber": "1199",
+        "comment": "more awesome things added to the application",
+        "committer": "Max Mustermann",
         "sha": "074cc70d464ad708c82bc6316f6c21ee35cffdcf",
         "time": "2014-09-05T15:07:32+00:00"
       },
       {
         "buildNumber": "1199",
         "comment": "the first change in this list of materials",
-        "committer": "Maria Mustermann <max@internet.se> on 2014-09-05T15:00:32+00:00",
+        "committer": "Maria Mustermann",
         "sha": "185cc70d464ad708c82bc6316f6c21ee35cffdcf",
         "time": "2014-09-05T15:00:32+00:00"
-      },
-      {
-        "buildNumber": "1199",
-        "comment": "Readme",
-        "committer": "Neil Jordan <neil@jordan.xx> on 2014-11-18T16:58:37+00:00",
-        "sha": "9dfead6ceaf953b7767d877789f36d19324b29d0",
-        "time": "2014-11-18T16:58:37+00:00"
       }
     ],
-    "info": "[1199] July 18th 2014, 6:08:39 pm | Success | more awesome things added to the application - this is the latest change | Max Mustermann"
+    "author": {
+      "name": "Neil Jordan",
+      "initials": "njo"
+    },
+    "info": "[1199] July 18th 2014, 6:08:39 pm | Success | Readme - this is the latest change | Neil Jordan"
   }
 }

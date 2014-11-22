@@ -50,17 +50,6 @@ describe('atomEntryParser', function () {
       expect(entry.result).toBe('passed');
     });
 
-    it('should set the name and email of the author', function () {
-      var entry = theAtomEntryParser.withData({
-        author: {
-          name: 'Max Mustermann <mmustermann@internet.se>'
-        }
-      });
-
-      expect(entry.author.name).toContain('Max Mustermann');
-      expect(entry.author.email).toContain('internet');
-    });
-
     it('should set the link to stage details', function () {
 
       var entry = theAtomEntryParser.withData({
