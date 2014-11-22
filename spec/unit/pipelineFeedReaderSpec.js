@@ -169,8 +169,9 @@ describe('pipelineFeedReader', function () {
 
     it('should parse committer and commit message from material HTML', function(done) {
       thePipelineFeedReader.readPipelineRuns().then(function (results) {
-        expect(results['1199'].materials.length).toBe(2);
+        expect(results['1199'].materials.length).toBe(3);
         expect(results['1199'].materials[0].committer).toContain('Max Mustermann');
+        expect(results['1199'].materials[0].time).toBe('2014-09-05T15:07:32+00:00');
         expect(results['1199'].materials[0].comment).toContain('latest change');
         expect(results['1199'].materials[0].sha).toBe('074cc70d464ad708c82bc6316f6c21ee35cffdcf');
         expect(results['1199'].materials[1].sha).toBe('185cc70d464ad708c82bc6316f6c21ee35cffdcf');
