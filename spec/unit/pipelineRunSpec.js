@@ -47,6 +47,7 @@ describe('pipelineRun', function () {
     it('should add a new stage and recalculate results', function (done) {
 
       var firstStage = {
+        id: '1',
         updated: '2014-07-18T16:08:39+00:00',
         pipeline: 'A-PIPELINE',
         buildNumber: '1199',
@@ -54,6 +55,7 @@ describe('pipelineRun', function () {
         result: 'Passed'
       };
       var secondStage = {
+        id: '2',
         updated: '2014-07-18T17:08:39+00:00',
         pipeline: 'A-PIPELINE',
         buildNumber: '1199',
