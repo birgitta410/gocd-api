@@ -44,7 +44,7 @@ describe('pipelineRun', function () {
   });
 
   describe('addStage()', function() {
-    it('should add a new stage and recalculate results', function () {
+    it('should add a new stage and recalculate results', function (done) {
 
       var firstStage = {
         updated: '2014-07-18T16:08:39+00:00',
@@ -62,19 +62,21 @@ describe('pipelineRun', function () {
       };
 
       var pipelineRun = pipelineRunCreator.pipelineRun.createNew(firstStage);
-      pipelineRun.promiseInitialise();
+      pipelineRun.promiseInitialise().then(function() {
+        expect(pipelineRun.wasSuccessful()).toBe(true);
+        var expectedTime = moment('2014-07-18T16:08:39+00:00');
+        var actualTime = moment(pipelineRun.updated);
+        expect(actualTime.hours()).toBe(expectedTime.hours());
 
-      expect(pipelineRun.wasSuccessful()).toBe(true);
-      var expectedTime = moment('2014-07-18T16:08:39+00:00');
-      var actualTime = moment(pipelineRun.updated);
-      expect(actualTime.hours()).toBe(expectedTime.hours());
+        pipelineRun.addStage(secondStage).then(function() {
+          expect(pipelineRun.wasSuccessful()).toBe(false);
 
-      pipelineRun.addStage(secondStage);
-      expect(pipelineRun.wasSuccessful()).toBe(false);
-
-      expectedTime = moment('2014-07-18T17:08:39+00:00');
-      actualTime = moment(pipelineRun.updated);
-      expect(actualTime.hours()).toBe(expectedTime.hours());
+          expectedTime = moment('2014-07-18T17:08:39+00:00');
+          actualTime = moment(pipelineRun.updated);
+          expect(actualTime.hours()).toBe(expectedTime.hours());
+          done();
+        });
+      });
 
     });
   });
