@@ -1,7 +1,7 @@
 gocd-api
 =======
 
-[![Build Status](https://travis-ci.org/birgitta410/gocd-api.svg?branch=master)](https://travis-ci.org/birgitta410/gocd-api/)
+[![Build Status Snap-CI](https://snap-ci.com/birgitta410/gocd-api/branch/master/build_image)](https://snap-ci.com/birgitta410/gocd-api/)
 
 Module to access data from your Go CD server, e.g. to feed it into a build monitor.
 
