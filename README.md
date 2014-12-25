@@ -10,10 +10,10 @@ Will give you access to both current activity (which stage is currently building
 Run tests
 ======
 ```
-# run tests with sample data
+# Run tests with sample data
 npm test
 
-# run a few smoke tests against a Go CD instance
+# Run a few smoke tests against a Go CD instance
 GOCD_URL=http://user:password@your-gocd:8153 GOCD_PIPELINE=your-pipeline-name sh ./run_spec_integration.sh
 ```
 
@@ -47,6 +47,8 @@ This is what you will get from `readData()`:
 ```
 Check `spec/samples` for details about the contents of [activity](spec/local/samples/activity.json) and [history](spec/local/samples/history.json).
 
+This project uses gocd-api: https://github.com/artwise/artwise.
+
 How it works
 =======
-The module will keep pipeline history data cached in memory. Your first call to readData will fill that cache, so it will take a bit longer. The cache will contain at least 25 entries, give or take, depending on page sizes that we get from the feed.
+The module will keep pipeline history data cached in memory. Your first call to readData will fill that cache, so it might take a bit longer. The cache will contain at least 25 entries, give or take, depending on page sizes returned from the endpoint.
