@@ -45,7 +45,7 @@ This is what you will get from `readData()`:
   history: {}   // historical data about past pipeline runs
 }
 ```
-Check `spec/samples` for details about the contents of [activity](spec/unit/samples/activity.json) and [history](spec/unit/samples/history.json).
+Check `spec/samples` for details about the contents of [activity](spec/local/samples/activity.json) and [history](spec/local/samples/history.json).
 
 How it works
 =======
