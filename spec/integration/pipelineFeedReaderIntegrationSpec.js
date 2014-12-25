@@ -60,17 +60,14 @@ describe('pipelineFeedReader', function () {
 
         expect(firstResult.stages.length).toBeGreaterThan(1);
 
-        expect(firstResult.stages[0].state).toBeDefined();
-
-        expect(firstResult.updated).toBeDefined();
+        expect(firstResult['last_scheduled']).toBeDefined();
         expect(_.contains(['Passed', 'Failed'], firstResult.result)).toBe(true);
         expect(firstResult.author).toBeDefined();
         expect(firstResult.author.name).toBeDefined();
 
-        expect(firstResult.materials.length).toBeGreaterThan(0);
-        expect(firstResult.materials[0].committer).toBeDefined();
-        expect(firstResult.materials[0].comment).toBeDefined();
-        expect(firstResult.materials[0].sha).toBeDefined();
+        expect(firstResult['build_cause'].committer).toBeDefined();
+        expect(firstResult['build_cause'].comment).toBeDefined();
+        expect(firstResult['build_cause'].revision).toBeDefined();
         expect(firstResult.info).toBeDefined();
 
         done();

@@ -1,2 +1,2 @@
 #!/bin/sh
-node node_modules/jasmine-node/bin/jasmine-node --captureExceptions ./spec/unit
+node node_modules/jasmine-node/bin/jasmine-node --captureExceptions ./spec/local
