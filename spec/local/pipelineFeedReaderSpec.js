@@ -142,7 +142,7 @@ describe('pipelineFeedReader', function () {
 
     it('should put author and commit message of the latest change into info text, if present', function(done) {
       thePipelineFeedReader.readPipelineRuns().then(function (results) {
-        expect(results['2066'].info).toEqual('[2066] Passed | Edward Norton | Some comment | 15:54:02, December 19th 2014');
+        expect(results['2066'].info).toBe('[2066] Passed | Edward Norton | Some comment | 15:54:02, December 19th 2014');
 
         done();
       });
