@@ -19,9 +19,7 @@ describe('pipelineFeedReader', function () {
         return gocdRequestor;
       },
       addCredentialsToUrl : function(url) {
-        if(url === undefined) return '';
-        var urlNoHttp = url.indexOf('http') === 0 ? url.substr('http://'.length) : url;
-        return 'http://admin:wa8jah@' + urlNoHttp;
+        return url || '';
       },
       get: function() {
         return {
