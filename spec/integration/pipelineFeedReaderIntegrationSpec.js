@@ -58,7 +58,7 @@ describe('pipelineFeedReader', function () {
 
         var firstResult = getFirstResult(results);
 
-        expect(firstResult.stages.length).toBeGreaterThan(1);
+        expect(firstResult.stages.length).toBeGreaterThan(0);
 
         expect(firstResult['last_scheduled']).toBeDefined();
         expect(_.contains(['Passed', 'Failed'], firstResult.result)).toBe(true);
