@@ -2,10 +2,9 @@
 var _ = require('lodash');
 var mockery = require('mockery');
 
-describe('pipelineFeedReader', function () {
+describe('Integration with real Go CD server', function () {
 
-  var gocdRequestor;
-  var thePipelineFeedReader;
+  var gocdRequestor, thePipelineFeedReader, ccTrayRequestor, theCcTrayReader;
 
   beforeEach(function() {
 
@@ -17,6 +16,9 @@ describe('pipelineFeedReader', function () {
     var globalOptions = {
       getGocdRequestor: function() {
         return gocdRequestor;
+      },
+      getCcTrayRequestor: function () {
+        return ccTrayRequestor;
       },
       addCredentialsToUrl : function(url) {
         return url || '';
@@ -36,6 +38,8 @@ describe('pipelineFeedReader', function () {
     require('../../lib/logger');
     gocdRequestor = require('../../lib/gocd/gocdRequestor');
     thePipelineFeedReader = require('../../lib/gocd/pipelineFeedReader');
+    ccTrayRequestor = require('../../lib/cc/ccTrayRequestor');
+    theCcTrayReader = require('../../lib/cc/ccTrayReader');
 
     // Set long timeout to allow collecting all data, even with slow responses
     jasmine.getEnv().defaultTimeoutInterval = 60000;
@@ -47,7 +51,7 @@ describe('pipelineFeedReader', function () {
     return results[buildNumbers[0]];
   }
 
-  describe('readHistory()', function () {
+  describe('pipelineFeedReader.readHistory()', function () {
 
     it('should initialise a set of pipeline runs', function (done) {
       thePipelineFeedReader.readPipelineRuns().then(function (results) {
@@ -74,4 +78,19 @@ describe('pipelineFeedReader', function () {
     });
 
   });
+
+  describe('ccTrayReader.readActivity()', function () {
+
+    it('should read the current activity', function (done) {
+      theCcTrayReader.readActivity().then(function (result) {
+
+        expect(_.keys(result.jobs).length).toBeGreaterThan(0);
+
+        done();
+      });
+
+    });
+
+  });
+
 });
