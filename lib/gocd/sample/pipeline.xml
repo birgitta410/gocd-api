@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<pipeline name="artwise" counter="2066" label="2066">
-  <link rel="self" href="http://192.168.50.79:8153/go/api/pipelines/artwise/37.xml"/>
+<pipeline name="artwise" counter="2000" label="2000">
+  <link rel="self" href="http://192.168.50.79:8153/go/api/pipelines/artwise/2066.xml"/>
   <id><![CDATA[urn:x-go.studios.thoughtworks.com:job-id:artwise:37]]></id>
-  <link rel="insertedAfter" href="http://192.168.50.79:8153/go/api/pipelines/artwise/36.xml"/>
+  <link rel="insertedAfter" href="http://192.168.50.79:8153/go/api/pipelines/artwise/2065.xml"/>
   <scheduleTime>2015-01-25T21:05:17Z</scheduleTime>
   <materials>
     <material materialUri="http://192.168.50.79:8153/go/api/materials/1.xml" type="GitMaterial" url="https://github.com/artwise/artwise.git" branch="master">
