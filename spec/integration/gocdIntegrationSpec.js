@@ -70,6 +70,7 @@ describe('Integration with real Go CD server', function () {
         expect(firstResult['build_cause'].committer).toBeDefined();
         expect(firstResult['build_cause'].comment).toBeDefined();
         expect(firstResult['build_cause'].revision).toBeDefined();
+        expect(firstResult['build_cause'].files).toBeDefined();
         expect(firstResult.info).toBeDefined();
 
         done();

@@ -191,6 +191,76 @@
       }
     ],
     "trigger_forced": false,
+    "files": [
+      {
+        "name": "package.json",
+        "action": "modified"
+      },
+      {
+        "name": "server/haring/gocdMapper.js",
+        "action": "modified"
+      },
+      {
+        "name": "spec/haringGocdMapperSpec.js",
+        "action": "modified"
+      },
+      {
+        "name": "app/haring/images/danger.gif",
+        "action": "modified"
+      },
+      {
+        "name": "app/haring/images/fail_too_long.gif",
+        "action": "added"
+      },
+      {
+        "name": "app/haring/main.js",
+        "action": "modified"
+      },
+      {
+        "name": "designs/haring/maennekes.svg",
+        "action": "modified"
+      },
+      {
+        "name": "server/haring/gocdMapper.js",
+        "action": "modified"
+      },
+      {
+        "name": "server/ymlHerokuConfig.js",
+        "action": "modified"
+      },
+      {
+        "name": "app/haring/haring.css",
+        "action": "modified"
+      },
+      {
+        "name": "app/haring/images/danger.gif",
+        "action": "added"
+      },
+      {
+        "name": "app/haring/index.html",
+        "action": "modified"
+      },
+      {
+        "name": "app/haring/main.js",
+        "action": "modified"
+      },
+      {
+        "name": "app/libs/moment.js",
+        "action": "added"
+      },
+      {
+        "name": "designs/haring/maennekes.svg",
+        "action": "modified"
+      },
+      {
+        "name": "server/haring/gocdMapper.js",
+        "action": "modified"
+      },
+      {
+        "name": "server/ymlHerokuConfig.js",
+        "action": "modified"
+      }
+    ],
     "committer": "Edward Norton <enorton@theinternet.com>",
     "comment": "Some comment 5554",
     "revision": "cb855ca1516888541722d8c0ed8973792f30ee57"
@@ -204,5 +274,5 @@
   },
   "last_scheduled": 1419000842499,
   "result": "Passed",
-  "info": "[2066] Passed | Edward Norton | Some comment 5554 | 14:54:02, December 19th 2014"
+  "info": "[2066] Passed | Edward Norton | Some comment 5554 | 15:54:02, December 19th 2014"
 }

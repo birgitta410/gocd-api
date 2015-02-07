@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<pipeline name="artwise" counter="2066" label="2066">
+  <link rel="self" href="http://192.168.50.79:8153/go/api/pipelines/artwise/37.xml"/>
+  <id><![CDATA[urn:x-go.studios.thoughtworks.com:job-id:artwise:37]]></id>
+  <link rel="insertedAfter" href="http://192.168.50.79:8153/go/api/pipelines/artwise/36.xml"/>
+  <scheduleTime>2015-01-25T21:05:17Z</scheduleTime>
+  <materials>
+    <material materialUri="http://192.168.50.79:8153/go/api/materials/1.xml" type="GitMaterial" url="https://github.com/artwise/artwise.git" branch="master">
+      <modifications>
+        <changeset changesetUri="http://192.168.50.79:8153/go/api/materials/1/changeset/7c420d2474f54c380c1aaf2442d4140c990eca09.xml">
+          <user><![CDATA[Birgitta B <bboeckel@thoughtworks.com>]]></user>
+          <checkinTime>2015-01-25T21:01:38Z</checkinTime>
+          <revision><![CDATA[7c420d2474f54c380c1aaf2442d4140c990eca09]]></revision>
+          <message><![CDATA[Add test for fail_too_long]]></message>
+          <file name="package.json" action="modified"/>
+          <file name="server/haring/gocdMapper.js" action="modified"/>
+          <file name="spec/haringGocdMapperSpec.js" action="modified"/>
+        </changeset>
+        <changeset changesetUri="http://192.168.50.79:8153/go/api/materials/1/changeset/2a408b76b40f2f23a95661933976395334e4f9e6.xml">
+          <user><![CDATA[Birgitta B <bboeckel@thoughtworks.com>]]></user>
+          <checkinTime>2015-01-25T20:27:46Z</checkinTime>
+          <revision><![CDATA[2a408b76b40f2f23a95661933976395334e4f9e6]]></revision>
+          <message><![CDATA['danger' in same color scheme as 'building']]></message>
+          <file name="app/haring/images/danger.gif" action="modified"/>
+        </changeset>
+        <changeset changesetUri="http://192.168.50.79:8153/go/api/materials/1/changeset/fedf3f17305a6d6164d17499ab82bb7e52774c7f.xml">
+          <user><![CDATA[Birgitta B <bboeckel@thoughtworks.com>]]></user>
+          <checkinTime>2015-01-25T19:05:34Z</checkinTime>
+          <revision><![CDATA[fedf3f17305a6d6164d17499ab82bb7e52774c7f]]></revision>
+          <message><![CDATA[WIP: New figure type for when build has been broken too long]]></message>
+          <file name="app/haring/images/fail_too_long.gif" action="added"/>
+          <file name="app/haring/main.js" action="modified"/>
+          <file name="designs/haring/maennekes.svg" action="modified"/>
+          <file name="server/haring/gocdMapper.js" action="modified"/>
+          <file name="server/ymlHerokuConfig.js" action="modified"/>
+        </changeset>
+        <changeset changesetUri="http://192.168.50.79:8153/go/api/materials/1/changeset/be8fc73e731ddd834e4b6d5b246e9ae6866af732.xml">
+          <user><![CDATA[Birgitta B <bboeckel@thoughtworks.com>]]></user>
+          <checkinTime>2015-01-25T17:55:56Z</checkinTime>
+          <revision><![CDATA[be8fc73e731ddd834e4b6d5b246e9ae6866af732]]></revision>
+          <message><![CDATA[Ability to define danger zones]]></message>
+          <file name="app/haring/haring.css" action="modified"/>
+          <file name="app/haring/images/danger.gif" action="added"/>
+          <file name="app/haring/index.html" action="modified"/>
+          <file name="app/haring/main.js" action="modified"/>
+          <file name="app/libs/moment.js" action="added"/>
+          <file name="designs/haring/maennekes.svg" action="modified"/>
+          <file name="server/haring/gocdMapper.js" action="modified"/>
+          <file name="server/ymlHerokuConfig.js" action="modified"/>
+        </changeset>
+      </modifications>
+    </material>
+  </materials>
+  <stages>
+    <stage href="http://192.168.50.79:8153/go/api/stages/66.xml"/>
+    <stage href="http://192.168.50.79:8153/go/api/stages/67.xml"/>
+  </stages>
+  <approvedBy><![CDATA[changes]]></approvedBy>
+</pipeline>

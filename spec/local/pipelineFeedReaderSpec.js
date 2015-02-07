@@ -36,7 +36,7 @@ describe('pipelineFeedReader', function () {
     thePipelineFeedReader.clear();
   });
 
-  describe('readHistory()', function () {
+  describe('readPpelineRuns()', function () {
     it('should write a sample to a file, for documentation purposes', function (done) {
 
       thePipelineFeedReader.readPipelineRuns().then(function (results) {
@@ -152,6 +152,14 @@ describe('pipelineFeedReader', function () {
     it('should create initials of person that authored changes for a failed job', function(done) {
       thePipelineFeedReader.readPipelineRuns().then(function (results) {
         expect(results['2066'].author.initials).toContain('eno');
+
+        done();
+      });
+    });
+
+    it('should read the details about material for each pipeline', function(done) {
+      thePipelineFeedReader.readPipelineRuns().then(function (results) {
+        expect(results['2066']['build_cause'].files.length).toBe(17);
 
         done();
       });
