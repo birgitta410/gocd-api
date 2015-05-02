@@ -18,12 +18,12 @@
     "gocd"
   ],
   "dependencies": {
+    "cheerio": "~0.17.0",
     "lodash": "~2.4.1",
     "moment": "~2.6.0",
-    "xml2json": "~0.4.0",
+    "q": "~1.0.1",
     "request": "~2.39.0",
-    "cheerio": "~0.17.0",
-    "q": "~1.0.1"
+    "xml2json": "^0.6.1"
   },
   "devDependencies": {
     "jasmine-node": "~1.14.5",
