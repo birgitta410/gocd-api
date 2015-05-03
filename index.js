@@ -17,7 +17,6 @@ GoCd = {
 
           var historyWithSameKey = history[job.buildNumber];
           if(historyWithSameKey !== undefined) {
-            console.log('found one', historyWithSameKey.author, historyWithSameKey.initials);
             job.initials = historyWithSameKey.author? historyWithSameKey.author.initials : undefined;
           }
         });
