@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<pipeline name="artwise" counter="2000" label="2000">
+<pipeline name="artwise" counter="2066" label="2066">
   <link rel="self" href="http://192.168.50.79:8153/go/api/pipelines/artwise/2066.xml"/>
   <id><![CDATA[urn:x-go.studios.thoughtworks.com:job-id:artwise:37]]></id>
   <link rel="insertedAfter" href="http://192.168.50.79:8153/go/api/pipelines/artwise/2065.xml"/>
