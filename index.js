@@ -11,8 +11,21 @@ GoCd = {
     globalOptions.set(newOptions);
 
     var readData = function() {
+
+      function mapAuthorInitialsFromHistoryToActivity(history, activity) {
+        _.each(activity.jobs, function(job) {
+
+          var historyWithSameKey = history[job.buildNumber];
+          if(historyWithSameKey !== undefined) {
+            console.log('found one', historyWithSameKey.author, historyWithSameKey.initials);
+            job.initials = historyWithSameKey.author? historyWithSameKey.author.initials : undefined;
+          }
+        });
+      }
+
       return ccTrayReader.readActivity().then(function(activity) {
         return pipelineReader.readPipelineRuns({ exclude: [ activity.buildNumberInProgress] }).then(function(pipelineRuns) {
+          mapAuthorInitialsFromHistoryToActivity(pipelineRuns, activity);
           return {
             activity: activity,
             history: pipelineRuns
