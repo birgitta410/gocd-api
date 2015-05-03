@@ -11,7 +11,9 @@
       "buildNumber": "1200",
       "stageName": "build",
       "runNumber": "1",
-      "jobName": "both"
+      "jobName": "both",
+      "info": "build",
+      "info2": "[1200] A-PIPELINE :: build :: both | Success"
     }
   ],
   "buildNumberInProgress": "1200"
