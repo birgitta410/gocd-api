@@ -273,6 +273,6 @@
     "initials": "eno"
   },
   "last_scheduled": 1419000842499,
-  "result": "Passed",
-  "info": "[2066] Passed | Edward Norton | Some comment 5554 | 15:54:02, December 19th 2014"
+  "result": "passed",
+  "info": "[2066] passed | Edward Norton | Some comment 5554 | 15:54:02, December 19th 2014"
 }

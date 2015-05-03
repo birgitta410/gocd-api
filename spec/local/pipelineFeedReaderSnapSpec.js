@@ -5,13 +5,12 @@ var fs = require('fs');
 var path = require('path');
 var mockery = require('mockery');
 
-describe('pipelineFeedReader Go CD', function () {
+xdescribe('pipelineFeedReader Snap', function () {
 
-  var gocdSampleRequestor = require('../../lib/gocd/gocdSampleRequestor');
+  var snapSampleRequestor = require('../../lib/snap-ci/snapSampleRequestor');
   var thePipelineFeedReader;
 
-  describe('Go CD', function() {
-
+  describe('Snap CI', function() {
     var NUM_ENTRIES_IN_FIXTURE = 5;
 
     beforeEach(function() {
@@ -23,15 +22,13 @@ describe('pipelineFeedReader Go CD', function () {
 
       var globalOptions = {
         getHistoryRequestor: function() {
-          return gocdSampleRequestor;
+          return snapSampleRequestor;
         }
       };
 
       mockery.registerMock('../options', globalOptions);
 
       thePipelineFeedReader = require('../../lib/gocd/pipelineFeedReader');
-
-      jasmine.getEnv().defaultTimeoutInterval = 1000;
 
     });
 
@@ -40,14 +37,14 @@ describe('pipelineFeedReader Go CD', function () {
       thePipelineFeedReader.clear();
     });
 
-    describe('readPpelineRuns()', function () {
+    describe('readPipelineRuns()', function () {
       it('should write a sample to a file, for documentation purposes', function (done) {
 
         thePipelineFeedReader.readPipelineRuns().then(function (results) {
-          var pipelineRunToLog = '2066';
+          var pipelineRunToLog = '14';
           expect(results[pipelineRunToLog]).toBeDefined();
           var base = path.resolve(__dirname, 'samples');
-          fs.writeFile(base + '/history.json', JSON.stringify(results[pipelineRunToLog], undefined, 2), function() {
+          fs.writeFile(base + '/history-snap.json', JSON.stringify(results[pipelineRunToLog], undefined, 2), function() {
             done();
           });
         });
@@ -56,14 +53,14 @@ describe('pipelineFeedReader Go CD', function () {
       it('should initialise a set of pipeline runs', function (done) {
         thePipelineFeedReader.readPipelineRuns().then(function (results) {
           expect(_.keys(results).length).toBe(NUM_ENTRIES_IN_FIXTURE);
-          expect(results['2066']).toBeDefined();
+          expect(results['14']).toBeDefined();
           done();
         });
 
       });
 
       it('should exclude pipelines if specified', function(done) {
-        thePipelineFeedReader.readPipelineRuns({ exclude: ['2066', '2065'] }).then(function (results) {
+        thePipelineFeedReader.readPipelineRuns({ exclude: ['14', '13'] }).then(function (results) {
           expect(_.keys(results).length).toBe(NUM_ENTRIES_IN_FIXTURE - 2);
 
           done();
@@ -71,29 +68,22 @@ describe('pipelineFeedReader Go CD', function () {
       });
 
       it('should cache pipeline run even if its excluded in results when first present', function(done) {
-        thePipelineFeedReader.readPipelineRuns({ exclude: ['2066'] }).then(function (results) {
+        thePipelineFeedReader.readPipelineRuns({ exclude: ['13'] }).then(function (results) {
           expect(_.keys(results).length).toBe(NUM_ENTRIES_IN_FIXTURE - 1);
 
           thePipelineFeedReader.readPipelineRuns().then(function (results) {
             expect(_.keys(results).length).toBe(NUM_ENTRIES_IN_FIXTURE);
-            expect(results['2066']).toBeDefined();
+            expect(results['13']).toBeDefined();
             done();
           });
 
         });
       });
 
-      it('should pass no url to the requestor in initial call', function(done) {
-        spyOn(gocdSampleRequestor, 'getHistory').andCallThrough();
-        thePipelineFeedReader.readPipelineRuns().then(function () {
-          done();
-        });
-        expect(gocdSampleRequestor.getHistory.mostRecentCall.args[0]).toBeUndefined();
-      });
 
       it('should add stages to respective pipeline runs', function (done) {
         thePipelineFeedReader.readPipelineRuns().then(function (results) {
-          expect(results['2066'].stages.length).toBe(7);
+          expect(results['14'].stages.length).toBe(1);
           done();
         });
 
@@ -101,8 +91,9 @@ describe('pipelineFeedReader Go CD', function () {
 
       it('should determine the time the last stage got scheduled', function(done) {
         thePipelineFeedReader.readPipelineRuns().then(function (results) {
-          var expectedTime = moment(1419000842499);
-          var actualTime = moment(results['2066']['last_scheduled']);
+
+          var expectedTime = moment('2015-05-03T09:52:53Z');
+          var actualTime = moment(results['14']['last_scheduled']);
           expect(actualTime.hours()).toBe(expectedTime.hours());
           expect(actualTime.minutes()).toBe(expectedTime.minutes());
           expect(actualTime.seconds()).toBe(expectedTime.seconds());
@@ -113,11 +104,11 @@ describe('pipelineFeedReader Go CD', function () {
 
       it('should determine the result of the pipeline', function(done) {
         thePipelineFeedReader.readPipelineRuns().then(function (results) {
-          expect(results['2066'].stages.length).toBe(7);
-          expect(results['2066'].result).toBe('passed');
-          expect(results['2062'].stages.length).toBe(7);
-          expect(results['2062'].result).toBe('failed');
-          expect(results['2062'].stageFailed).toBe('functional-test');
+          expect(results['14'].stages.length).toBe(1);
+          expect(results['14'].result).toBe('passed');
+          expect(results['13'].stages.length).toBe(1);
+          expect(results['13'].result).toBe('failed');
+          expect(results['13'].stageFailed).toBe('SampleStage');
 
           done();
         });
@@ -125,9 +116,9 @@ describe('pipelineFeedReader Go CD', function () {
 
       it('should determine the author of the latest change that triggered the run', function(done) {
         thePipelineFeedReader.readPipelineRuns().then(function (results) {
-          expect(results['2066'].author).toBeDefined();
-          expect(results['2066'].author.name).toBe('Edward Norton');
-          expect(results['2063'].author.name).toBe('Brad Pitt');
+          expect(results['14'].author).toBeDefined();
+          expect(results['14'].author.name).toBe('Birgitta B.');
+          expect(results['13'].author.name).toBe('Birgitta B.');
 
           done();
         });
@@ -135,10 +126,10 @@ describe('pipelineFeedReader Go CD', function () {
 
       it('should parse committer and commit message from material HTML, sorted by latest change first', function(done) {
         thePipelineFeedReader.readPipelineRuns().then(function (results) {
-          var buildCause = results['2066']['build_cause'];
-          expect(buildCause.committer).toContain('Edward Norton');
-          expect(buildCause.comment).toContain('Some comment');
-          expect(buildCause.revision).toBe('cb855ca1516888541722d8c0ed8973792f30ee57');
+          var buildCause = results['14']['build_cause'];
+          expect(buildCause.committer).toContain('Birgitta B.');
+          expect(buildCause.comment).toContain('Add link');
+          expect(buildCause.revision).toBe('38bd8b1f9285208ab60ad1ff1b7b761539420939');
 
           done();
         });
@@ -146,8 +137,8 @@ describe('pipelineFeedReader Go CD', function () {
 
       it('should put author and commit message of the latest change into info text, if present', function(done) {
         thePipelineFeedReader.readPipelineRuns().then(function (results) {
-          var expectedTimeText = moment(1419000842499).format('HH:mm:ss, MMMM Do YYYY');
-          expect(results['2066'].info).toBe('[2066] passed | Edward Norton | Some comment 5554 | ' + expectedTimeText);
+          var expectedTimeText = moment('2015-05-03T09:52:53Z').format('HH:mm:ss, MMMM Do YYYY');
+          expect(results['14'].info).toBe('[14] passed | Birgitta B. | Add link to go.cd | ' + expectedTimeText);
 
           done();
         });
@@ -155,21 +146,20 @@ describe('pipelineFeedReader Go CD', function () {
 
       it('should create initials of person that authored changes for a failed job', function(done) {
         thePipelineFeedReader.readPipelineRuns().then(function (results) {
-          expect(results['2066'].author.initials).toContain('eno');
+          expect(results['14'].author.initials).toContain('bb');
 
           done();
         });
       });
-
-      it('should read the details about material for each pipeline', function(done) {
-        thePipelineFeedReader.readPipelineRuns().then(function (results) {
-          expect(results['2066']['build_cause'].files.length).toBe(17);
-
-          done();
-        });
-      });
+      //
+      //it('should read the details about material for each pipeline', function(done) {
+      //  thePipelineFeedReader.readPipelineRuns().then(function (results) {
+      //    expect(results['2066']['build_cause'].files.length).toBe(17);
+      //
+      //    done();
+      //  });
+      //});
 
     });
   });
-
 });

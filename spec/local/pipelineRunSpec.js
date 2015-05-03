@@ -2,7 +2,7 @@ var moment = require('moment');
 var mockery = require('mockery');
 var gocdSampleRequestor = require('../../lib/gocd/gocdSampleRequestor');
 
-describe('pipelineRun', function () {
+describe('snapToGoConverterModule', function () {
 
   var pipelineRunCreator;
 
@@ -14,7 +14,7 @@ describe('pipelineRun', function () {
     });
 
     var globalOptions = {
-      getGocdRequestor: function() {
+      getHistoryRequestor: function() {
         return gocdSampleRequestor;
       }
     };

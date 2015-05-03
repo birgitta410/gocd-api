@@ -1,0 +1,43 @@
+{
+  "label": "14",
+  "id": "14",
+  "build_cause": {
+    "material_revisions": [
+      {
+        "changed": true,
+        "modifications": [
+          {
+            "modified_time": 1430646770000,
+            "comment": "Add link to go.cd",
+            "user_name": "Birgitta B. <bboeckel@thoughtworks.com>",
+            "revision": "38bd8b1f9285208ab60ad1ff1b7b761539420939"
+          }
+        ]
+      }
+    ],
+    "committer": "Birgitta B. <bboeckel@thoughtworks.com>",
+    "comment": "Add link to go.cd",
+    "revision": "38bd8b1f9285208ab60ad1ff1b7b761539420939"
+  },
+  "stages": [
+    {
+      "result": "passed",
+      "name": "SampleStage",
+      "jobs": [
+        {
+          "result": "passed",
+          "scheduled_date": 1430646773000
+        }
+      ],
+      "last_scheduled": 1430646773000
+    }
+  ],
+  "author": {
+    "email": "<bboeckel@thoughtworks.com>",
+    "name": "Birgitta B.",
+    "initials": "bbx"
+  },
+  "last_scheduled": 1430646773000,
+  "result": "passed",
+  "info": "[14] passed | Birgitta B. | Add link to go.cd | 11:52:53, May 3rd 2015"
+}

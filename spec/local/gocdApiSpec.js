@@ -17,7 +17,7 @@ describe('gocd-api', function () {
     });
 
     var globalOptions = {
-      getGocdRequestor: function() {
+      getHistoryRequestor: function() {
         return gocdSampleRequestor;
       },
       getCcTrayRequestor: function() {
