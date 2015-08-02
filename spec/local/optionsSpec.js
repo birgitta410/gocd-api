@@ -30,17 +30,29 @@ describe('utils', function () {
   // Snap CI CCTRAY
   //https://snap-ci.com/birgitta410/gocd-api/branch/master/cctray.xml
 
-  describe('getGocdPipelineBasePath', function() {
+  ddescribe('getGocdPipelineBasePath', function() {
     it('should return go cd endpoint by default / if user and password is specified', function() {
 
       options.set({
         user: 'admin',
         password: 'password',
-        url: 'my-go-cd-server:8153',
+        url: 'http://my-go-cd-server:8153',
         pipeline: 'myPipeline'
       });
 
       expect(options.getGocdPipelineBasePath()).toBe('http://admin:password@my-go-cd-server:8153/go/api/pipelines/myPipeline');
+    });
+
+    it('should properly add credentials to https url', function() {
+
+      options.set({
+        user: 'admin',
+        password: 'password',
+        url: 'https://my-go-cd-server:8154',
+        pipeline: 'myPipeline'
+      });
+
+      expect(options.getGocdPipelineBasePath()).toBe('https://admin:password@my-go-cd-server:8154/go/api/pipelines/myPipeline');
     });
   });
 
