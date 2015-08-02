@@ -6,8 +6,9 @@ var ccTrayReader = require('./lib/cc/ccTrayReader');
 
 GoCd = {
 
-  getInstance : function(newOptions) {
-
+  getInstance : function(newOptions, type) {
+    newOptions = newOptions || {};
+    newOptions.type = type || 'GOCD';
     globalOptions.set(newOptions);
 
     var readData = function() {
@@ -24,6 +25,7 @@ GoCd = {
 
       return ccTrayReader.readActivity().then(function(activity) {
         return pipelineReader.readPipelineRuns({ exclude: [ activity.buildNumberInProgress] }).then(function(pipelineRuns) {
+
           mapAuthorInitialsFromHistoryToActivity(pipelineRuns, activity);
           return {
             activity: activity,
