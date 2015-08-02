@@ -37,7 +37,7 @@ describe('Integration with real Go CD server', function () {
       expect(firstResult.stages.length).toBeGreaterThan(0);
 
       expect(firstResult['last_scheduled']).toBeDefined();
-      expect(_.contains(['Passed', 'Failed'], firstResult.result)).toBe(true);
+      expect(_.contains(['passed', 'failed'], firstResult.result)).toBe(true);
       expect(firstResult.author).toBeDefined();
       expect(firstResult.author.name).toBeDefined();
 
