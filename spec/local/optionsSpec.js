@@ -12,7 +12,7 @@ describe('utils', function () {
         pipeline: 'myPipeline'
       });
 
-      expect(options.getGocdHistoryEndpoint()).toBe('http://admin:password@my-go-cd-server:8153/go/api/pipelines/myPipeline/history');
+      expect(options.getGocdHistoryPath()).toBe('/go/api/pipelines/myPipeline/history');
     });
 
     it('should return the snap ci endpoint if API key was specified', function() {
@@ -22,38 +22,9 @@ describe('utils', function () {
         pipeline: 'myPipeline'
       });
 
-      expect(options.getSnapHistoryEndpoint()).toBe('https://snapci-user:xxaabbcc@api.snap-ci.com/project/snapci-user/myPipeline/branch/master/pipelines');
+      expect(options.getSnapHistoryEndpoint()).toBe('/myPipeline/branch/master/pipelines');
     });
 
-  });
-
-  // Snap CI CCTRAY
-  //https://snap-ci.com/birgitta410/gocd-api/branch/master/cctray.xml
-
-  ddescribe('getGocdPipelineBasePath', function() {
-    it('should return go cd endpoint by default / if user and password is specified', function() {
-
-      options.set({
-        user: 'admin',
-        password: 'password',
-        url: 'http://my-go-cd-server:8153',
-        pipeline: 'myPipeline'
-      });
-
-      expect(options.getGocdPipelineBasePath()).toBe('http://admin:password@my-go-cd-server:8153/go/api/pipelines/myPipeline');
-    });
-
-    it('should properly add credentials to https url', function() {
-
-      options.set({
-        user: 'admin',
-        password: 'password',
-        url: 'https://my-go-cd-server:8154',
-        pipeline: 'myPipeline'
-      });
-
-      expect(options.getGocdPipelineBasePath()).toBe('https://admin:password@my-go-cd-server:8154/go/api/pipelines/myPipeline');
-    });
   });
 
 });
