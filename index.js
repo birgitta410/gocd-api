@@ -46,9 +46,10 @@ GoCd = {
     };
 
     return pipelineReader.refreshData().then(function() {
-      setInterval(pipelineReader.refreshData, 30000);
+      var refreshInterval = setInterval(pipelineReader.refreshData, 30000);
       return {
-        readData: readData
+        readData: readData,
+        refreshInterval: refreshInterval
       };
     });
 

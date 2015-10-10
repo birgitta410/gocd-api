@@ -86,7 +86,6 @@ describe('pipelineFeedReader Go CD', function () {
         thePipelineFeedReader.refreshData().then(function () {
           var results = thePipelineFeedReader.readPipelineRuns({ exclude: ['2066'], pipeline: 'A-PIPELINE' });
           expect(_.keys(results).length).toBe(NUM_ENTRIES_IN_FIXTURE - 1);
-          console.log("resolved");
 
           thePipelineFeedReader.refreshData().then(function () {
             var results = thePipelineFeedReader.readPipelineRuns({ pipeline: 'A-PIPELINE'});

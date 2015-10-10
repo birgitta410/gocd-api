@@ -39,6 +39,7 @@ describe('gocd-api', function () {
         expect(data.activity).toBeDefined();
         expect(data.activity.jobs.length).toBe(8);
         expect(data.history).toBeDefined();
+        clearInterval(instance.refreshInterval);
         done();
       });
     });
