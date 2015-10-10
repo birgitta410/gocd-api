@@ -31,25 +31,26 @@ GoCd = {
       }
 
       return ccTrayReader.readActivity(filterByPipeline).then(function(activity) {
-        return pipelineReader.readPipelineRuns({ exclude: [ activity.buildNumberInProgress] }).then(function(pipelineRuns) {
+        var pipelineRuns = pipelineReader.readPipelineRuns({ exclude: [ activity.buildNumberInProgress] });
 
-          mapAuthorInitialsFromHistoryToActivity(pipelineRuns, activity);
-          return {
-            activity: activity,
-            history: pipelineRuns
-          };
-        }).fail(function(e) {
-          console.log('Failed reading history from go cd', e);
-        });
+        mapAuthorInitialsFromHistoryToActivity(pipelineRuns, activity);
+        return {
+          activity: activity,
+          history: pipelineRuns
+        };
+
 
       }).fail(function(e) {
-        console.log('Failed reading activity from cc tray', e);
+        console.log('Failed reading activity from cc tray', e, e.stack);
       });
     };
 
-    return {
-      readData: readData
-    };
+    return pipelineReader.refreshData().then(function() {
+      // TODO: set up interval to refresh data
+      return {
+        readData: readData
+      };
+    });
 
   }
 

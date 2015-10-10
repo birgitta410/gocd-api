@@ -21,7 +21,7 @@ Usage
 ======
 ```
 var goCdApi = require('gocd-api');
-var goCd = goCdApi.getInstance({
+goCdApi.getInstance({
   url: 'https://1.2.3.4:8154',
   pipeline: 'yourPipelineName',
   user: 'yourGoUser',
@@ -32,10 +32,13 @@ var goCd = goCdApi.getInstance({
     'yourPipelineName :: deploy'
   ],
   debug: true // default: false, will do some verbose logging to console
+}).then(function(instanceWithACacheOfInitialData) {
+
+  var gocdData = instanceWithACacheOfInitialData.readData();
+  //...
+
 });
-goCd.readData().then(function(data) {
-  ...
-});
+
 
 ```
 This is what you will get from `readData()`:
@@ -51,4 +54,4 @@ This project uses gocd-api: https://github.com/artwise/artwise.
 
 How it works
 =======
-The module will keep pipeline history data cached in memory. Your first call to readData will fill that cache, so it might take a bit longer. The cache will contain at least 25 entries, give or take, depending on page sizes returned from the endpoint.
+The module will keep pipeline history data cached in memory. Your first call to create the instance will fill that cache initially, so waiting for the instance might take a bit longer. The cache will contain at least 25 entries, give or take, depending on page sizes returned from the endpoint.

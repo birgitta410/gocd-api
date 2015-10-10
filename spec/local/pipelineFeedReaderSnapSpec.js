@@ -145,7 +145,8 @@ xdescribe('pipelineFeedReader Snap', function () {
       });
 
       it('should create initials of person that authored changes for a failed job', function(done) {
-        thePipelineFeedReader.readPipelineRuns().then(function (results) {
+        thePipelineFeedReader.refreshData().then(function () {
+          var results = thePipelineFeedReader.readPipelineRuns();
           expect(results['14'].author.initials).toContain('bb');
 
           done();

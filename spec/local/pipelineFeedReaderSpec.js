@@ -40,10 +40,11 @@ describe('pipelineFeedReader Go CD', function () {
       thePipelineFeedReader.clear();
     });
 
-    describe('readPpelineRuns()', function () {
+    describe('refreshData()', function () {
       it('should write a sample to a file, for documentation purposes', function (done) {
 
-        thePipelineFeedReader.readPipelineRuns().then(function (results) {
+        thePipelineFeedReader.refreshData().then(function () {
+          var results = thePipelineFeedReader.readPipelineRuns();
           var pipelineRunToLog = '2066';
           expect(results[pipelineRunToLog]).toBeDefined();
           var base = path.resolve(__dirname, 'samples');
@@ -54,7 +55,8 @@ describe('pipelineFeedReader Go CD', function () {
       });
 
       it('should initialise a set of pipeline runs', function (done) {
-        thePipelineFeedReader.readPipelineRuns().then(function (results) {
+        thePipelineFeedReader.refreshData().then(function () {
+          var results = thePipelineFeedReader.readPipelineRuns();
           expect(_.keys(results).length).toBe(NUM_ENTRIES_IN_FIXTURE);
           expect(results['2066']).toBeDefined();
           done();
@@ -63,7 +65,8 @@ describe('pipelineFeedReader Go CD', function () {
       });
 
       it('should exclude pipelines if specified', function(done) {
-        thePipelineFeedReader.readPipelineRuns({ exclude: ['2066', '2065'] }).then(function (results) {
+        thePipelineFeedReader.refreshData().then(function () {
+          var results = thePipelineFeedReader.readPipelineRuns({ exclude: ['2066', '2065'] });
           expect(_.keys(results).length).toBe(NUM_ENTRIES_IN_FIXTURE - 2);
 
           done();
@@ -71,10 +74,13 @@ describe('pipelineFeedReader Go CD', function () {
       });
 
       it('should cache pipeline run even if its excluded in results when first present', function(done) {
-        thePipelineFeedReader.readPipelineRuns({ exclude: ['2066'] }).then(function (results) {
+        thePipelineFeedReader.refreshData().then(function () {
+          var results = thePipelineFeedReader.readPipelineRuns({ exclude: ['2066'] });
           expect(_.keys(results).length).toBe(NUM_ENTRIES_IN_FIXTURE - 1);
+          console.log("resolved");
 
-          thePipelineFeedReader.readPipelineRuns().then(function (results) {
+          thePipelineFeedReader.refreshData().then(function () {
+            var results = thePipelineFeedReader.readPipelineRuns();
             expect(_.keys(results).length).toBe(NUM_ENTRIES_IN_FIXTURE);
             expect(results['2066']).toBeDefined();
             done();
@@ -85,14 +91,15 @@ describe('pipelineFeedReader Go CD', function () {
 
       it('should pass no url to the requestor in initial call', function(done) {
         spyOn(gocdSampleRequestor, 'getHistory').andCallThrough();
-        thePipelineFeedReader.readPipelineRuns().then(function () {
+        thePipelineFeedReader.refreshData().then(function () {
           done();
         });
         expect(gocdSampleRequestor.getHistory.mostRecentCall.args[0]).toBeUndefined();
       });
 
       it('should add stages to respective pipeline runs', function (done) {
-        thePipelineFeedReader.readPipelineRuns().then(function (results) {
+        thePipelineFeedReader.refreshData().then(function () {
+          var results = thePipelineFeedReader.readPipelineRuns();
           expect(results['2066'].stages.length).toBe(7);
           done();
         });
@@ -100,7 +107,8 @@ describe('pipelineFeedReader Go CD', function () {
       });
 
       it('should determine the time the last stage got scheduled', function(done) {
-        thePipelineFeedReader.readPipelineRuns().then(function (results) {
+        thePipelineFeedReader.refreshData().then(function () {
+          var results = thePipelineFeedReader.readPipelineRuns();
           var expectedTime = moment(1419000842499);
           var actualTime = moment(results['2066']['last_scheduled']);
           expect(actualTime.hours()).toBe(expectedTime.hours());
@@ -112,7 +120,8 @@ describe('pipelineFeedReader Go CD', function () {
       });
 
       it('should determine the result of the pipeline', function(done) {
-        thePipelineFeedReader.readPipelineRuns().then(function (results) {
+        thePipelineFeedReader.refreshData().then(function () {
+          var results = thePipelineFeedReader.readPipelineRuns();
           expect(results['2066'].stages.length).toBe(7);
           expect(results['2066'].result).toBe('passed');
           expect(results['2062'].stages.length).toBe(7);
@@ -124,7 +133,8 @@ describe('pipelineFeedReader Go CD', function () {
       });
 
       it('should determine the author of the latest change that triggered the run', function(done) {
-        thePipelineFeedReader.readPipelineRuns().then(function (results) {
+        thePipelineFeedReader.refreshData().then(function () {
+          var results = thePipelineFeedReader.readPipelineRuns();
           expect(results['2066'].author).toBeDefined();
           expect(results['2066'].author.name).toBe('Edward Norton');
           expect(results['2063'].author.name).toBe('Brad Pitt');
@@ -134,7 +144,8 @@ describe('pipelineFeedReader Go CD', function () {
       });
 
       it('should parse committer and commit message from material HTML, sorted by latest change first', function(done) {
-        thePipelineFeedReader.readPipelineRuns().then(function (results) {
+        thePipelineFeedReader.refreshData().then(function () {
+          var results = thePipelineFeedReader.readPipelineRuns();
           var buildCause = results['2066']['build_cause'];
           expect(buildCause.committer).toContain('Edward Norton');
           expect(buildCause.comment).toContain('Some comment');
@@ -145,7 +156,8 @@ describe('pipelineFeedReader Go CD', function () {
       });
 
       it('should put author and commit message of the latest change into info text, if present', function(done) {
-        thePipelineFeedReader.readPipelineRuns().then(function (results) {
+        thePipelineFeedReader.refreshData().then(function () {
+          var results = thePipelineFeedReader.readPipelineRuns();
           var expectedTimeText = moment(1419000842499).format('HH:mm:ss, MMMM Do YYYY');
           expect(results['2066'].info).toBe('[2066] passed | Edward Norton | Some comment 5554 | ' + expectedTimeText);
 
@@ -154,7 +166,8 @@ describe('pipelineFeedReader Go CD', function () {
       });
 
       it('should create initials of person that authored changes for a failed job', function(done) {
-        thePipelineFeedReader.readPipelineRuns().then(function (results) {
+        thePipelineFeedReader.refreshData().then(function () {
+          var results = thePipelineFeedReader.readPipelineRuns();
           expect(results['2066'].author.initials).toContain('eno');
 
           done();
@@ -162,7 +175,8 @@ describe('pipelineFeedReader Go CD', function () {
       });
 
       it('should read the details about material for each pipeline', function(done) {
-        thePipelineFeedReader.readPipelineRuns().then(function (results) {
+        thePipelineFeedReader.refreshData().then(function () {
+          var results = thePipelineFeedReader.readPipelineRuns();
           expect(results['2066']['build_cause'].files.length).toBe(17);
 
           done();

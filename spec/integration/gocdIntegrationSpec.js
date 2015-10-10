@@ -27,32 +27,34 @@ describe('Integration with real Go CD server', function () {
   }
 
   it('should read a set of pipeline runs (history) and jobs (activity)', function (done) {
-    gocdApi.getInstance(options).readData().then(function (data) {
+    gocdApi.getInstance(options).then(function(instance) {
+      instance.readData().then(function (data) {
 
-      // HISTORY
-      var history = data.history;
+        // HISTORY
+        var history = data.history;
 
-      expect(_.keys(history).length).toBeGreaterThan(0);
+        expect(_.keys(history).length).toBeGreaterThan(0);
 
-      var firstResult = getFirstResult(history);
+        var firstResult = getFirstResult(history);
 
-      expect(firstResult.stages.length).toBeGreaterThan(0);
+        expect(firstResult.stages.length).toBeGreaterThan(0);
 
-      expect(firstResult['last_scheduled']).toBeDefined();
-      expect(_.contains(['passed', 'failed'], firstResult.result)).toBe(true);
-      expect(firstResult.author).toBeDefined();
-      expect(firstResult.author.name).toBeDefined();
+        expect(firstResult['last_scheduled']).toBeDefined();
+        expect(_.contains(['passed', 'failed'], firstResult.result)).toBe(true);
+        expect(firstResult.author).toBeDefined();
+        expect(firstResult.author.name).toBeDefined();
 
-      expect(firstResult['build_cause'].committer).toBeDefined();
-      expect(firstResult['build_cause'].comment).toBeDefined();
-      expect(firstResult['build_cause'].revision).toBeDefined();
-      expect(firstResult['build_cause'].files).toBeDefined();
-      expect(firstResult.info).toBeDefined();
+        expect(firstResult['build_cause'].committer).toBeDefined();
+        expect(firstResult['build_cause'].comment).toBeDefined();
+        expect(firstResult['build_cause'].revision).toBeDefined();
+        expect(firstResult['build_cause'].files).toBeDefined();
+        expect(firstResult.info).toBeDefined();
 
-      // ACTIVITY
-      expect(_.keys(data.activity.jobs).length).toBeGreaterThan(0);
+        // ACTIVITY
+        expect(_.keys(data.activity.jobs).length).toBeGreaterThan(0);
 
-      done();
+        done();
+      });
     });
 
   });
