@@ -46,7 +46,7 @@ GoCd = {
     };
 
     return pipelineReader.refreshData().then(function() {
-      // TODO: set up interval to refresh data
+      setInterval(pipelineReader.refreshData, 30000);
       return {
         readData: readData
       };
