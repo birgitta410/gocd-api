@@ -1,19 +1,14 @@
 {
-  "jobs": [
+  "stages": [
     {
-      "name": "A-PIPELINE :: build :: both",
+      "name": "build",
       "activity": "Sleeping",
       "lastBuildStatus": "Success",
       "lastBuildLabel": 1200,
       "lastBuildTime": "2014-07-24T09:14:02",
-      "webUrl": "http://the-go-host:8153/go/tab/build/detail/A-PIPELINE/1200/build/1/both",
-      "pipeline": "A-PIPELINE",
+      "webUrl": "http://the-go-host:8153/go/pipelines/A-PIPELINE/1200/build/1",
       "buildNumber": "1200",
-      "stageName": "build",
-      "runNumber": "1",
-      "jobName": "both",
-      "info": "build",
-      "info2": "[1200] A-PIPELINE :: build :: both | Success"
+      "info2": "[1200] build | Success"
     }
   ],
   "buildNumberInProgress": "1200"

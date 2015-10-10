@@ -51,8 +51,9 @@ describe('Integration with real Go CD server', function () {
         expect(firstResult.info).toBeDefined();
 
         // ACTIVITY
-        expect(_.keys(data.activity.jobs).length).toBeGreaterThan(0);
+        expect(_.keys(data.activity.stages).length).toBeGreaterThan(0);
 
+        clearInterval(instance.refreshInterval);
         done();
       });
     });

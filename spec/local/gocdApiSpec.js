@@ -37,7 +37,7 @@ describe('gocd-api', function () {
     gocdApi.getInstance().then(function(instance) {
       instance.readData('A-PIPELINE').then(function (data) {
         expect(data.activity).toBeDefined();
-        expect(data.activity.jobs.length).toBe(8);
+        expect(data.activity.stages.length).toBe(6);
         expect(data.history).toBeDefined();
         clearInterval(instance.refreshInterval);
         done();

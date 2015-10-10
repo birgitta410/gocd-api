@@ -35,17 +35,17 @@ describe('ccTrayReader', function () {
 
   describe('init()', function () {
 
-    var NUM_JOBS_IN_A_PIPELINE = 8;
+    var NUM_STAGES_IN_A_PIPELINE = 6;
     var NUM_JOBS_IN_A_PIPELINE_2 = 1;
-    var NUM_JOBS_IN_TEST_DATA = NUM_JOBS_IN_A_PIPELINE + NUM_JOBS_IN_A_PIPELINE_2;
+    var NUM_JOBS_IN_TEST_DATA = NUM_STAGES_IN_A_PIPELINE + NUM_JOBS_IN_A_PIPELINE_2;
 
     beforeEach(function() {
-      options.jobs = undefined;
+      options.stages = undefined;
     });
 
     it('should write a sample to a file, for documentation purposes', function (done) {
       theCcTrayReader.readActivity().then(function (result) {
-        result.jobs = [result.jobs[0]];
+        result.stages = [result.stages[0]];
         var base = path.resolve(__dirname, 'samples');
         fs.writeFile(base + '/activity.json', JSON.stringify(result, undefined, 2), function() {
           done();
@@ -54,43 +54,33 @@ describe('ccTrayReader', function () {
       });
     });
 
-    it('should by default read all the jobs of all the pipelines with 3 name elements', function (done) {
+    it('should by default read all the stages of all the pipelines with 2 name elements', function (done) {
       theCcTrayReader.readActivity().then(function (result) {
-        expect(result.jobs.length).toBe(NUM_JOBS_IN_TEST_DATA);
+        expect(result.stages.length).toBe(NUM_JOBS_IN_TEST_DATA);
         done();
       });
     });
 
-    it('should only read the jobs that are configured', function (done) {
-      options.jobs = [ 'A-PIPELINE :: build' ];
+    it('should only read the stages that are configured', function (done) {
+      options.stages = [ 'A-PIPELINE :: build' ];
       theCcTrayReader.readActivity().then(function (result) {
-        expect(result.jobs.length).toBe(1);
+        expect(result.stages.length).toBe(1);
         done();
       });
     });
 
     it('should only consider the pipeline that is configured', function (done) {
       theCcTrayReader.readActivity("A-PIPELINE").then(function (result) {
-        expect(result.jobs.length).toBe(NUM_JOBS_IN_A_PIPELINE);
-        done();
-      });
-    });
-
-    it('should support configuration of stage name and then choose all the jobs under that stage', function (done) {
-      options.jobs = {
-        '0': 'A-PIPELINE :: deploy-dev'
-      };
-      theCcTrayReader.readActivity().then(function (result) {
-        expect(result.jobs.length).toBe(2);
+        expect(result.stages.length).toBe(NUM_STAGES_IN_A_PIPELINE);
         done();
       });
     });
 
     it('should stay the same number of activities when called twice', function (done) {
       theCcTrayReader.readActivity().then(function (result) {
-        expect(result.jobs.length).toBe(NUM_JOBS_IN_TEST_DATA);
+        expect(result.stages.length).toBe(NUM_JOBS_IN_TEST_DATA);
         theCcTrayReader.readActivity().then(function (result) {
-          expect(result.jobs.length).toBe(NUM_JOBS_IN_TEST_DATA);
+          expect(result.stages.length).toBe(NUM_JOBS_IN_TEST_DATA);
           done();
         });
       });
@@ -98,8 +88,8 @@ describe('ccTrayReader', function () {
 
     it('should parse the breaker\'s name/email from messages', function (done) {
       theCcTrayReader.readActivity().then(function (result) {
-        expect(result.jobs[5].breaker.name).toContain('Maria Mustermann');
-        expect(result.jobs[5].breaker.email).toContain('internet');
+        expect(result.stages[4].breaker.name).toContain('Maria Mustermann');
+        expect(result.stages[4].breaker.email).toContain('internet');
         done();
       });
     });
