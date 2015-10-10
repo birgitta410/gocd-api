@@ -8,6 +8,7 @@
       "lastBuildTime": "2014-07-24T09:14:02",
       "webUrl": "http://the-go-host:8153/go/pipelines/A-PIPELINE/1200/build/1",
       "buildNumber": "1200",
+      "info": "build",
       "info2": "[1200] build | Success"
     }
   ],
