@@ -31,7 +31,7 @@ GoCd = {
       }
 
       return ccTrayReader.readActivity(filterByPipeline).then(function(activity) {
-        var pipelineRuns = pipelineReader.readPipelineRuns({ exclude: [ activity.buildNumberInProgress] });
+        var pipelineRuns = pipelineReader.readPipelineRuns({ exclude: [ activity.buildNumberInProgress], pipeline: filterByPipeline });
 
         mapAuthorInitialsFromHistoryToActivity(pipelineRuns, activity);
         return {
@@ -41,7 +41,7 @@ GoCd = {
 
 
       }).fail(function(e) {
-        console.log('Failed reading activity from cc tray', e, e.stack);
+        console.log('Failed reading data', e, e.stack);
       });
     };
 

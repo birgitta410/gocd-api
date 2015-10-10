@@ -17,7 +17,7 @@ describe('Integration with real Go CD server', function () {
     };
 
     // Set long timeout to allow collecting all data, even with slow responses
-    jasmine.getEnv().defaultTimeoutInterval = 60000;
+    jasmine.getEnv().defaultTimeoutInterval = 10000;
 
   });
 
@@ -28,7 +28,7 @@ describe('Integration with real Go CD server', function () {
 
   it('should read a set of pipeline runs (history) and jobs (activity)', function (done) {
     gocdApi.getInstance(options).then(function(instance) {
-      instance.readData().then(function (data) {
+      instance.readData(options.pipeline).then(function (data) {
 
         // HISTORY
         var history = data.history;
