@@ -14,7 +14,7 @@ Run tests
 npm test
 
 # Run a few smoke tests against a Go CD instance
-GOCD_URL=http://user:password@your-gocd:8153 GOCD_PIPELINE=your-pipeline-name sh ./run_spec_integration.sh
+GOCD_URL=https://user:password@your-gocd:8154 GOCD_PIPELINE=your-pipeline-name sh ./run_spec_integration.sh
 ```
 
 Usage
@@ -22,7 +22,7 @@ Usage
 ```
 var goCdApi = require('gocd-api');
 var goCd = goCdApi.getInstance({
-  url: '1.2.3.4:8153',
+  url: 'https://1.2.3.4:8154',
   pipeline: 'yourPipelineName',
   user: 'yourGoUser',
   password: 'yourGoPassword',

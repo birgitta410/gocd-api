@@ -1,8 +1,9 @@
 var _ = require('lodash');
-var moment = require('moment');
 var globalOptions = require('./lib/options');
 var pipelineReader = require('./lib/gocd/pipelineFeedReader');
 var ccTrayReader = require('./lib/cc/ccTrayReader');
+
+var gocdRequestor = require('./lib/gocd/gocdRequestor');
 
 GoCd = {
 
@@ -10,6 +11,12 @@ GoCd = {
     newOptions = newOptions || {};
     newOptions.type = type || 'GOCD';
     globalOptions.set(newOptions);
+
+    var pipelineNames;
+
+    gocdRequestor.getPipelineNames().then(function(names) {
+      pipelineNames = names;
+    });
 
     var readData = function() {
 

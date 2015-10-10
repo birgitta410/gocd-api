@@ -11,6 +11,8 @@ describe('Integration with real Go CD server', function () {
     options = {
       url: process.env.GOCD_URL,
       pipeline: process.env.GOCD_PIPELINE || 'artwise',
+      user: process.env.GOCD_USER,
+      password: process.env.GOCD_PASSWORD,
       debug: true
     };
 
