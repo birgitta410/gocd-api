@@ -22,5 +22,7 @@
     <Project name="A-PIPELINE :: deploy-showcase" activity="Sleeping" lastBuildStatus="Success" lastBuildLabel="1190" lastBuildTime="2014-07-24T06:59:51" webUrl="http://the-go-host:8153/go/pipelines/A-PIPELINE/1190/deploy-showcase/1" />
     <Project name="A-PIPELINE :: deploy-showcase :: backend" activity="Sleeping" lastBuildStatus="Success" lastBuildLabel="1190" lastBuildTime="2014-07-24T06:59:32" webUrl="http://the-go-host:8153/go/tab/build/detail/A-PIPELINE/1190/deploy-showcase/1/backend" />
     <Project name="A-PIPELINE :: deploy-showcase :: client" activity="Sleeping" lastBuildStatus="Success" lastBuildLabel="1235" lastBuildTime="2014-07-24T06:59:51" webUrl="http://the-go-host:8153/go/tab/build/detail/A-PIPELINE/1235/deploy-showcase/1/client" />
+    <Project name="A-PIPELINE-2 :: build" activity="Sleeping" lastBuildStatus="Success" lastBuildLabel="1190" lastBuildTime="2014-07-24T06:59:51" webUrl="http://the-go-host:8153/go/pipelines/A-PIPELINE-2/1190/build/1" />
+    <Project name="A-PIPELINE-2 :: build :: frontend" activity="Sleeping" lastBuildStatus="Success" lastBuildLabel="1190" lastBuildTime="2014-07-24T06:59:32" webUrl="http://the-go-host:8153/go/tab/build/detail/A-PIPELINE-2/1190/build/1/frontend" />
 </Projects>
 

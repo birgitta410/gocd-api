@@ -35,8 +35,11 @@ describe('ccTrayReader', function () {
 
   describe('init()', function () {
 
+    var NUM_JOBS_IN_TEST_DATA = 9;
+
     beforeEach(function() {
       options.jobs = undefined;
+      options.pipeline = undefined;
     });
 
     it('should write a sample to a file, for documentation purposes', function (done) {
@@ -51,15 +54,13 @@ describe('ccTrayReader', function () {
     });
 
     it('should by default only use jobs, i.e. project names with 3 name elements', function (done) {
-      // 6 = number of jobs
       theCcTrayReader.readActivity().then(function (result) {
-        expect(result.jobs.length).toBe(8);
+        expect(result.jobs.length).toBe(NUM_JOBS_IN_TEST_DATA);
         done();
       });
     });
 
     it('should only read the jobs that are configured', function (done) {
-      // 6 = number of jobs
       options.jobs = [ 'A-PIPELINE :: build' ];
       theCcTrayReader.readActivity().then(function (result) {
         expect(result.jobs.length).toBe(1);
@@ -67,8 +68,15 @@ describe('ccTrayReader', function () {
       });
     });
 
+    it('should only consider the pipeline that is configured', function (done) {
+      options.pipeline = 'A-PIPELINE';
+      theCcTrayReader.readActivity().then(function (result) {
+        expect(result.jobs.length).toBe(8);
+        done();
+      });
+    });
+
     it('should support configuration of stage name and then choose all the jobs under that stage', function (done) {
-      // 6 = number of jobs
       options.jobs = {
         '0': 'A-PIPELINE :: deploy-dev'
       };
@@ -80,9 +88,9 @@ describe('ccTrayReader', function () {
 
     it('should stay the same number of activities when called twice', function (done) {
       theCcTrayReader.readActivity().then(function (result) {
-        expect(result.jobs.length).toBe(8);
+        expect(result.jobs.length).toBe(NUM_JOBS_IN_TEST_DATA);
         theCcTrayReader.readActivity().then(function (result) {
-          expect(result.jobs.length).toBe(8);
+          expect(result.jobs.length).toBe(NUM_JOBS_IN_TEST_DATA);
           done();
         });
       });
