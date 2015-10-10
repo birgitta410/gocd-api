@@ -35,11 +35,12 @@ describe('ccTrayReader', function () {
 
   describe('init()', function () {
 
-    var NUM_JOBS_IN_TEST_DATA = 9;
+    var NUM_JOBS_IN_A_PIPELINE = 8;
+    var NUM_JOBS_IN_A_PIPELINE_2 = 1;
+    var NUM_JOBS_IN_TEST_DATA = NUM_JOBS_IN_A_PIPELINE + NUM_JOBS_IN_A_PIPELINE_2;
 
     beforeEach(function() {
       options.jobs = undefined;
-      options.pipeline = undefined;
     });
 
     it('should write a sample to a file, for documentation purposes', function (done) {
@@ -53,7 +54,7 @@ describe('ccTrayReader', function () {
       });
     });
 
-    it('should by default only use jobs, i.e. project names with 3 name elements', function (done) {
+    it('should by default read all the jobs of all the pipelines with 3 name elements', function (done) {
       theCcTrayReader.readActivity().then(function (result) {
         expect(result.jobs.length).toBe(NUM_JOBS_IN_TEST_DATA);
         done();
@@ -69,9 +70,8 @@ describe('ccTrayReader', function () {
     });
 
     it('should only consider the pipeline that is configured', function (done) {
-      options.pipeline = 'A-PIPELINE';
-      theCcTrayReader.readActivity().then(function (result) {
-        expect(result.jobs.length).toBe(8);
+      theCcTrayReader.readActivity("A-PIPELINE").then(function (result) {
+        expect(result.jobs.length).toBe(NUM_JOBS_IN_A_PIPELINE);
         done();
       });
     });

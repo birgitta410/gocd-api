@@ -18,7 +18,7 @@ GoCd = {
       pipelineNames = names;
     });
 
-    var readData = function() {
+    var readData = function(filterByPipeline) {
 
       function mapAuthorInitialsFromHistoryToActivity(history, activity) {
         _.each(activity.jobs, function(job) {
@@ -30,7 +30,7 @@ GoCd = {
         });
       }
 
-      return ccTrayReader.readActivity().then(function(activity) {
+      return ccTrayReader.readActivity(filterByPipeline).then(function(activity) {
         return pipelineReader.readPipelineRuns({ exclude: [ activity.buildNumberInProgress] }).then(function(pipelineRuns) {
 
           mapAuthorInitialsFromHistoryToActivity(pipelineRuns, activity);

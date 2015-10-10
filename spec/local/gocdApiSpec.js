@@ -1,7 +1,5 @@
 
 var mockery = require('mockery');
-var fs = require('fs');
-var path = require('path');
 var ccTraySampleRequestor = require('../../lib/cc/ccTraySampleRequestor');
 var gocdSampleRequestor = require('../../lib/gocd/gocdSampleRequestor');
 
@@ -35,7 +33,16 @@ describe('gocd-api', function () {
   it('should put it all together with the sample data', function (done) {
     gocdApi.getInstance().readData().then(function (data) {
       expect(data.activity).toBeDefined();
+      expect(data.activity.jobs.length).toBe(9);
       expect(data.history).toBeDefined();
+      done();
+    });
+  });
+
+  it('should filter by pipeline name if provided', function (done) {
+    gocdApi.getInstance().readData("A-PIPELINE").then(function (data) {
+      expect(data.activity.jobs.length).toBe(8);
+      // TODO expect(data.history.length).toBe(...);
       done();
     });
   });
