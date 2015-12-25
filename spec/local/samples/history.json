@@ -260,10 +260,7 @@
         "name": "server/ymlHerokuConfig.js",
         "action": "modified"
       }
-    ],
-    "committer": "Edward Norton <enorton@theinternet.com>",
-    "comment": "Some comment 5554",
-    "revision": "cb855ca1516888541722d8c0ed8973792f30ee57"
+    ]
   },
   "preparing_to_schedule": false,
   "counter": 2066,
@@ -272,6 +269,11 @@
       "email": "<enorton@theinternet.com>",
       "name": "Edward Norton",
       "initials": "eno"
+    },
+    "changeInfo": {
+      "committer": "Edward Norton <enorton@theinternet.com>",
+      "comment": "Some comment 5554",
+      "revision": "cb855ca1516888541722d8c0ed8973792f30ee57"
     },
     "lastScheduled": 1419000842499,
     "result": "passed"

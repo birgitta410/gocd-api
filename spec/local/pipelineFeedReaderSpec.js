@@ -5,7 +5,7 @@ var fs = require('fs');
 var path = require('path');
 var mockery = require('mockery');
 
-describe('pipelineFeedReader Go CD', function () {
+fdescribe('pipelineFeedReader Go CD', function () {
 
   var gocdSampleRequestor = require('../../lib/gocd/gocdSampleRequestor');
   var thePipelineFeedReader;
@@ -146,10 +146,10 @@ describe('pipelineFeedReader Go CD', function () {
       it('should parse committer and commit message from material HTML, sorted by latest change first', function(done) {
         thePipelineFeedReader.refreshData().then(function () {
           var results = thePipelineFeedReader.readPipelineRuns({ pipeline: 'A-PIPELINE'});
-          var buildCause = results['2066']['build_cause'];
-          expect(buildCause.committer).toContain('Edward Norton');
-          expect(buildCause.comment).toContain('Some comment');
-          expect(buildCause.revision).toBe('cb855ca1516888541722d8c0ed8973792f30ee57');
+          var changeInfo = results['2066'].summary.changeInfo;
+          expect(changeInfo.committer).toContain('Edward Norton');
+          expect(changeInfo.comment).toContain('Some comment');
+          expect(changeInfo.revision).toBe('cb855ca1516888541722d8c0ed8973792f30ee57');
 
           done();
         });
