@@ -159,7 +159,7 @@ fdescribe('pipelineFeedReader Go CD', function () {
         thePipelineFeedReader.refreshData().then(function () {
           var results = thePipelineFeedReader.readPipelineRuns({ pipeline: 'A-PIPELINE'});
           var expectedTimeText = moment(1419000842499).format('HH:mm:ss, MMMM Do YYYY');
-          expect(results['2066'].info).toBe('[2066] passed | Edward Norton | Some comment 5554 | ' + expectedTimeText);
+          expect(results['2066'].summary.text).toBe('[2066] passed | Edward Norton | Some comment 5554 | ' + expectedTimeText);
 
           done();
         });

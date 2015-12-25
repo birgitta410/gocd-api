@@ -51,11 +51,11 @@ describe('Integration with real Go CD server', function () {
         expect(summary.changeInfo.committer).toBeDefined();
         expect(summary.changeInfo.comment).toBeDefined();
         expect(summary.changeInfo.revision).toBeDefined();
+        expect(summary.text).toBeDefined();
+
         if(options.type !== 'SNAP') {
           expect(firstResult['build_cause'].files).toBeDefined();
         }
-
-        expect(firstResult.info).toBeDefined();
 
         // ACTIVITY
         expect(_.keys(data.activity.stages).length).toBeGreaterThan(0);

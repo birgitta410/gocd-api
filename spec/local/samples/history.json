@@ -276,7 +276,7 @@
       "revision": "cb855ca1516888541722d8c0ed8973792f30ee57"
     },
     "lastScheduled": 1419000842499,
-    "result": "passed"
-  },
-  "info": "[2066] passed | Edward Norton | Some comment 5554 | 15:54:02, December 19th 2014"
+    "result": "passed",
+    "text": "[2066] passed | Edward Norton | Some comment 5554 | 15:54:02, December 19th 2014"
+  }
 }
