@@ -162,9 +162,9 @@ describe('snapToGoConverterModule', function () {
       var pipelineRun = pipelineRunCreator.pipelineRun.createNew(justOneStage);
 
       expect(pipelineRun.wasSuccessful()).toBe(true);
-      expect(pipelineRun['last_scheduled']).toBeDefined();
+      expect(pipelineRun.summary.lastScheduled).toBeDefined();
       var expectedTime = moment(1419000542498);
-      var actualTime = moment(pipelineRun['last_scheduled']);
+      var actualTime = moment(pipelineRun.summary.lastScheduled);
       expect(actualTime.hours()).toBe(expectedTime.hours());
 
 
@@ -172,7 +172,7 @@ describe('snapToGoConverterModule', function () {
       expect(pipelineRun.wasSuccessful()).toBe(false);
 
       expectedTime = moment(1419000842499);
-      actualTime = moment(pipelineRun['last_scheduled']);
+      actualTime = moment(pipelineRun.summary.lastScheduled);
       expect(actualTime.hours()).toBe(expectedTime.hours());
 
 

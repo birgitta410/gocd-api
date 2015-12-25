@@ -110,7 +110,7 @@ describe('pipelineFeedReader Go CD', function () {
         thePipelineFeedReader.refreshData().then(function () {
           var results = thePipelineFeedReader.readPipelineRuns({ pipeline: 'A-PIPELINE'});
           var expectedTime = moment(1419000842499);
-          var actualTime = moment(results['2066']['last_scheduled']);
+          var actualTime = moment(results['2066'].summary.lastScheduled);
           expect(actualTime.hours()).toBe(expectedTime.hours());
           expect(actualTime.minutes()).toBe(expectedTime.minutes());
           expect(actualTime.seconds()).toBe(expectedTime.seconds());
