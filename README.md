@@ -11,10 +11,10 @@ Run tests
 ======
 ```
 # Run tests with sample data
-npm test
+./node_modules/jasmine/bin/jasmine.js
 
 # Run a few smoke tests against a Go CD instance
-GOCD_URL=https://your-gocd:8154 GOCD_USER=your-user GOCD_PASSWORD=your-password GOCD_PIPELINE=your-pipeline-name GOCD_DEBUG=true sh ./run_spec_integration.sh
+GOCD_URL=https://your-gocd:8154 GOCD_USER=your-user GOCD_PASSWORD=your-password GOCD_PIPELINE=your-pipeline-name GOCD_DEBUG=true ./run_spec_integration.sh
 
 ```
 

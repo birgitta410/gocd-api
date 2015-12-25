@@ -2,6 +2,7 @@
 var mockery = require('mockery');
 var ccTraySampleRequestor = require('../../lib/cc/ccTraySampleRequestor');
 var gocdSampleRequestor = require('../../lib/gocd/gocdSampleRequestor');
+var globalOptions = require('../../lib/options');
 
 describe('gocd-api', function () {
 
@@ -14,19 +15,11 @@ describe('gocd-api', function () {
       warnOnReplace: false
     });
 
-    var globalOptions = {
-      getHistoryRequestor: function() {
-        return gocdSampleRequestor;
-      },
-      getCcTrayRequestor: function() {
-        return ccTraySampleRequestor;
-      },
-      get: function() {
-        return {};
-      },
-      set: function() {
-
-      }
+    globalOptions.getHistoryRequestor = function() {
+      return gocdSampleRequestor;
+    };
+    globalOptions.getCcTrayRequestor = function() {
+      return ccTraySampleRequestor;
     };
 
     mockery.registerMock('../options', globalOptions);

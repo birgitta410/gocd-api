@@ -1,2 +1,2 @@
 #!/bin/sh
-node node_modules/jasmine-node/bin/jasmine-node --captureExceptions ./spec/integration
+./node_modules/jasmine/bin/jasmine.js --captureExceptions JASMINE_CONFIG_PATH=./spec/support/jasmine_integration.json
