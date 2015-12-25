@@ -38,8 +38,6 @@ GoCd = {
         };
 
 
-      }).fail(function(e) {
-        console.log('Failed reading data', e, e.stack);
       });
     };
 
