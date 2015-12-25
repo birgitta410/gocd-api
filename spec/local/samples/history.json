@@ -23,8 +23,7 @@
       "approved_by": "changes",
       "can_run": true,
       "id": 10724,
-      "counter": "1",
-      "last_scheduled": 1419000542498
+      "counter": "1"
     },
     {
       "result": "Passed",
@@ -45,8 +44,7 @@
       "approved_by": "changes",
       "can_run": true,
       "id": 10725,
-      "counter": "1",
-      "last_scheduled": 1419000699510
+      "counter": "1"
     },
     {
       "result": "Passed",
@@ -74,8 +72,7 @@
       "approved_by": "changes",
       "can_run": true,
       "id": 10726,
-      "counter": "1",
-      "last_scheduled": 1419000752944
+      "counter": "1"
     },
     {
       "result": "Passed",
@@ -96,8 +93,7 @@
       "approved_by": "changes",
       "can_run": true,
       "id": 10727,
-      "counter": "1",
-      "last_scheduled": 1419000816207
+      "counter": "1"
     },
     {
       "result": "Passed",
@@ -118,8 +114,7 @@
       "approved_by": "changes",
       "can_run": true,
       "id": 10728,
-      "counter": "1",
-      "last_scheduled": 1419000842499
+      "counter": "1"
     },
     {
       "jobs": [],
@@ -265,6 +260,9 @@
   "preparing_to_schedule": false,
   "counter": 2066,
   "summary": {
+    "result": "passed",
+    "text": "[2066] passed | Edward Norton | Some comment 5554 | 15:54:02, December 19th 2014",
+    "lastScheduled": 1419000842499,
     "author": {
       "email": "<enorton@theinternet.com>",
       "name": "Edward Norton",
@@ -274,9 +272,6 @@
       "committer": "Edward Norton <enorton@theinternet.com>",
       "comment": "Some comment 5554",
       "revision": "cb855ca1516888541722d8c0ed8973792f30ee57"
-    },
-    "lastScheduled": 1419000842499,
-    "result": "passed",
-    "text": "[2066] passed | Edward Norton | Some comment 5554 | 15:54:02, December 19th 2014"
+    }
   }
 }

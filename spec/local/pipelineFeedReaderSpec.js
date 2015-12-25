@@ -5,7 +5,7 @@ var fs = require('fs');
 var path = require('path');
 var mockery = require('mockery');
 
-fdescribe('pipelineFeedReader Go CD', function () {
+describe('pipelineFeedReader Go CD', function () {
 
   var gocdSampleRequestor = require('../../lib/gocd/gocdSampleRequestor');
   var thePipelineFeedReader;
