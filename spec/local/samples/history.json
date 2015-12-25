@@ -268,13 +268,13 @@
   "preparing_to_schedule": false,
   "counter": 2066,
   "summary": {
-    "lastScheduled": 1419000842499
+    "lastScheduled": 1419000842499,
+    "result": "passed"
   },
   "author": {
     "email": "<enorton@theinternet.com>",
     "name": "Edward Norton",
     "initials": "eno"
   },
-  "result": "passed",
   "info": "[2066] passed | Edward Norton | Some comment 5554 | 15:54:02, December 19th 2014"
 }

@@ -123,10 +123,10 @@ describe('pipelineFeedReader Go CD', function () {
         thePipelineFeedReader.refreshData().then(function () {
           var results = thePipelineFeedReader.readPipelineRuns({ pipeline: 'A-PIPELINE'});
           expect(results['2066'].stages.length).toBe(7);
-          expect(results['2066'].result).toBe('passed');
+          expect(results['2066'].summary.result).toBe('passed');
           expect(results['2062'].stages.length).toBe(7);
-          expect(results['2062'].result).toBe('failed');
-          expect(results['2062'].stageFailed).toBe('functional-test');
+          expect(results['2062'].summary.result).toBe('failed');
+          expect(results['2062'].summary.stageFailed).toBe('functional-test');
 
           done();
         });
