@@ -3,7 +3,7 @@ gocd-api
 
 [![Build Status Snap-CI](https://snap-ci.com/birgitta410/gocd-api/branch/master/build_image)](https://snap-ci.com/birgitta410/gocd-api/)
 
-Module to access data from your Go CD server (http://www.go.cd/), e.g. to feed it into a build monitor.
+Module to access data from your Go CD server (http://www.go.cd/), e.g. to feed it into a build monitor. Also works with Snap CI.
 
 Will give you access to both current activity (which stage is currently building, what is the state of the latest pipeline run) and history data about past pipeline runs.
 
@@ -35,13 +35,24 @@ goCdApi.getInstance({
   debug: true // default: false, will do some verbose logging to console
 }).then(function(instanceWithACacheOfInitialData) {
 
-  var gocdData = instanceWithACacheOfInitialData.readData();
+  var gocdData = instanceWithACacheOfInitialData.readData("pipeline-name");
   //...
 
 });
 
 
 ```
+
+Config or a Snap CI project:
+```
+{
+  type: 'SNAP',
+  pipeline: 'yourProjectName',
+  user: 'your Snap CI User',
+  key: 'your Snap CI API key'
+}
+```
+
 This is what you will get from `readData()`:
 ```
 {
