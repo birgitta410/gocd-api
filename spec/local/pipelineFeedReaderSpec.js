@@ -135,9 +135,9 @@ describe('pipelineFeedReader Go CD', function () {
       it('should determine the author of the latest change that triggered the run', function(done) {
         thePipelineFeedReader.refreshData().then(function () {
           var results = thePipelineFeedReader.readPipelineRuns({ pipeline: 'A-PIPELINE'});
-          expect(results['2066'].author).toBeDefined();
-          expect(results['2066'].author.name).toBe('Edward Norton');
-          expect(results['2063'].author.name).toBe('Brad Pitt');
+          expect(results['2066'].summary.author).toBeDefined();
+          expect(results['2066'].summary.author.name).toBe('Edward Norton');
+          expect(results['2063'].summary.author.name).toBe('Brad Pitt');
 
           done();
         });
@@ -168,7 +168,7 @@ describe('pipelineFeedReader Go CD', function () {
       it('should create initials of person that authored changes for a failed job', function(done) {
         thePipelineFeedReader.refreshData().then(function () {
           var results = thePipelineFeedReader.readPipelineRuns({ pipeline: 'A-PIPELINE'});
-          expect(results['2066'].author.initials).toContain('eno');
+          expect(results['2066'].summary.author.initials).toContain('eno');
 
           done();
         });
