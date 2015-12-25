@@ -13,7 +13,9 @@ describe('Integration with real Go CD server', function () {
       pipeline: process.env.GOCD_PIPELINE || 'artwise',
       user: process.env.GOCD_USER,
       password: process.env.GOCD_PASSWORD,
-      debug: true
+      debug: true,
+      type: process.env.GOCD_TYPE,
+      key: process.env.GOCD_KEY
     };
 
     // Set long timeout to allow collecting all data, even with slow responses
@@ -27,7 +29,7 @@ describe('Integration with real Go CD server', function () {
   }
 
   it('should read a set of pipeline runs (history) and jobs (activity)', function (done) {
-    gocdApi.getInstance(options).then(function(instance) {
+    gocdApi.getInstance(options, options.type).then(function(instance) {
       expect(instance.pipelineNames.length).toBeGreaterThan(0);
       instance.readData(options.pipeline).then(function (data) {
 
