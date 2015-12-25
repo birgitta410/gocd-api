@@ -3,8 +3,6 @@ var globalOptions = require('./lib/options');
 var pipelineReader = require('./lib/gocd/pipelineFeedReader');
 var ccTrayReader = require('./lib/cc/ccTrayReader');
 
-var gocdRequestor = require('./lib/gocd/gocdRequestor');
-
 GoCd = {
 
   getInstance : function(newOptions, type) {
@@ -14,7 +12,7 @@ GoCd = {
 
     var pipelineNames;
 
-    gocdRequestor.getPipelineNames().then(function(names) {
+    globalOptions.getHistoryRequestor().getPipelineNames().then(function(names) {
       pipelineNames = names;
     }).done();
 

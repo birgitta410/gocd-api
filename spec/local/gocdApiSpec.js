@@ -22,11 +22,15 @@ describe('gocd-api', function () {
         return ccTraySampleRequestor;
       },
       get: function() {
-        return {}
+        return {};
+      },
+      set: function() {
+
       }
     };
 
     mockery.registerMock('../options', globalOptions);
+    mockery.registerMock('./lib/options', globalOptions);
 
     gocdApi = require('../../index');
 
