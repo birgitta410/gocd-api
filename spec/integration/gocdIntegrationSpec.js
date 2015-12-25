@@ -42,14 +42,15 @@ describe('Integration with real Go CD server', function () {
 
         expect(firstResult.stages.length).toBeGreaterThan(0);
 
-        expect(firstResult['last_scheduled']).toBeDefined();
-        expect(_.contains(['passed', 'failed'], firstResult.result)).toBe(true);
-        expect(firstResult.author).toBeDefined();
-        expect(firstResult.author.name).toBeDefined();
+        var summary = firstResult.summary;
+        expect(summary.lastScheduled).toBeDefined();
+        expect(_.contains(['passed', 'failed'], summary.result)).toBe(true);
+        expect(summary.author).toBeDefined();
+        expect(summary.author.name).toBeDefined();
 
-        expect(firstResult['build_cause'].committer).toBeDefined();
-        expect(firstResult['build_cause'].comment).toBeDefined();
-        expect(firstResult['build_cause'].revision).toBeDefined();
+        expect(summary.changeInfo.committer).toBeDefined();
+        expect(summary.changeInfo.comment).toBeDefined();
+        expect(summary.changeInfo.revision).toBeDefined();
         if(options.type !== 'SNAP') {
           expect(firstResult['build_cause'].files).toBeDefined();
         }
