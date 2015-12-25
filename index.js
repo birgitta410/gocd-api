@@ -16,7 +16,7 @@ GoCd = {
 
     gocdRequestor.getPipelineNames().then(function(names) {
       pipelineNames = names;
-    });
+    }).done();
 
     var readData = function(filterByPipeline) {
 
@@ -49,6 +49,7 @@ GoCd = {
       var refreshInterval = setInterval(pipelineReader.refreshData, 30000);
       return {
         readData: readData,
+        pipelineNames: pipelineNames,
         refreshInterval: refreshInterval
       };
     });

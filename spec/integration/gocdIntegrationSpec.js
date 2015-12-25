@@ -28,6 +28,7 @@ describe('Integration with real Go CD server', function () {
 
   it('should read a set of pipeline runs (history) and jobs (activity)', function (done) {
     gocdApi.getInstance(options).then(function(instance) {
+      expect(instance.pipelineNames.length).toBeGreaterThan(0);
       instance.readData(options.pipeline).then(function (data) {
 
         // HISTORY
