@@ -14,7 +14,8 @@ Run tests
 npm test
 
 # Run a few smoke tests against a Go CD instance
-GOCD_URL=https://your-gocd:8154 GOCD_USER=your-user GOCD_PASSWORD=your-password GOCD_PIPELINE=your-pipeline-name sh ./run_spec_integration.sh
+GOCD_URL=https://your-gocd:8154 GOCD_USER=your-user GOCD_PASSWORD=your-password GOCD_PIPELINE=your-pipeline-name GOCD_DEBUG=true sh ./run_spec_integration.sh
+
 ```
 
 Usage
