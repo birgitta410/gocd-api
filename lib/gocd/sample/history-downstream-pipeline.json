@@ -1,0 +1,169 @@
+{
+  "pagination": {
+    "offset": 0,
+    "total": 2,
+    "page_size": 2
+  },
+  "pipelines": [
+    {
+      "label": "2066",
+      "name": "DOWNSTREAM-PIPELINE",
+      "natural_order": 264.0,
+      "can_run": false,
+      "stages": [
+        {
+          "result": "Passed",
+          "jobs": [
+            {
+              "state": "Completed",
+              "result": "Passed",
+              "name": "deploy",
+              "id": 13792,
+              "scheduled_date": 1450893311145
+            }
+          ],
+          "name": "deploy",
+          "rerun_of_counter": null,
+          "approval_type": "success",
+          "scheduled": true,
+          "operate_permission": true,
+          "approved_by": "changes",
+          "can_run": false,
+          "id": 7482,
+          "counter": "1"
+        },
+        {
+          "result": "Passed",
+          "jobs": [
+            {
+              "state": "Completed",
+              "result": "Passed",
+              "name": "smoke-test",
+              "id": 13793,
+              "scheduled_date": 1450893820238
+            }
+          ],
+          "name": "smoke-test",
+          "rerun_of_counter": null,
+          "approval_type": "success",
+          "scheduled": true,
+          "operate_permission": true,
+          "approved_by": "changes",
+          "can_run": false,
+          "id": 7483,
+          "counter": "1"
+        }
+      ],
+      "id": 2940,
+      "build_cause": {
+        "trigger_message": "triggered by A-PIPELINE/2066/smoke-test-dev/1",
+        "approver": "",
+        "material_revisions": [
+          {
+            "material": {
+              "fingerprint": "59952e61ec0d3b19cc194b8d3e144ece35a5a313539139bf2440aa9d67474a4f",
+              "description": "A-PIPELINE",
+              "id": 35,
+              "type": "Pipeline"
+            },
+            "modifications": [
+              {
+                "modified_time": 1450893276621,
+                "user_name": "Unknown",
+                "id": 4855,
+                "revision": "A-PIPELINE/2066/smoke-test-dev/1",
+                "email_address": null,
+                "comment": "Unknown"
+              }
+            ],
+            "changed": true
+          }
+        ],
+        "trigger_forced": false
+      },
+      "preparing_to_schedule": false,
+      "counter": 265,
+      "comment": null
+    },
+    {
+      "label": "2065",
+      "name": "DOWNSTREAM-PIPELINE",
+      "natural_order": 263.0,
+      "can_run": false,
+      "stages": [
+        {
+          "result": "Passed",
+          "jobs": [
+            {
+              "state": "Completed",
+              "result": "Passed",
+              "name": "deploy",
+              "id": 13769,
+              "scheduled_date": 1450879991420
+            }
+          ],
+          "name": "deploy",
+          "rerun_of_counter": null,
+          "approval_type": "success",
+          "scheduled": true,
+          "operate_permission": true,
+          "approved_by": "changes",
+          "can_run": false,
+          "id": 7471,
+          "counter": "1"
+        },
+        {
+          "result": "Passed",
+          "jobs": [
+            {
+              "state": "Completed",
+              "result": "Passed",
+              "name": "smoke-test",
+              "id": 13770,
+              "scheduled_date": 1450880504418
+            }
+          ],
+          "name": "smoke-test",
+          "rerun_of_counter": null,
+          "approval_type": "success",
+          "scheduled": true,
+          "operate_permission": true,
+          "approved_by": "changes",
+          "can_run": false,
+          "id": 7472,
+          "counter": "1"
+        }
+      ],
+      "id": 2937,
+      "build_cause": {
+        "trigger_message": "triggered by A-PIPELINE/2065/smoke-test-dev/1",
+        "approver": "",
+        "material_revisions": [
+          {
+            "material": {
+              "fingerprint": "59952e61ec0d3b19cc194b8d3e144ece35a5a313539139bf2440aa9d67474a4f",
+              "description": "A-PIPELINE",
+              "id": 35,
+              "type": "Pipeline"
+            },
+            "modifications": [
+              {
+                "modified_time": 1450879911013,
+                "user_name": "Unknown",
+                "id": 4850,
+                "revision": "A-PIPELINE/2065/smoke-test-dev/1",
+                "email_address": null,
+                "comment": "Unknown"
+              }
+            ],
+            "changed": true
+          }
+        ],
+        "trigger_forced": false
+      },
+      "preparing_to_schedule": false,
+      "counter": 264,
+      "comment": null
+    }
+  ]
+}

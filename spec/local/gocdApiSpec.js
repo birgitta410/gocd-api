@@ -42,4 +42,16 @@ describe('gocd-api', function () {
     });
   });
 
+  it('should read sample data for the downstream pipeline', function (done) {
+    gocdApi.getInstance().then(function(instance) {
+      instance.readData('DOWNSTREAM-PIPELINE').then(function (data) {
+        expect(data.activity).toBeDefined();
+        expect(data.activity.stages.length).toBe(1);
+        expect(data.history).toBeDefined();
+        clearInterval(instance.refreshInterval);
+        done();
+      });
+    });
+  });
+
 });

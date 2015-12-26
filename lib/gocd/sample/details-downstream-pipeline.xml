@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pipeline name="DOWNSTREAM-PIPELINE" counter="265" label="852">
+  <link rel="self" href="https://192.168.50.79:8154/go/api/pipelines/DOWNSTREAM-PIPELINE/2940.xml"/>
+  <id><![CDATA[urn:x-go.studios.thoughtworks.com:job-id:DOWNSTREAM-PIPELINE:265]]></id>
+  <link rel="insertedAfter" href="https://192.168.50.79:8154/go/api/pipelines/DOWNSTREAM-PIPELINE/2937.xml"/>
+  <scheduleTime>2015-12-23T17:55:11Z</scheduleTime>
+  <materials>
+    <material materialUri="https://192.168.50.79:8154/go/api/materials/35.xml" type="DependencyMaterial" pipelineName="A-PIPELINE" stageName="smoke-test-dev">
+      <modifications>
+        <changeset changesetUri="https://192.168.50.79:8154/go/api/stages/7481.xml">
+          <checkinTime>2015-12-23T17:54:36Z</checkinTime>
+          <revision>sf-app/852/smoke-test-dev/1</revision>
+        </changeset>
+      </modifications>
+    </material>
+  </materials>
+  <stages>
+    <stage href="https://192.168.50.79:8154/go/api/stages/7482.xml"/>
+    <stage href="https://192.168.50.79:8154/go/api/stages/7483.xml"/>
+    <stage href="https://192.168.50.79:8154/go/api/stages/7484.xml"/>
+  </stages>
+  <approvedBy><![CDATA[changes]]></approvedBy>
+</pipeline>

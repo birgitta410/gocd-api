@@ -183,6 +183,51 @@ describe('pipelineFeedReader Go CD', function () {
         });
       });
 
+      describe('for pipelines triggered by upstream pipelines', function() {
+        it("should determine the upstream pipeline run", function() {
+          thePipelineFeedReader.refreshData().then(function () {
+            var results = thePipelineFeedReader.readPipelineRuns({ pipeline: 'DOWNSTREAM-PIPELINE'});
+            expect(results['2066'].summary.upstream.pipelineName).toBe("A-PIPELINE");
+            expect(results['2066'].summary.upstream.pipelineLabel).toBe("2066");
+
+            done();
+          });
+        });
+
+        it('should determine the author of the latest change that triggered the upstream pipeline', function(done) {
+          thePipelineFeedReader.refreshData().then(function () {
+            var results = thePipelineFeedReader.readPipelineRuns({ pipeline: 'DOWNSTREAM-PIPELINE'});
+            expect(results['2066'].summary.author).toBeDefined();
+            expect(results['2066'].summary.author.name).toBe('Edward Norton');
+
+            done();
+          });
+        });
+
+        it('should parse committer and commit message from material HTML, sorted by latest change first', function(done) {
+          thePipelineFeedReader.refreshData().then(function () {
+            var results = thePipelineFeedReader.readPipelineRuns({ pipeline: 'DOWNSTREAM-PIPELINE'});
+
+            var changeInfo = results['2066'].summary.changeInfo;
+            expect(changeInfo.committer).toContain('Edward Norton');
+            expect(changeInfo.comment).toContain('Some comment');
+            expect(changeInfo.revision).toBe('cb855ca1516888541722d8c0ed8973792f30ee57');
+
+            done();
+          });
+        });
+
+        it('should put author and commit message of the latest change into info text, if present', function(done) {
+          thePipelineFeedReader.refreshData().then(function () {
+            var results = thePipelineFeedReader.readPipelineRuns({ pipeline: 'DOWNSTREAM-PIPELINE'});
+            var expectedTimeText = moment(1450893820238).format('HH:mm:ss, MMMM Do YYYY');
+            expect(results['2066'].summary.text).toBe('[2066] passed | Edward Norton | Some comment 5554 | ' + expectedTimeText);
+
+            done();
+          });
+        });
+      });
+
     });
   });
 
