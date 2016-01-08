@@ -64,7 +64,7 @@
               "scheduled_date": 1419000752944
             },
             {
-              "state": "Completed",
+              "state": "Building",
               "result": "Passed",
               "name": "client",
               "id": 14272,
@@ -256,7 +256,7 @@
               "scheduled_date": 1418986165607
             },
             {
-              "state": "Completed",
+              "state": "Scheduled",
               "result": "Passed",
               "name": "client",
               "id": 14263,
@@ -474,14 +474,14 @@
           "result": "Passed",
           "jobs": [
             {
-              "state": "Completed",
+              "state": "Scheduled",
               "result": "Passed",
               "name": "backend",
               "id": 14256,
               "scheduled_date": 1418982924703
             },
             {
-              "state": "Completed",
+              "state": "Building",
               "result": "Passed",
               "name": "client",
               "id": 14257,

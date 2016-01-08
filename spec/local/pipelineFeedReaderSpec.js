@@ -183,6 +183,17 @@ describe('pipelineFeedReader Go CD', function () {
         });
       });
 
+      it("should determine the state of a stage based on its jobs", function(done) {
+        thePipelineFeedReader.refreshData().then(function () {
+          var results = thePipelineFeedReader.readPipelineRuns({ pipeline: 'A-PIPELINE'});
+          expect(results['2066'].stages[2].summary.state).toBe('Building');
+          expect(results['2065'].stages[2].summary.state).toBe('Scheduled');
+          expect(results['2065'].stages[5].summary.state).toBe('Completed');
+          expect(results['2064'].stages[2].summary.state).toBe('Building');
+          done();
+        });
+      });
+
       describe('for pipelines triggered by upstream pipelines', function() {
         it("should determine the upstream pipeline run", function() {
           thePipelineFeedReader.refreshData().then(function () {
