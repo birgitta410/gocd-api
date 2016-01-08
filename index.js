@@ -18,20 +18,43 @@ GoCd = {
 
     var readData = function(filterByPipeline) {
 
-      function mapAuthorInitialsFromHistoryToActivity(history, activity) {
-        _.each(activity.jobs, function(job) {
+      function enrichActivityWithHistory(history, activity) {
 
-          var historyWithSameKey = history[job.buildNumber];
-          if(historyWithSameKey !== undefined) {
-            job.initials = historyWithSameKey.author? historyWithSameKey.author.initials : undefined;
+        function mapAuthorInitialsFromHistoryToActivity(activityStage, historyPipelineRun) {
+          activityStage.initials = historyPipelineRun.summary && historyPipelineRun.summary.author? historyPipelineRun.summary.author.initials : undefined;
+        }
+
+        function moreAccurateJobStatus(activityStage, historyPipelineRun) {
+          if(activityStage.activity === 'Building') {
+            var historyStage = _.find(historyPipelineRun.stages, function(stage) {
+              return stage.name === activityStage.name;
+            });
+            activityStage.gocdActivity = historyStage && historyStage.summary ? historyStage.summary.state : activityStage.activity;
+          }
+        }
+
+        _.each(activity.stages, function(stage) {
+          var historyWithSameKey = history[stage.buildNumber];
+          if(historyWithSameKey) {
+            mapAuthorInitialsFromHistoryToActivity(stage, historyWithSameKey);
+            moreAccurateJobStatus(stage, historyWithSameKey);
           }
         });
+
       }
 
       return ccTrayReader.readActivity(filterByPipeline).then(function(activity) {
-        var pipelineRuns = pipelineReader.readPipelineRuns({ exclude: [ activity.buildNumberInProgress], pipeline: filterByPipeline });
+        var pipelineRuns = pipelineReader.readPipelineRuns({ pipeline: filterByPipeline });
 
-        mapAuthorInitialsFromHistoryToActivity(pipelineRuns, activity);
+        enrichActivityWithHistory(pipelineRuns, activity);
+
+        _.each(activity.stages, function(stage) {
+          if(stage.gocdActivity === 'Scheduled' || stage.gocdActivity === 'Building') {
+            delete pipelineRuns[stage.buildNumber];
+          }
+        });
+
+
         return {
           activity: activity,
           history: pipelineRuns

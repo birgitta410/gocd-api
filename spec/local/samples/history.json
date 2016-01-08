@@ -32,7 +32,7 @@
       "result": "Passed",
       "jobs": [
         {
-          "state": "Completed",
+          "state": "Building",
           "result": "Passed",
           "name": "backend-integration",
           "id": 14270,
@@ -49,7 +49,7 @@
       "id": 10725,
       "counter": "1",
       "summary": {
-        "state": "Completed"
+        "state": "Building"
       }
     },
     {

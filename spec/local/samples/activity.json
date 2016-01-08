@@ -1,16 +1,16 @@
 {
   "stages": [
     {
-      "name": "build",
-      "activity": "Sleeping",
+      "name": "deploy-dev",
+      "activity": "Building",
       "lastBuildStatus": "Success",
-      "lastBuildLabel": 1200,
-      "lastBuildTime": "2014-07-24T09:14:02",
-      "webUrl": "http://the-go-host:8153/go/pipelines/A-PIPELINE/1200/build/1",
-      "buildNumber": "1200",
-      "info": "build",
-      "info2": "[1200] build | Success"
+      "lastBuildLabel": 2065,
+      "lastBuildTime": "2014-07-24T08:59:21",
+      "webUrl": "http://the-go-host:8153/go/pipelines/A-PIPELINE/2065/deploy-dev/1",
+      "buildNumber": "2065",
+      "info": "deploy-dev",
+      "info2": "[2065] deploy-dev is building"
     }
   ],
-  "buildNumberInProgress": "1200"
+  "buildNumberInProgress": "2066"
 }

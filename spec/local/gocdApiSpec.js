@@ -38,7 +38,7 @@ describe('gocd-api', function () {
         expect(data.history).toBeDefined();
         clearInterval(instance.refreshInterval);
         done();
-      });
+      }).done();
     });
   });
 
@@ -50,8 +50,42 @@ describe('gocd-api', function () {
         expect(data.history).toBeDefined();
         clearInterval(instance.refreshInterval);
         done();
+      }).done();
+    });
+  });
+
+  it("should exclude currently building pipelines", function(done) {
+    gocdApi.getInstance().then(function(instance) {
+      instance.readData('A-PIPELINE').then(function (data) {
+        expect(data.history['2066']).toBeUndefined();
+        clearInterval(instance.refreshInterval);
+        done();
+      }).done();
+    });
+  });
+
+  describe("should enrich activity data", function() {
+    it("with author information from history", function(done) {
+      gocdApi.getInstance().then(function(instance) {
+        instance.readData('A-PIPELINE').then(function (data) {
+          expect(data.activity.stages[4].initials).toBe("eno");
+          clearInterval(instance.refreshInterval);
+          done();
+        }).done();
       });
     });
+
+    it("with more accurate status of the stages", function(done) {
+      gocdApi.getInstance().then(function(instance) {
+        instance.readData('A-PIPELINE').then(function (data) {
+          expect(data.activity.stages[1].gocdActivity).toBe('Building');
+          expect(data.activity.stages[2].gocdActivity).toBe('Scheduled');
+          clearInterval(instance.refreshInterval);
+          done();
+        }).done();
+      });
+    });
+
   });
 
 });

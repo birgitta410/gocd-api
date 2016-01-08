@@ -95,7 +95,7 @@ describe('ccTrayReader', function () {
 
     it('should provide id of pipeline that is currently building', function (done) {
       theCcTrayReader.readActivity().then(function (result) {
-        expect(result.buildNumberInProgress).toBe('1200');
+        expect(result.buildNumberInProgress).toBe('2066');
         done();
       });
     });
