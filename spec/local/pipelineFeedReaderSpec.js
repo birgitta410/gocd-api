@@ -159,9 +159,13 @@ describe('pipelineFeedReader Go CD', function () {
             expect(results['2066'].summary.result).toBe('passed');
             expect(results['2062'].stages.length).toBe(7);
             expect(results['2062'].summary.result).toBe('failed');
-            expect(results['2062'].summary.stageFailed).toBe('functional-test');
+            expect(results['2062'].summary.stageNotSuccessful).toBe('functional-test');
 
-            testDone();
+            thePipelineFeedReader.readPipelineRuns({ pipeline: 'DOWNSTREAM-PIPELINE'}).then(function(resultsDownstream) {
+              expect(resultsDownstream['2066'].summary.result).toBe('cancelled');
+
+              testDone();
+            }).done();
           }).done();
         }).done();
       });
@@ -264,8 +268,12 @@ describe('pipelineFeedReader Go CD', function () {
 
         it('should put author and commit message of the latest change into info text, if present', function(testDone) {
           thePipelineFeedReader.readPipelineRuns({ pipeline: 'DOWNSTREAM-PIPELINE'}).then(function(results) {
-            var expectedTimeText = moment(1450893820238).format('HH:mm:ss, MMMM Do YYYY');
-            expect(results['2066'].summary.text).toBe('[2066] passed | Edward Norton | Some comment 5554 | ' + expectedTimeText);
+
+            var expectedTime2065 = moment(1450880504418).format('HH:mm:ss, MMMM Do YYYY');
+            expect(results['2065'].summary.text).toBe('[2065] passed | Edward Norton | Some comment | ' + expectedTime2065);
+
+            var expectedTime2066 = moment(1450893820238).format('HH:mm:ss, MMMM Do YYYY');
+            expect(results['2066'].summary.text).toBe('[2066] Stage cancelled: smoke-test | Edward Norton | Some comment 5554 | ' + expectedTime2066);
 
             testDone();
           }).done();

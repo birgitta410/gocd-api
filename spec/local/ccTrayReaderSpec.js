@@ -35,7 +35,7 @@ describe('ccTrayReader', function () {
   describe('init()', function () {
 
     var NUM_STAGES_IN_A_PIPELINE = 6;
-    var NUM_JOBS_IN_A_PIPELINE_2 = 1;
+    var NUM_JOBS_IN_A_PIPELINE_2 = 2;
     var NUM_JOBS_IN_TEST_DATA = NUM_STAGES_IN_A_PIPELINE + NUM_JOBS_IN_A_PIPELINE_2;
 
     beforeEach(function() {

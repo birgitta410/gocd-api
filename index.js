@@ -14,16 +14,27 @@ GoCd = {
 
       function enrichActivityWithHistory(history, activity) {
 
+        function findHistoryStage(historyPipelineRun, activityStage) {
+          return _.find(historyPipelineRun.stages, function(stage) {
+            return stage.name === activityStage.name;
+          });
+        }
+
         function mapAuthorInitialsFromHistoryToActivity(activityStage, historyPipelineRun) {
           activityStage.initials = historyPipelineRun.summary && historyPipelineRun.summary.author? historyPipelineRun.summary.author.initials : undefined;
         }
 
-        function moreAccurateJobStatus(activityStage, historyPipelineRun) {
+        function moreAccurateJobActivity(activityStage, historyPipelineRun) {
           if(activityStage.activity === 'Building') {
-            var historyStage = _.find(historyPipelineRun.stages, function(stage) {
-              return stage.name === activityStage.name;
-            });
+            var historyStage = findHistoryStage(historyPipelineRun, activityStage);
             activityStage.gocdActivity = historyStage && historyStage.summary ? historyStage.summary.state : activityStage.activity;
+          }
+        }
+
+        function moreAccurateJobResult(activityStage, historyPipelineRun) {
+          if(activityStage.lastBuildStatus === 'Failure') {
+            var historyStage = findHistoryStage(historyPipelineRun, activityStage);
+            activityStage.lastBuildStatus = historyStage.result === 'Cancelled' ? 'Cancelled' : activityStage.lastBuildStatus;
           }
         }
 
@@ -31,7 +42,8 @@ GoCd = {
           var historyWithSameKey = history[stage.buildNumber];
           if(historyWithSameKey) {
             mapAuthorInitialsFromHistoryToActivity(stage, historyWithSameKey);
-            moreAccurateJobStatus(stage, historyWithSameKey);
+            moreAccurateJobActivity(stage, historyWithSameKey);
+            moreAccurateJobResult(stage, historyWithSameKey);
           }
         });
 

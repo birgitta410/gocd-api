@@ -33,11 +33,11 @@
           "counter": "1"
         },
         {
-          "result": "Passed",
+          "result": "Cancelled",
           "jobs": [
             {
               "state": "Completed",
-              "result": "Passed",
+              "result": "Cancelled",
               "name": "smoke-test",
               "id": 13793,
               "scheduled_date": 1450893820238

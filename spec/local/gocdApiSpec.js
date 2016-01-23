@@ -58,7 +58,7 @@ describe('gocd-api', function () {
     gocdApi.getInstance().then(function(instance) {
       instance.readData('DOWNSTREAM-PIPELINE').then(function (data) {
         expect(data.activity).toBeDefined();
-        expect(data.activity.stages.length).toBe(1);
+        expect(data.activity.stages.length).toBe(2);
         expect(data.history).toBeDefined();
         done();
       }).done();
@@ -89,6 +89,15 @@ describe('gocd-api', function () {
         instance.readData('A-PIPELINE').then(function (data) {
           expect(data.activity.stages[1].gocdActivity).toBe('Building');
           expect(data.activity.stages[2].gocdActivity).toBe('Scheduled');
+          done();
+        }).done();
+      });
+    });
+
+    it("with more accurate result of the stages", function(done) {
+      gocdApi.getInstance().then(function(instance) {
+        instance.readData('DOWNSTREAM-PIPELINE').then(function (data) {
+          expect(data.activity.stages[1].lastBuildStatus).toBe("Cancelled");
           done();
         }).done();
       });
