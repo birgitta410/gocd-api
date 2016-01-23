@@ -69,25 +69,30 @@ Additions:
 
 Sample: [history](spec/local/samples/history.json).
 
-Contains the raw data returned by the [Go CD's history API endpoint](https://api.go.cd/current/#get-pipeline-history) returns. In addition, there is a `summary` object for each pipeline run with aggregated data that is useful for most build monitors:
+Contains the raw data returned by the [Go CD's history API endpoint](https://api.go.cd/current/#get-pipeline-history) returns.
 
-```
-"summary": {
-    "result": "passed",
-    "text": "[2066] passed | Edward Norton | Some comment 5554 | 15:54:02, December 19th 2014",
-    "lastScheduled": 1419000842499,
-    "author": {
-        "email": "<enorton@theinternet.com>",
-        "name": "Edward Norton",
-        "initials": "eno"
-    },
-    "changeInfo": {
-        "committer": "Edward Norton <enorton@theinternet.com>",
-        "comment": "Some comment 5554",
-        "revision": "cb855ca1516888541722d8c0ed8973792f30ee57"
+Additions:
+
+- `build_cause` is enhanced with the set of files that were changed in the change set (if build was caused by a VCS change)
+- There is a `summary` object for each pipeline run with aggregated data that is useful for most build monitors:
+
+    ```
+    "summary": {
+        "result": "passed",
+        "text": "[2066] passed | Edward Norton | Some comment 5554 | 15:54:02, December 19th 2014",
+        "lastScheduled": 1419000842499,
+        "author": {
+            "email": "<enorton@theinternet.com>",
+            "name": "Edward Norton",
+            "initials": "eno"
+        },
+        "changeInfo": {
+            "committer": "Edward Norton <enorton@theinternet.com>",
+            "comment": "Some comment 5554",
+            "revision": "cb855ca1516888541722d8c0ed8973792f30ee57"
+        }
     }
-}
-```
+    ```
 
 
 ## Note on how the data is loaded
