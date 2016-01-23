@@ -94,10 +94,11 @@ describe('gocd-api', function () {
       });
     });
 
-    it("with more accurate result of the stages", function(done) {
+    fit("with more accurate result of the stages", function(done) {
       gocdApi.getInstance().then(function(instance) {
         instance.readData('DOWNSTREAM-PIPELINE').then(function (data) {
           expect(data.activity.stages[1].lastBuildStatus).toBe("Cancelled");
+          expect(data.activity.stages[1].info2).toContain("Cancelled");
           done();
         }).done();
       });

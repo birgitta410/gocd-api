@@ -34,7 +34,11 @@ GoCd = {
         function moreAccurateJobResult(activityStage, historyPipelineRun) {
           if(activityStage.lastBuildStatus === 'Failure') {
             var historyStage = findHistoryStage(historyPipelineRun, activityStage);
-            activityStage.lastBuildStatus = historyStage.result === 'Cancelled' ? 'Cancelled' : activityStage.lastBuildStatus;
+            if (historyStage.result === 'Cancelled') {
+              activityStage.lastBuildStatus = 'Cancelled';
+              activityStage.info2 = activityStage.info2.replace('Failure', 'Cancelled');
+            }
+
           }
         }
 
