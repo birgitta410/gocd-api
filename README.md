@@ -9,7 +9,7 @@ Will give you access to both current activity (which stage is currently building
 ## Run tests
 ```
 ### Run tests with sample data
-./node_modules/jasmine/bin/jasmine.js
+npm test
 
 ### Run a few smoke tests against a Go CD instance
 GOCD_URL=https://your-gocd:8154 GOCD_USER=your-user GOCD_PASSWORD=your-password GOCD_PIPELINE=your-pipeline-name GOCD_DEBUG=true ./run_spec_integration.sh
