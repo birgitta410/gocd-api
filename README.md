@@ -63,6 +63,7 @@ The list of stages will basically contain the properties of `Project` entries `c
 Additions:
 - fields `info` and `info2` for user-facing summaries
 - lastBuildStatus will be set to "Cancelled" based on Go.CD history information (cctray.xml only returns 'Success' or 'Failure' out of the box)
+- field `gocdActivity` can be used to determine if stage is actually building, or still scheduled/prepared/...
 
 ### History
 

@@ -1,4 +1,12 @@
 
+### v0.8.0
+!! Breaking changes
+
+* All fields that are aggregated by gocd-api are put into a separate object "summary", to better distinguish between raw data and aggregations
+* Downstream pipelines can determine latest changer of upstream dependencies
+* Activity knows if stages were cancelled
+* Activity knows if stages are only scheduled or actually building
+
 ### v0.7.0
 !! Breaking changes
 
