@@ -10,12 +10,6 @@ GoCd = {
     newOptions.type = type || 'GOCD';
     globalOptions.set(newOptions);
 
-    var pipelineNames;
-
-    globalOptions.getHistoryRequestor().getPipelineNames().then(function(names) {
-      pipelineNames = names;
-    }).done();
-
     var readData = function(filterByPipeline) {
 
       function enrichActivityWithHistory(history, activity) {
@@ -44,33 +38,35 @@ GoCd = {
       }
 
       return ccTrayReader.readActivity(filterByPipeline).then(function(activity) {
-        var pipelineRuns = pipelineReader.readPipelineRuns({ pipeline: filterByPipeline });
+        return pipelineReader.readPipelineRuns({ pipeline: filterByPipeline }).then(function(pipelineRuns) {
 
-        enrichActivityWithHistory(pipelineRuns, activity);
+          enrichActivityWithHistory(pipelineRuns, activity);
 
-        _.each(activity.stages, function(stage) {
-          if(stage.gocdActivity === 'Scheduled' || stage.gocdActivity === 'Building') {
-            delete pipelineRuns[stage.buildNumber];
-          }
+          _.each(activity.stages, function(stage) {
+            if(stage.gocdActivity === 'Scheduled' || stage.gocdActivity === 'Building') {
+              delete pipelineRuns[stage.buildNumber];
+            }
+          });
+
+          return {
+            activity: activity,
+            history: pipelineRuns
+          };
         });
-
-
-        return {
-          activity: activity,
-          history: pipelineRuns
-        };
-
 
       });
     };
 
-    return pipelineReader.refreshData().then(function() {
-      var refreshInterval = setInterval(pipelineReader.refreshData, 30000);
-      return {
-        readData: readData,
-        pipelineNames: pipelineNames,
-        refreshInterval: refreshInterval
-      };
+
+    return globalOptions.getHistoryRequestor().getPipelineNames().then(function(names) {
+
+      return pipelineReader.initFullCache().then(function() {
+        return {
+          readData: readData,
+          pipelineNames: names
+        };
+      });
+
     });
 
   }

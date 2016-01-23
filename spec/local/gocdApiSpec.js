@@ -29,17 +29,29 @@ describe('gocd-api', function () {
 
   });
 
-
-  it('should put it all together with the sample data', function (done) {
+  it('should return activity data', function (done) {
     gocdApi.getInstance().then(function(instance) {
       instance.readData('A-PIPELINE').then(function (data) {
         expect(data.activity).toBeDefined();
         expect(data.activity.stages.length).toBe(6);
-        expect(data.history).toBeDefined();
-        clearInterval(instance.refreshInterval);
         done();
       }).done();
     });
+  });
+
+  it('should fill the initial cache for history data', function (testDone) {
+    gocdApi.getInstance().then(function(instance) {
+      instance.readData('A-PIPELINE').then(function (data) {
+        expect(data.history).toBeDefined();
+        expect(data.history["2064"]).toBeDefined();// page 1
+        expect(data.history["2063"]).toBeDefined();// page 3
+        expect(data.history["2062"]).toBeDefined();// page 3
+        // the others are currently building/scheduled
+        expect(data.history["2065"]).toBeUndefined();// page 1
+        expect(data.history["2066"]).toBeUndefined();// page 1
+        testDone();
+      }).done();
+    }).done();
   });
 
   it('should read sample data for the downstream pipeline', function (done) {
@@ -48,7 +60,6 @@ describe('gocd-api', function () {
         expect(data.activity).toBeDefined();
         expect(data.activity.stages.length).toBe(1);
         expect(data.history).toBeDefined();
-        clearInterval(instance.refreshInterval);
         done();
       }).done();
     });
@@ -58,7 +69,6 @@ describe('gocd-api', function () {
     gocdApi.getInstance().then(function(instance) {
       instance.readData('A-PIPELINE').then(function (data) {
         expect(data.history['2066']).toBeUndefined();
-        clearInterval(instance.refreshInterval);
         done();
       }).done();
     });
@@ -69,7 +79,6 @@ describe('gocd-api', function () {
       gocdApi.getInstance().then(function(instance) {
         instance.readData('A-PIPELINE').then(function (data) {
           expect(data.activity.stages[4].initials).toBe("eno");
-          clearInterval(instance.refreshInterval);
           done();
         }).done();
       });
@@ -80,7 +89,6 @@ describe('gocd-api', function () {
         instance.readData('A-PIPELINE').then(function (data) {
           expect(data.activity.stages[1].gocdActivity).toBe('Building');
           expect(data.activity.stages[2].gocdActivity).toBe('Scheduled');
-          clearInterval(instance.refreshInterval);
           done();
         }).done();
       });

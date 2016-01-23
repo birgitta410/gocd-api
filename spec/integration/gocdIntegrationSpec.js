@@ -19,7 +19,7 @@ describe('Integration with real Go CD server', function () {
     };
 
     // Set long timeout to allow collecting all data, even with slow responses
-    jasmine.DEFAULT_TIMEOUT_INTERVAL = 10000;
+    jasmine.DEFAULT_TIMEOUT_INTERVAL = 30000;
 
   });
 
@@ -62,8 +62,8 @@ describe('Integration with real Go CD server', function () {
 
         clearInterval(instance.refreshInterval);
         done();
-      });
-    });
+      }).done();
+    }).done();
 
   });
 
