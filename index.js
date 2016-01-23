@@ -28,6 +28,12 @@ GoCd = {
           if(activityStage.activity === 'Building') {
             var historyStage = findHistoryStage(historyPipelineRun, activityStage);
             activityStage.gocdActivity = historyStage && historyStage.summary ? historyStage.summary.state : activityStage.activity;
+            activityStage.isBuilding = function() {
+              return _.contains(['Assigned', 'Prepared', 'Building'], activityStage.gocdActivity);
+            };
+            activityStage.isScheduled = function() {
+              return activityStage.gocdActivity === 'Scheduled';
+            };
           }
         }
 
