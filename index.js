@@ -1,4 +1,5 @@
 var _ = require('lodash');
+var Q = require('q');
 var globalOptions = require('./lib/options');
 var pipelineReader = require('./lib/gocd/pipelineFeedReader');
 var ccTrayReader = require('./lib/cc/ccTrayReader');
@@ -10,7 +11,13 @@ GoCd = {
     newOptions.type = type || 'GOCD';
     globalOptions.set(newOptions);
 
+    var pipelineNames;
+
     var readData = function(filterByPipeline) {
+
+      if (!_.contains(pipelineNames, filterByPipeline)) {
+        return Q.reject("Pipeline unknown: '" + filterByPipeline + "'");
+      }
 
       function enrichActivityWithHistory(history, activity) {
 
@@ -81,15 +88,17 @@ GoCd = {
 
 
     return globalOptions.getHistoryRequestor().getPipelineNames().then(function(names) {
-
-      return pipelineReader.initFullCache().then(function() {
-        return {
-          readData: readData,
-          pipelineNames: names
-        };
-      });
-
+      pipelineNames = names;
+      return pipelineReader.initFullCache();
+    }).then(function() {
+      return {
+        readData: readData,
+        pipelineNames: pipelineNames
+      };
+    }).fail(function(error) {
+      console.log("ERROR creating gocd api instance", error);
     });
+
 
   }
 

@@ -74,6 +74,15 @@ describe('gocd-api', function () {
     });
   });
 
+  it("should fail gracefully if the pipeline is unknown", function(done) {
+    gocdApi.getInstance().then(function(instance) {
+      instance.readData('A-PIPELINE-NOT-KNOWN').fail(function (error) {
+        expect(error).toContain("Pipeline unknown");
+        done();
+      }).done();
+    });
+  });
+
   describe("should enrich activity data", function() {
     it("with author information from history", function(done) {
       gocdApi.getInstance().then(function(instance) {
@@ -94,7 +103,7 @@ describe('gocd-api', function () {
       });
     });
 
-    fit("with more accurate result of the stages", function(done) {
+    it("with more accurate result of the stages", function(done) {
       gocdApi.getInstance().then(function(instance) {
         instance.readData('DOWNSTREAM-PIPELINE').then(function (data) {
           expect(data.activity.stages[1].lastBuildStatus).toBe("Cancelled");
