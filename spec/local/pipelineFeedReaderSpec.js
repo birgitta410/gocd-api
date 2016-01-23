@@ -9,6 +9,7 @@ describe('pipelineFeedReader Go CD', function () {
 
   var gocdSampleRequestor = require('../../lib/gocd/gocdSampleRequestor');
   var thePipelineFeedReader;
+  var testPipelines = ['A-PIPELINE', 'DOWNSTREAM-PIPELINE'];
 
   describe('Go CD', function() {
 
@@ -45,7 +46,7 @@ describe('pipelineFeedReader Go CD', function () {
     describe("initFullCache()", function() {
       it('should fill the cache with data for all pipelines, all the way back', function (testDone) {
 
-        thePipelineFeedReader.initFullCache().then(function () {
+        thePipelineFeedReader.initFullCache(testPipelines).then(function () {
 
           thePipelineFeedReader.readPipelineRuns({ pipeline: 'A-PIPELINE'}).then(function(results) {
             expect(_.keys(results).length).toBe(NUM_ENTRIES_IN_FIXTURE);
@@ -65,11 +66,11 @@ describe('pipelineFeedReader Go CD', function () {
       });
 
       it('should cache pipeline run even if its excluded in results when first present', function(testDone) {
-        thePipelineFeedReader.initFullCache().then(function () {
+        thePipelineFeedReader.initFullCache(testPipelines).then(function () {
           thePipelineFeedReader.readPipelineRuns({ exclude: ['2066'], pipeline: 'A-PIPELINE' }).then(function(firstResults) {
             expect(_.keys(firstResults).length).toBe(NUM_ENTRIES_IN_FIXTURE - 1);
 
-            thePipelineFeedReader.initFullCache().then(function () {
+            thePipelineFeedReader.initFullCache(testPipelines).then(function () {
               thePipelineFeedReader.readPipelineRuns({ pipeline: 'A-PIPELINE'}).then(function(secondResults) {
                 expect(_.keys(secondResults).length).toBe(NUM_ENTRIES_IN_FIXTURE);
                 expect(secondResults['2066']).toBeDefined();
@@ -153,7 +154,7 @@ describe('pipelineFeedReader Go CD', function () {
       });
 
       it('should determine the result of the pipeline', function(testDone) {
-        thePipelineFeedReader.initFullCache().then(function () {
+        thePipelineFeedReader.initFullCache(testPipelines).then(function () {
           thePipelineFeedReader.readPipelineRuns({ pipeline: 'A-PIPELINE'}).then(function(results) {
             expect(results['2066'].stages.length).toBe(7);
             expect(results['2066'].summary.result).toBe('passed');
@@ -171,7 +172,7 @@ describe('pipelineFeedReader Go CD', function () {
       });
 
       it('should determine the author of the latest change that triggered the run', function(testDone) {
-        thePipelineFeedReader.initFullCache().then(function () {
+        thePipelineFeedReader.initFullCache(testPipelines).then(function () {
           thePipelineFeedReader.readPipelineRuns({ pipeline: 'A-PIPELINE'}).then(function(results) {
             expect(results['2066'].summary.author).toBeDefined();
             expect(results['2066'].summary.author.name).toBe('Edward Norton');
@@ -231,7 +232,7 @@ describe('pipelineFeedReader Go CD', function () {
       describe('for pipelines triggered by upstream pipelines', function() {
 
         beforeEach(function(beforeDone) {
-          thePipelineFeedReader.initFullCache().then(function () {
+          thePipelineFeedReader.initFullCache(testPipelines).then(function () {
             beforeDone();
           }).done();
         });

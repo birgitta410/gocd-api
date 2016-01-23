@@ -11,13 +11,11 @@ GoCd = {
     newOptions.type = type || 'GOCD';
     globalOptions.set(newOptions);
 
-    var pipelineNames;
+    function refreshPipelineNames () {
+      return globalOptions.getHistoryRequestor().getPipelineNames();
+    }
 
     var readData = function(filterByPipeline) {
-
-      if (!_.contains(pipelineNames, filterByPipeline)) {
-        return Q.reject("Pipeline unknown: '" + filterByPipeline + "'");
-      }
 
       function enrichActivityWithHistory(history, activity) {
 
@@ -66,35 +64,41 @@ GoCd = {
 
       }
 
-      return ccTrayReader.readActivity(filterByPipeline).then(function(activity) {
-        return pipelineReader.readPipelineRuns({ pipeline: filterByPipeline }).then(function(pipelineRuns) {
+      return refreshPipelineNames().then(function(pipelineNames) {
+        if (!_.contains(pipelineNames, filterByPipeline)) {
+          return Q.reject("Pipeline unknown: '" + filterByPipeline + "'");
+        }
+      }).then(function() {
 
-          enrichActivityWithHistory(pipelineRuns, activity);
+        return ccTrayReader.readActivity(filterByPipeline).then(function(activity) {
+          return pipelineReader.readPipelineRuns({ pipeline: filterByPipeline }).then(function(pipelineRuns) {
 
-          _.each(activity.stages, function(stage) {
-            if(stage.gocdActivity === 'Scheduled' || stage.gocdActivity === 'Building') {
-              delete pipelineRuns[stage.buildNumber];
-            }
+            enrichActivityWithHistory(pipelineRuns, activity);
+
+            _.each(activity.stages, function(stage) {
+              if(stage.gocdActivity === 'Scheduled' || stage.gocdActivity === 'Building') {
+                delete pipelineRuns[stage.buildNumber];
+              }
+            });
+
+            return {
+              activity: activity,
+              history: pipelineRuns
+            };
           });
 
-          return {
-            activity: activity,
-            history: pipelineRuns
-          };
         });
-
       });
     };
 
+    return refreshPipelineNames().then(function(pipelineNames) {
+      return pipelineReader.initFullCache(pipelineNames).then(function() {
+        return {
+          readData: readData,
+          pipelineNames: pipelineNames
+        };
+      });
 
-    return globalOptions.getHistoryRequestor().getPipelineNames().then(function(names) {
-      pipelineNames = names;
-      return pipelineReader.initFullCache();
-    }).then(function() {
-      return {
-        readData: readData,
-        pipelineNames: pipelineNames
-      };
     }).fail(function(error) {
       console.log("ERROR creating gocd api instance", error);
     });

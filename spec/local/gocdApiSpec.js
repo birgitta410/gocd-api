@@ -1,5 +1,6 @@
 
 var mockery = require('mockery');
+var Q = require('q');
 var ccTraySampleRequestor = require('../../lib/cc/ccTraySampleRequestor');
 var gocdSampleRequestor = require('../../lib/gocd/gocdSampleRequestor');
 var globalOptions = require('../../lib/options');
@@ -79,6 +80,21 @@ describe('gocd-api', function () {
       instance.readData('A-PIPELINE-NOT-KNOWN').fail(function (error) {
         expect(error).toContain("Pipeline unknown");
         done();
+      }).done();
+    });
+  });
+
+  it("should try to reload pipeline names if name is not cached", function(testDone) {
+    gocdApi.getInstance().then(function(instance) {
+      instance.readData('A-PIPELINE-NOT-KNOWN').fail(function () {
+        gocdSampleRequestor.getPipelineNames = function() {
+          return Q.resolve(['A-PIPELINE', 'DOWNSTREAM-PIPELINE', 'A-PIPELINE-NOT-KNOWN']);
+        };
+
+        instance.readData('A-PIPELINE-NOT-KNOWN').then(function () {
+          testDone();
+        }).done();
+
       }).done();
     });
   });
