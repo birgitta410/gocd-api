@@ -82,6 +82,7 @@ GoCd = {
             });
 
             return {
+              pipeline: filterByPipeline,
               activity: activity,
               history: pipelineRuns
             };
