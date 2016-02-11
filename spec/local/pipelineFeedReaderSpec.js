@@ -236,6 +236,7 @@ describe('pipelineFeedReader Go CD', function () {
 
             expect(results.statistics.timeSinceLastSuccess.human).toContain('year');
             expect(results.statistics.timeSinceLastSuccess.milliSeconds).toBeDefined();
+            expect(results.statistics.runsSinceLastFailure).toBe(4);
             testDone();
           }).done();
         }).done();
