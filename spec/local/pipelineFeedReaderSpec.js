@@ -229,6 +229,18 @@ describe('pipelineFeedReader Go CD', function () {
         }).done();
       });
 
+      it('should add statistics about the pipeline', function (testDone) {
+        thePipelineFeedReader.initFullCache(['A-PIPELINE']).then(function () {
+          thePipelineFeedReader.readHistory({ pipeline: 'A-PIPELINE'}).then(function(results) {
+            expect(results.statistics).toBeDefined();
+
+            expect(results.statistics.timeSinceLastSuccess.human).toContain('year');
+            expect(results.statistics.timeSinceLastSuccess.milliSeconds).toBeDefined();
+            testDone();
+          }).done();
+        }).done();
+      });
+
       describe('for pipelines triggered by upstream pipelines', function() {
 
         beforeEach(function(beforeDone) {

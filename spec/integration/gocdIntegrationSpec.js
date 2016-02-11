@@ -36,7 +36,8 @@ describe('Integration with real Go CD server', function () {
         // HISTORY
         var history = data.history;
 
-        expect(_.keys(history).length).toBeGreaterThan(0);
+        expect(_.keys(history.pipelineRuns).length).toBeGreaterThan(0);
+        expect(history.statistics.timeSinceLastSuccess).toBeDefined();
 
         var firstResult = getFirstPipelineRun(history);
 
