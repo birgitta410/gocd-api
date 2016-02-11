@@ -1,8 +1,10 @@
 
 ### v0.9.0
 
+* History now consists of pipelineRuns and statistics
+
+
 ### v0.8.0
-!! Breaking changes
 
 * All fields that are aggregated by gocd-api are put into a separate object "summary", to better distinguish between raw data and aggregations
 * Downstream pipelines can determine latest changer of upstream dependencies
@@ -10,7 +12,6 @@
 * Activity knows if stages are only scheduled or actually building
 
 ### v0.7.0
-!! Breaking changes
 
 * gocd-api determines names of all pipelines and loads all their data
 * Calls to `readData` have to be parametrized with a pipeline name

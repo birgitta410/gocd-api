@@ -17,7 +17,7 @@ GoCd = {
 
     var readData = function(filterByPipeline) {
 
-      function enrichActivityWithHistory(history, activity) {
+      function enrichActivityWithHistory(pipelineRuns, activity) {
 
         function findHistoryStage(historyPipelineRun, activityStage) {
           return _.find(historyPipelineRun.stages, function(stage) {
@@ -54,7 +54,7 @@ GoCd = {
         }
 
         _.each(activity.stages, function(stage) {
-          var historyWithSameKey = history[stage.buildNumber];
+          var historyWithSameKey = pipelineRuns[stage.buildNumber];
           if(historyWithSameKey) {
             mapAuthorInitialsFromHistoryToActivity(stage, historyWithSameKey);
             moreAccurateJobActivity(stage, historyWithSameKey);
@@ -71,7 +71,8 @@ GoCd = {
       }).then(function() {
 
         return ccTrayReader.readActivity(filterByPipeline).then(function(activity) {
-          return pipelineReader.readPipelineRuns({ pipeline: filterByPipeline }).then(function(pipelineRuns) {
+          return pipelineReader.readHistory({ pipeline: filterByPipeline }).then(function(history) {
+            var pipelineRuns = history.pipelineRuns;
 
             enrichActivityWithHistory(pipelineRuns, activity);
 
@@ -84,7 +85,10 @@ GoCd = {
             return {
               pipeline: filterByPipeline,
               activity: activity,
-              history: pipelineRuns
+              history: {
+                pipelineRuns: pipelineRuns,
+                statistics: history.statistics
+              }
             };
           });
 

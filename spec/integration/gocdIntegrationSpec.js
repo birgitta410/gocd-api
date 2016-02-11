@@ -23,9 +23,9 @@ describe('Integration with real Go CD server', function () {
 
   });
 
-  function getFirstResult(results) {
-    var buildNumbers = _.keys(results);
-    return results[buildNumbers[0]];
+  function getFirstPipelineRun(result) {
+    var buildNumbers = _.keys(result.pipelineRuns);
+    return result.pipelineRuns[buildNumbers[0]];
   }
 
   it('should read a set of pipeline runs (history) and jobs (activity)', function (done) {
@@ -38,7 +38,7 @@ describe('Integration with real Go CD server', function () {
 
         expect(_.keys(history).length).toBeGreaterThan(0);
 
-        var firstResult = getFirstResult(history);
+        var firstResult = getFirstPipelineRun(history);
 
         expect(firstResult.stages.length).toBeGreaterThan(0);
 

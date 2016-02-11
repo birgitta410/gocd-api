@@ -43,13 +43,15 @@ describe('gocd-api', function () {
   it('should fill the initial cache for history data', function (testDone) {
     gocdApi.getInstance().then(function(instance) {
       instance.readData('A-PIPELINE').then(function (data) {
-        expect(data.history).toBeDefined();
-        expect(data.history["2064"]).toBeDefined();// page 1
-        expect(data.history["2063"]).toBeDefined();// page 3
-        expect(data.history["2062"]).toBeDefined();// page 3
+        console.log("data.history", data.history);
+        var pipelineRuns = data.history.pipelineRuns;
+        expect(pipelineRuns).toBeDefined();
+        expect(pipelineRuns["2064"]).toBeDefined();// page 1
+        expect(pipelineRuns["2063"]).toBeDefined();// page 3
+        expect(pipelineRuns["2062"]).toBeDefined();// page 3
         // the others are currently building/scheduled
-        expect(data.history["2065"]).toBeUndefined();// page 1
-        expect(data.history["2066"]).toBeUndefined();// page 1
+        expect(pipelineRuns["2065"]).toBeUndefined();// page 1
+        expect(pipelineRuns["2066"]).toBeUndefined();// page 1
         testDone();
       }).done();
     }).done();
