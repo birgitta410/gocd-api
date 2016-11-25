@@ -4,7 +4,7 @@
       "name": "build",
       "activity": "Sleeping",
       "lastBuildStatus": "Success",
-      "lastBuildLabel": 2066,
+      "lastBuildLabel": "2066",
       "lastBuildTime": "2014-07-24T09:14:02",
       "webUrl": "http://the-go-host:8153/go/pipelines/A-PIPELINE/2066/build/1",
       "buildNumber": "2066",

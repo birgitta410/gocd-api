@@ -19,13 +19,13 @@
   ],
   "dependencies": {
     "lodash": "~4.17.2",
-    "moment": "~2.6.0",
-    "q": "~1.0.1",
-    "request": "~2.39.0",
-    "xml2json": "^0.6.1"
+    "moment": "~2.17.0",
+    "q": "~1.4.1",
+    "request": "~2.79.0",
+    "xml2json": "^0.10.0"
   },
   "devDependencies": {
     "jasmine": "^2.4.1",
-    "mockery": "~1.4.0"
+    "mockery": "~2.0.0"
   }
 }
