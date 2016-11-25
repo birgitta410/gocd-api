@@ -34,7 +34,7 @@ GoCd = {
             var historyStage = findHistoryStage(historyPipelineRun, activityStage);
             activityStage.gocdActivity = historyStage && historyStage.summary ? historyStage.summary.state : activityStage.activity;
             activityStage.isBuilding = function() {
-              return _.contains(['Assigned', 'Prepared', 'Building'], activityStage.gocdActivity);
+              return _.includes(['Assigned', 'Prepared', 'Building'], activityStage.gocdActivity);
             };
             activityStage.isScheduled = function() {
               return activityStage.gocdActivity === 'Scheduled';
@@ -65,7 +65,7 @@ GoCd = {
       }
 
       return refreshPipelineNames().then(function(pipelineNames) {
-        if (!_.contains(pipelineNames, filterByPipeline)) {
+        if (!_.includes(pipelineNames, filterByPipeline)) {
           return Q.reject("Pipeline unknown: '" + filterByPipeline + "'");
         }
       }).then(function() {
