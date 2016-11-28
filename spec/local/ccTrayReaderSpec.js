@@ -37,6 +37,7 @@ describe('ccTrayReader', function () {
     var NUM_STAGES_IN_A_PIPELINE = 6;
     var NUM_JOBS_IN_A_PIPELINE_2 = 2;
     var NUM_JOBS_IN_TEST_DATA = NUM_STAGES_IN_A_PIPELINE + NUM_JOBS_IN_A_PIPELINE_2;
+    var NUM_PROJECTS_IN_TEST_CCTRAY = 18;
 
     beforeEach(function() {
       options.stages = undefined;
@@ -73,6 +74,18 @@ describe('ccTrayReader', function () {
         expect(result.stages.length).toBe(NUM_STAGES_IN_A_PIPELINE);
         done();
       });
+    });
+
+    it('should apply a customer filter on stage names if provided', function (done) {
+      var IGNORE_ALL_JOBS = false;
+      var customFilter = jasmine.createSpy('custom filter');
+      customFilter.and.returnValue(IGNORE_ALL_JOBS);
+      theCcTrayReader.readActivity("A-PIPELINE", customFilter).then(function (result) {
+        expect(customFilter).toHaveBeenCalled();
+        expect(customFilter.calls.count()).toBe(NUM_PROJECTS_IN_TEST_CCTRAY);
+        expect(result.stages.length).toBe(0);
+        done();
+      }).done();
     });
 
     it('should stay the same number of activities when called twice', function (done) {
