@@ -6,6 +6,23 @@ var ccTrayReader = require('./lib/cc/ccTrayReader');
 
 GoCd = {
 
+  getCcTrayInstance: function(newOptions) {
+    newOptions = newOptions || {};
+    newOptions.type = 'CCTRAY';
+    globalOptions.set(newOptions);
+
+    return {
+      readActivity: function(filterByPipeline, customStageValidator) {
+        return ccTrayReader.readActivity(filterByPipeline, customStageValidator).then(function(activity) {
+          return {
+            pipeline: filterByPipeline,
+            activity: activity
+          };
+        });
+      }
+    }
+  },
+
   getInstance : function(newOptions, type) {
     newOptions = newOptions || {};
     newOptions.type = type || 'GOCD';

@@ -7,7 +7,7 @@ var globalOptions = require('../../lib/options');
 
 describe('gocd-api', function () {
 
-  var gocdApi;
+  var gocdApi, ccTrayReader;
 
   beforeEach(function() {
 
@@ -26,7 +26,27 @@ describe('gocd-api', function () {
     mockery.registerMock('../options', globalOptions);
     mockery.registerMock('./lib/options', globalOptions);
 
+    ccTrayReader = require('../../lib/cc/ccTrayReader');
     gocdApi = require('../../index');
+
+  });
+
+  it('should return an instance that only provides cctray data', function (done) {
+    var ccTrayInstance = gocdApi.getCcTrayInstance();
+    expect(ccTrayInstance.readData).toBeUndefined();
+
+    var filter = jasmine.createSpy('custom filter');
+    spyOn(ccTrayReader, 'readActivity');
+    ccTrayReader.readActivity.and.returnValue(new Q('cctray result'));
+
+    ccTrayInstance.readActivity(['a', 'b'], filter).then(function (data) {
+      expect(ccTrayReader.readActivity).toHaveBeenCalledWith(['a', 'b'], filter);
+      expect(data).toEqual({
+        pipeline: ['a', 'b'],
+        activity: 'cctray result'
+      });
+      done();
+    }).done();
 
   });
 
@@ -43,7 +63,6 @@ describe('gocd-api', function () {
   it('should fill the initial cache for history data', function (testDone) {
     gocdApi.getInstance().then(function(instance) {
       instance.readData('A-PIPELINE').then(function (data) {
-        console.log("data.history", data.history);
         var pipelineRuns = data.history.pipelineRuns;
         expect(pipelineRuns).toBeDefined();
         expect(pipelineRuns["2064"]).toBeDefined();// page 1
