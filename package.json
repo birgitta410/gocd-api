@@ -4,7 +4,7 @@
   "main": "index.js",
   "description": "Access Go CD API",
   "scripts": {
-    "test": "./node_modules/.bin/jasmine --harmony"
+    "test": "./node_modules/jasmine/bin/jasmine.js"
   },
   "repository": {
     "type": "git",
