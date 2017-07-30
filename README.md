@@ -2,19 +2,9 @@
 
 [![Build Status CircleCI](https://circleci.com/gh/birgitta410/gocd-api.png?circle-token=0c563e32d331b08d839da6cade7cb48f425e78f4)](https://circleci.com/gh/birgitta410/gocd-api/)
 
-Module to access data from your Go CD server (http://www.gocd.io/), e.g. to feed it into a build monitor. Also works with Snap CI.
+Module to access data from your Go CD server (http://www.go.cd/), e.g. to feed it into a build monitor.
 
 Will give you access to both current activity (which stage is currently building, what is the state of the latest pipeline run) and history data about past pipeline runs.
-
-## Run tests
-```
-### Run tests with sample data
-npm test
-
-### Run a few smoke tests against a Go CD instance
-GOCD_URL=https://your-gocd:8154 GOCD_USER=your-user GOCD_PASSWORD=your-password GOCD_PIPELINE=your-pipeline-name GOCD_DEBUG=true ./run_spec_integration.sh
-
-```
 
 ## Usage
 
@@ -34,16 +24,6 @@ goCdApi.getInstance({
 }).done();
 
 
-```
-
-### Config for a Snap CI project:
-```
-{
-  type: 'SNAP',
-  pipeline: 'yourProjectName',
-  user: 'your Snap CI User',
-  key: 'your Snap CI API key'
-}
 ```
 
 ## Data
@@ -98,3 +78,13 @@ Additions:
 ## Note on how the data is loaded
 
 Your first call to create the instance will fill a cache with all pipelines' history initially, so waiting for the instance might take a bit longer. It will go about 50 history entries into the past. Subsequent calls will get live updates for activities, and also live updates for the latest history. The rest of the data will be taken from the cache.
+
+## Development
+### Run tests
+```
+### Run tests with sample data
+npm test
+
+### Run a few smoke tests against a Go CD instance
+GOCD_URL=https://your-gocd:8154 GOCD_USER=your-user GOCD_PASSWORD=your-password GOCD_PIPELINE=your-pipeline-name GOCD_DEBUG=true ./run_spec_integration.sh
+```
