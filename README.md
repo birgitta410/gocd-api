@@ -1,6 +1,6 @@
 # gocd-api
 
-[![Build Status Snap-CI](https://snap-ci.com/birgitta410/gocd-api/branch/master/build_image)](https://snap-ci.com/birgitta410/gocd-api/)
+[![Build Status CircleCI](https://circleci.com/gh/birgitta410/gocd-api.png?circle-token=0c563e32d331b08d839da6cade7cb48f425e78f4)](https://circleci.com/gh/birgitta410/gocd-api/)
 
 Module to access data from your Go CD server (http://www.gocd.io/), e.g. to feed it into a build monitor. Also works with Snap CI.
 
