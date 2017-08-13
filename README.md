@@ -36,7 +36,7 @@ This is what you will get from `readData()`:
 ```
 ### Activity
 
-Sample: [activity](spec/local/samples/activity.json)
+Sample: [activity](spec/unit/samples/activity.json)
 
 The list of stages will basically contain the properties of `Project` entries `cctray.xml`.
 
@@ -47,7 +47,7 @@ Additions:
 
 ### History
 
-Sample: [history](spec/local/samples/history.json).
+Sample: [history](spec/unit/samples/history.json).
 
 Contains the raw data returned by the [Go CD's history API endpoint](https://api.go.cd/current/#get-pipeline-history) returns.
 
