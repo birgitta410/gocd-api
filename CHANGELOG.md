@@ -2,7 +2,10 @@
 ### v0.9.0
 
 * History now consists of pipelineRuns and statistics
-
+* Dependency upgrades
+* Bug fixes
+* Remove Snap CI support
+* Capability to use `gocd-api` just for cctray (so it can be used for other build servers again, at least for the "activity" part)
 
 ### v0.8.0
 
