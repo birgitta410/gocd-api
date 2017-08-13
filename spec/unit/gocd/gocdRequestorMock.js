@@ -5,9 +5,9 @@ var fs = require('fs');
 var path = require('path');
 var xml2json = require('xml2json');
 
-function gocdSampleRequestorModule() {
+function gocdRequestorMockModule() {
 
-  var SAMPLES_PATH = path.resolve(__dirname, 'sample') + '/';
+  var TESTDATA_PATH = path.resolve(__dirname, 'testdata') + '/';
 
   function resolveAndPromiseSampleFile(path) {
 
@@ -25,12 +25,12 @@ function gocdSampleRequestorModule() {
 
   var getPipelineDetails = function(pipelineId, pipelineName) {
     var fileName = 'details-' + pipelineName.toLowerCase() + '.xml';
-    return resolveAndPromiseSampleFile(SAMPLES_PATH + fileName);
+    return resolveAndPromiseSampleFile(TESTDATA_PATH + fileName);
   };
 
   var getHistory = function(offset, pipelineName) {
     var fileName = 'history-' + pipelineName.toLowerCase();
-    var path = SAMPLES_PATH + fileName + (offset ? '_' + offset : '') + '.json';
+    var path = TESTDATA_PATH + fileName + (offset ? '_' + offset : '') + '.json';
 
     try {
       var fileContents = fs.readFileSync(path);
@@ -60,7 +60,7 @@ function gocdSampleRequestorModule() {
   };
 }
 
-var gocdRequestor = gocdSampleRequestorModule();
+var gocdRequestor = gocdRequestorMockModule();
 exports.getHistory = gocdRequestor.getHistory;
 exports.getPipelineDetails = gocdRequestor.getPipelineDetails;
 exports.getPipelineNames = gocdRequestor.getPipelineNames;

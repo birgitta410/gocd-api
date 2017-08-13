@@ -82,7 +82,6 @@ Your first call to create the instance will fill a cache with all pipelines' his
 ## Development
 ### Run tests
 ```
-### Run tests with sample data
 npm test
 
 ### Run a few smoke tests against a Go CD instance

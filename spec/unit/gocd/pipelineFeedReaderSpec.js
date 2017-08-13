@@ -7,7 +7,7 @@ var mockery = require('mockery');
 
 describe('pipelineFeedReader Go CD', function () {
 
-  var gocdSampleRequestor = require('../../lib/gocd/gocdSampleRequestor');
+  var gocdRequestorMock = require('./gocdRequestorMock');
   var thePipelineFeedReader;
   var testPipelines = ['A-PIPELINE', 'DOWNSTREAM-PIPELINE'];
 
@@ -26,13 +26,13 @@ describe('pipelineFeedReader Go CD', function () {
 
       var globalOptions = {
         getHistoryRequestor: function() {
-          return gocdSampleRequestor;
+          return gocdRequestorMock;
         }
       };
 
       mockery.registerMock('../options', globalOptions);
 
-      thePipelineFeedReader = require('../../lib/gocd/pipelineFeedReader');
+      thePipelineFeedReader = require('../../../lib/gocd/pipelineFeedReader');
 
       jasmine.getEnv().defaultTimeoutInterval = 1000;
 
@@ -101,7 +101,7 @@ describe('pipelineFeedReader Go CD', function () {
         thePipelineFeedReader.readHistory({ pipeline: 'A-PIPELINE'}).then(function(results) {
           var pipelineRunToLog = '2066';
           expect(results.pipelineRuns[pipelineRunToLog]).toBeDefined();
-          var base = path.resolve(__dirname, 'samples');
+          var base = path.resolve(__dirname, '../samples');
           fs.writeFile(base + '/history.json', JSON.stringify(results.pipelineRuns[pipelineRunToLog], undefined, 2), function() {
             testDone();
           });

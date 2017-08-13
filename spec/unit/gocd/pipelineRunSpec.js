@@ -1,6 +1,6 @@
 var moment = require('moment');
 var mockery = require('mockery');
-var gocdSampleRequestor = require('../../lib/gocd/gocdSampleRequestor');
+var gocdRequestorMock = require('./gocdRequestorMock');
 
 describe('pipelineRun', function () {
 
@@ -15,12 +15,12 @@ describe('pipelineRun', function () {
 
     var globalOptions = {
       getHistoryRequestor: function() {
-        return gocdSampleRequestor;
+        return gocdRequestorMock;
       }
     };
 
     mockery.registerMock('../options', globalOptions);
-    pipelineRunCreator = require('../../lib/gocd/pipelineRun');
+    pipelineRunCreator = require('../../../lib/gocd/pipelineRun');
 
   });
 

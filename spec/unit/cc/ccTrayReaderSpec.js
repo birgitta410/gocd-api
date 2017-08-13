@@ -2,8 +2,8 @@
 var mockery = require('mockery');
 var fs = require('fs');
 var path = require('path');
-var globalOptions = require('../../lib/options');
-var ccTraySampleRequestor = require('../../lib/cc/ccTraySampleRequestor');
+var globalOptions = require('../../../lib/options');
+var ccTrayRequestorMock = require('./ccTrayRequestorMock');
 
 describe('ccTrayReader', function () {
 
@@ -22,12 +22,12 @@ describe('ccTrayReader', function () {
         return options;
       };
     globalOptions.getCcTrayRequestor = function() {
-      return ccTraySampleRequestor;
+      return ccTrayRequestorMock;
     };
 
     mockery.registerMock('../options', globalOptions);
 
-    theCcTrayReader = require('../../lib/cc/ccTrayReader');
+    theCcTrayReader = require('../../../lib/cc/ccTrayReader');
 
   });
 
@@ -46,7 +46,7 @@ describe('ccTrayReader', function () {
     it('should write a sample to a file, for documentation purposes', function (done) {
       theCcTrayReader.readActivity().then(function (result) {
         result.stages = [result.stages[0]];
-        var base = path.resolve(__dirname, 'samples');
+        var base = path.resolve(__dirname, '../samples');
         fs.writeFile(base + '/activity.json', JSON.stringify(result, undefined, 2), function() {
           done();
         });
