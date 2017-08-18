@@ -1,4 +1,8 @@
 
+### v0.10.0
+
+* Information about number of files added, changed and deleted in summary
+
 ### v0.9.0
 
 * History now consists of pipelineRuns and statistics

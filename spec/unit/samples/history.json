@@ -241,6 +241,10 @@
         "action": "modified"
       },
       {
+        "name": "someObsoleteFile.js",
+        "action": "deleted"
+      },
+      {
         "name": "app/haring/haring.css",
         "action": "modified"
       },
@@ -289,7 +293,9 @@
       "committer": "Edward Norton <enorton@theinternet.com>",
       "comment": "Some comment 5554",
       "revision": "cb855ca1516888541722d8c0ed8973792f30ee57",
-      "numberOfFilesChanged": 17
+      "numberOfFilesModified": 14,
+      "numberOfFilesAdded": 3,
+      "numberOfFilesDeleted": 1
     }
   }
 }

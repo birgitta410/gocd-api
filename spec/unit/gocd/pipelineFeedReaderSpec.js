@@ -213,7 +213,7 @@ describe('pipelineFeedReader Go CD', function () {
 
       it('should read the details about material for each pipeline', function(testDone) {
         thePipelineFeedReader.readHistory({ pipeline: 'A-PIPELINE'}).then(function(results) {
-          expect(results.pipelineRuns['2066']['build_cause'].files.length).toBe(17);
+          expect(results.pipelineRuns['2066']['build_cause'].files.length).toBe(18);
 
           testDone();
         }).done();
@@ -221,8 +221,9 @@ describe('pipelineFeedReader Go CD', function () {
 
       it('should summarise the number of files changed', function(testDone) {
         thePipelineFeedReader.readHistory({ pipeline: 'A-PIPELINE'}).then(function(results) {
-          expect(results.pipelineRuns['2066'].summary.changeInfo.numberOfFilesChanged).toBe(17);
-
+          expect(results.pipelineRuns['2066'].summary.changeInfo.numberOfFilesModified).toBe(14);
+          expect(results.pipelineRuns['2066'].summary.changeInfo.numberOfFilesAdded).toBe(3);
+          expect(results.pipelineRuns['2066'].summary.changeInfo.numberOfFilesDeleted).toBe(1);
           testDone();
         }).done();
       });

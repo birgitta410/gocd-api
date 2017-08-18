@@ -34,6 +34,7 @@
           <file name="designs/haring/maennekes.svg" action="modified"/>
           <file name="server/haring/gocdMapper.js" action="modified"/>
           <file name="server/ymlHerokuConfig.js" action="modified"/>
+          <file name="someObsoleteFile.js" action="deleted"/>
         </changeset>
         <changeset changesetUri="http://192.168.50.79:8153/go/api/materials/1/changeset/be8fc73e731ddd834e4b6d5b246e9ae6866af732.xml">
           <user><![CDATA[Birgitta B <bboeckel@thoughtworks.com>]]></user>
