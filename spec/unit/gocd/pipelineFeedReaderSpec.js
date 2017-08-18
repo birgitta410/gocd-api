@@ -219,6 +219,14 @@ describe('pipelineFeedReader Go CD', function () {
         }).done();
       });
 
+      it('should summarise the number of files changed', function(testDone) {
+        thePipelineFeedReader.readHistory({ pipeline: 'A-PIPELINE'}).then(function(results) {
+          expect(results.pipelineRuns['2066'].summary.changeInfo.numberOfFilesChanged).toBe(17);
+
+          testDone();
+        }).done();
+      });
+
       it("should determine the state of a stage based on its jobs", function(testDone) {
         thePipelineFeedReader.readHistory({ pipeline: 'A-PIPELINE'}).then(function(results) {
           expect(results.pipelineRuns['2066'].stages[2].summary.state).toBe('Building');

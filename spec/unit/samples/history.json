@@ -288,7 +288,8 @@
     "changeInfo": {
       "committer": "Edward Norton <enorton@theinternet.com>",
       "comment": "Some comment 5554",
-      "revision": "cb855ca1516888541722d8c0ed8973792f30ee57"
+      "revision": "cb855ca1516888541722d8c0ed8973792f30ee57",
+      "numberOfFilesChanged": 17
     }
   }
 }
