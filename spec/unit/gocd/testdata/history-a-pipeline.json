@@ -566,8 +566,8 @@
         }
       ],
       "id": 2201,
-      "build_cause": {
-        "trigger_message": "modified by Edward Norton \u003Cenorton@theinternet.com\u003E",
+      "build_cause":{
+        "trigger_message": "Forced by enorton",
         "approver": "",
         "material_revisions": [
           {
@@ -587,7 +587,7 @@
                 "comment": "Some comment"
               }
             ],
-            "changed": true
+            "changed": false
           },
           {
             "material": {
@@ -609,7 +609,7 @@
             "changed": false
           }
         ],
-        "trigger_forced": false
+        "trigger_forced": true
       },
       "preparing_to_schedule": false,
       "counter": 2064

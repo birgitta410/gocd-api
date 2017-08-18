@@ -228,6 +228,21 @@ describe('pipelineFeedReader Go CD', function () {
         }).done();
       });
 
+      it('should not set files and number of files modified if material change did not trigger build', function(testDone) {
+        thePipelineFeedReader.readHistory({ pipeline: 'A-PIPELINE'}).then(function(results) {
+          expect(results.pipelineRuns['2064']['build_cause'].trigger_forced).toBeTruthy();
+          expect(results.pipelineRuns['2064'].summary.changeInfo.comment).toBe('Forced by enorton');
+          expect(results.pipelineRuns['2064'].summary.changeInfo.forced).toBeTruthy();
+          expect(results.pipelineRuns['2064'].summary.changeInfo.committer).toBeUndefined();
+          expect(results.pipelineRuns['2064'].summary.changeInfo.revision).toBeUndefined();
+          expect(results.pipelineRuns['2064'].summary.changeInfo.numberOfFilesModified).toBe(0);
+          expect(results.pipelineRuns['2064'].summary.changeInfo.numberOfFilesAdded).toBe(0);
+          expect(results.pipelineRuns['2064'].summary.changeInfo.numberOfFilesDeleted).toBe(0);
+
+          testDone();
+        }).done();
+      });
+
       it("should determine the state of a stage based on its jobs", function(testDone) {
         thePipelineFeedReader.readHistory({ pipeline: 'A-PIPELINE'}).then(function(results) {
           expect(results.pipelineRuns['2066'].stages[2].summary.state).toBe('Building');
