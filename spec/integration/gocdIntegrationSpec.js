@@ -39,23 +39,39 @@ describe('Integration with real Go CD server', function () {
         expect(_.keys(history.pipelineRuns).length).toBeGreaterThan(0);
         expect(history.statistics.timeSinceLastSuccess).toBeDefined();
 
-        var firstResult = getFirstPipelineRun(history);
+        // var firstResult = getFirstPipelineRun(history);
+        _.each(_.values(history.pipelineRuns), (firstResult) => {
+          console.log("Checking values for " + firstResult.label);
+          expect(firstResult.stages.length).toBeGreaterThan(0);
 
-        expect(firstResult.stages.length).toBeGreaterThan(0);
+          var summary = firstResult.summary;
+          expect(summary.lastScheduled).toBeDefined();
+          expect(_.includes(['passed', 'failed'], summary.result)).toBe(true);
+          if(summary.changeInfo.forced === true) {
+            console.log('   ' + firstResult.label + ' was manually triggered');
+            expect(summary.author).toBeUndefined();
+            expect(summary.changeInfo.committer).toBeUndefined();
+            expect(summary.changeInfo.revision).toBeUndefined();
+            expect(summary.changeInfo.numberOfFilesAdded).toBe(0);
+            expect(summary.changeInfo.numberOfFilesModified).toBe(0);
+            expect(summary.changeInfo.numberOfFilesDeleted).toBe(0);
+          } else {
+            console.log('   ' + firstResult.label + ' was triggered by a material change');
+            expect(summary.author).toBeDefined();
+            expect(summary.author.name).toBeDefined();
+            expect(summary.author.initials).toBeDefined();
+            expect(summary.changeInfo.committer).toBeDefined();
+            expect(summary.changeInfo.revision).toBeDefined();
+            var numFilesChanged =
+              summary.changeInfo.numberOfFilesAdded + summary.changeInfo.numberOfFilesModified + summary.changeInfo.numberOfFilesDeleted;
+            expect(numFilesChanged).toBeGreaterThan(0);
+          }
+          expect(summary.changeInfo.comment).toBeDefined();
+          expect(summary.text).toBeDefined();
+          expect(firstResult['build_cause'].files).toBeDefined();
 
-        var summary = firstResult.summary;
-        expect(summary.lastScheduled).toBeDefined();
-        expect(_.includes(['passed', 'failed'], summary.result)).toBe(true);
-        expect(summary.author).toBeDefined();
-        expect(summary.author.name).toBeDefined();
+        });
 
-        expect(summary.changeInfo.committer).toBeDefined();
-        expect(summary.changeInfo.comment).toBeDefined();
-        expect(summary.changeInfo.revision).toBeDefined();
-        expect(summary.text).toBeDefined();
-
-        expect(firstResult['build_cause'].files).toBeDefined();
-        
         // ACTIVITY
         expect(_.keys(data.activity.stages).length).toBeGreaterThan(0);
 
